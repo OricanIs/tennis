@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<!--使用spring创建管理struts2的action操作 -->
+	<!-- <constant name="struts.objectFactory" value="spring" /> -->
+	<!-- 不用重启服务器 -->
+	<constant name="struts.i18n.reload" value="true" />
+	<constant name="struts.configuration.xml.reload" value="true" />
+	<!-- 表单样式 -->
+	<constant name="struts.ui.theme" value="simple" />
+	<!-- 国际化文件 -->
+	<constant name="struts.custom.i18n.resources" value="messages" />
+	<!--解决乱码    -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
+	<!-- 指定允许上传的文件最大字节数。默认值是2097152(2M) -->
+	<!--<constant name="struts.multipart.maxSize" value="10701096"/>-->
+	<!-- 动态方法调用 -->
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<constant name="struts.devMode" value="true" />
+	<include file="struts-test.xml"/>
+	<include file="struts-app.xml"/>
+	<include file="struts-game.xml"/>
+</struts>    

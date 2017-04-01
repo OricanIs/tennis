@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+
+
+    <!--注册测试的service和dao-->
+    <bean id="testService" class="com.tennis.service.test.impl.TestServiceImpl">
+        <property name="testDao" ref="testDao"></property>
+    </bean>
+    <bean id="testDao" class="com.tennis.dao.test.impl.TestDaoImpl">
+        <property name="entityClass" value="com.tennis.model.db.User"/>
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!--注册用户的service 和 dao-->
+    <bean id="userService" class="com.tennis.service.user.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"></property>
+        <property name="regionService" ref="regionService"/>
+        <property name="rankService" ref="rankService"/>
+        <property name="matchService" ref="matchService"/>
+    </bean>
+    <bean id="userDao" class="com.tennis.dao.user.impl.UserDaoImpl">
+        <property name="entityClass" value="com.tennis.model.db.User"/>
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!--注册比赛的service 和 dao-->
+    <bean id="matchService" class="com.tennis.service.match.impl.MatchServiceImpl">
+        <property name="matchDao" ref="matchDao"/>
+    </bean>
+    <bean id="matchDao" class="com.tennis.dao.match.impl.MatchDaoimpl">
+        <property name="entityClass" value="com.tennis.model.db.Match"/>
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="matchResultDao" class="com.tennis.dao.match.impl.MatchResultDaoImpl">
+        <property name="entityClass" value="com.tennis.model.db.MatchResult"/>
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!--注册rank的service 和 dao-->
+    <bean id="rankService" class="com.tennis.service.rank.impl.RankServiceImpl">
+        <property name="rankTodayDao" ref="rankTodayDao"/>
+        <property name="regionService" ref="regionService"/>
+
+    </bean>
+    <bean id="rankTodayDao" class="com.tennis.dao.rankToday.impl.RankTodayDaoImpl">
+        <property name="entityClass" value="com.tennis.model.db.UserRankToday"/>
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="rankHistoryDao" class="com.tennis.dao.rankHistory.impl.RankHistoryDaoImpl">
+        <property name="entityClass" value="com.tennis.model.db.UserRankHistory"/>
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <!--注册地区信息的service和dao-->
+    <bean id="regionService" class="com.tennis.service.region.impl.RegionServiceImpl">
+        <property name="regionDao" ref="regionDao"/>
+        <property name="nationDao" ref="nationDao"/>
+    </bean>
+    <bean id="regionDao" class="com.tennis.dao.region.impl.RegionDaoImpl">
+        <property name="entityClass" value="com.tennis.model.db.Region"/>
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    <bean id="nationDao" class="com.tennis.dao.region.impl.NationDaoImpl">
+        <property name="entityClass" value="com.tennis.model.db.Nation"></property>
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+
+
+</beans>

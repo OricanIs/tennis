@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+    "http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+
+    <package name="user" extends="json-default,struts-default" namespace="/user">
+        <action name="userAction" class="com.tennis.action.app.UserAction" method="execute">
+            <result name="success" type="json">
+
+            </result>
+        </action>
+
+        <!--登陆接口-->
+        <action name="login" class="com.tennis.action.app.UserAction" method="login">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+        <!--获取我的信息-->
+        <action name="myInfo" class="com.tennis.action.app.UserAction" method="myInfo">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+        <!--保存我的信息-->
+        <action name="save" class="com.tennis.action.app.UserAction" method="saveUserInfo">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+        <!--修改我的信息-->
+        <action name="update" class="com.tennis.action.app.UserAction" method="updateUserInfo">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+        <!--查看其他人信息-->
+        <action name="otherUserinfo" class="com.tennis.action.app.UserAction"
+                method="otherUserinfo">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+
+    </package>
+
+    <package name="region" extends="json-default,struts-default" namespace="/region">
+        <!--获取省份信息-->
+        <action name="getProvinces" class="com.tennis.action.app.RegionAction" method="getProvinces">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+        <!--获取城市信息-->
+        <action name="getCitys" class="com.tennis.action.app.RegionAction" method="getCitys">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+        <!--获取所有的国家-->
+        <action name="getNations" class="com.tennis.action.app.RegionAction" method="getNations">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+        <!--精确获取国家信息-->
+        <action name="getNation" class="com.tennis.action.app.RegionAction" method="getNation">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+
+    </package>
+
+    <package name="rank" extends="json-default,struts-default" namespace="/rank">
+        <!--rank排名-->
+        <action name="rankList" class="com.tennis.action.app.RankAction" method="rankList">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+
+    </package>
+
+</struts>

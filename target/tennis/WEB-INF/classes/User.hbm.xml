@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.tennis.model.db.User" table="user" schema="tennis">
+        <id name="id" column="id"/>
+        <property name="name" column="name"/>
+        <property name="pinyin" column="pinyin"/>
+        <property name="sex" column="sex"/>
+        <property name="age" column="age"/>
+        <property name="height" column="height"/>
+        <property name="weight" column="weight"/>
+        <property name="nation" column="nation"/>
+        <property name="nationFlag" column="nation_flag"/>
+        <property name="province" column="province"/>
+        <property name="city" column="city"/>
+        <property name="avatar" column="avatar"/>
+        <property name="backhand" column="backhand"/>
+        <property name="forehand" column="forehand"/>
+        <property name="level" column="level"/>
+        <property name="integral" column="integral"/>
+        <property name="openid" column="openid"/>
+        <property name="mobile" column="mobile"/>
+        <property name="registerTime" column="register_time"/>
+        <property name="status" column="status"/>
+        <property name="birthday" column="birthday"/>
+    </class>
+</hibernate-mapping>

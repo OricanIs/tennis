@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+    xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+    <!--测试 action-->
+    <bean id="testAction" class="com.tennis.action.test.TestAction" scope="prototype">
+        <property name="testService" ref="testService"></property>
+    </bean>
+
+    <!--地址信息 action-->
+    <bean id="regionAction" class="com.tennis.action.app.RegionAction" scope="prototype">
+        <property name="regionService" ref="regionService"/>
+    </bean>
+
+    <!--排名 action-->
+    <bean id="rankAction" class="com.tennis.action.app.RankAction" scope="prototype">
+        <property name="rankService" ref="rankService"/>
+    </bean>
+
+    <!--用户 action-->
+    <bean id="userAction" class="com.tennis.action.app.UserAction" scope="prototype">
+        <property name="userService" ref="userService"/>
+    </bean>
+
+
+</beans>

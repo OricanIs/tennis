@@ -1,0 +1,98 @@
+@charset "utf-8";
+@font-face {
+    font-family: "iconfont";
+    src: url('/asset/font/iconfont.eot'); /* IE9*/
+    src: url('/asset/font/iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('/asset/font/iconfont.woff') format('woff'), /* chrome, firefox */ url('/asset/font/iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/ url('/asset/font/iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/*------footer------*/
+.footer {
+    width: 100%;
+    max-width: 640px;
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    overflow: hidden;
+    background-color: #FFF;
+    border-top: medium none #ECEDED;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.footer li {
+    float: left;
+    width: 25%;
+    text-align: center;
+    margin-top: 1rem;
+    height: 100%;
+}
+
+.footer a {
+    color: #777;
+    font-size: 1rem;
+}
+
+#user-b {
+    margin-bottom: 68px;
+}
+
+#user-b .footer a {
+    font-size: .875rem;
+}
+
+.footer a.active {
+    color: rgba(22, 160, 210, 1);
+}
+
+.footer .nav-controller {
+    position: relative;
+    height: 100%;
+    display: block;
+}
+
+.fb-home,
+.fb-group,
+.fb-list,
+.fb-user {
+    background-size: 20px auto;
+    height: 21px;
+    margin: -3px auto auto;
+    width: 20%;
+}
+
+.fb-home {
+    background-position: 0px -124px;
+}
+
+.active .fb-home {
+    background-position: 0px 0;
+}
+
+.active .fb-group {
+    background-position: 0px -31px;
+}
+
+.fb-list {
+    background-position: 0px -187px;
+}
+
+.active .fb-list {
+    background-position: 0px -62px;
+}
+
+.fb-user {
+    background-position: 0px -218px;
+}
+
+.active .fb-user {
+    background-position: 0px -92px;
+}

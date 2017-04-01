@@ -1,0 +1,45 @@
+@charset "utf-8";
+
+menu{width:100%; height: 2.5rem; position: fixed; background: rgba(40,67,79,.9); bottom: 0px; left: 0px; right: 0px; color: rgba(255,255,255,1); z-index: 102;}
+menu a{color: rgba(255,255,255,1) !important; display: table-cell; width: 1%; text-align: center; font-size: .65rem; vertical-align: middle; line-height: 1.5rem;}
+menu a:active{background: rgba(0,0,0,.2); color: rgba(255,255,255,.5) !important;}
+menu a.active{background: rgba(0,0,0,.2);}
+menu i{display: block; font-size: 1.3rem; height: 1rem; padding-bottom: .2rem; position: relative;}
+menu i.icon-cart span{width: 1rem; height: 1rem; line-height: 1rem; border-radius: 50%; background: rgba(255,255,0,1); box-shadow: 0 0 3px rgba(0,0,0,.3); color: rgba(244,83,91,1); position: absolute; top: 0; right: 10%; font-size: .8rem; font-style: initial;}
+
+menu button{width: 100%; padding: 0 .5rem; font-size: .9rem; height: 2.7rem; line-height: 2.2rem; background: rgba(255,159,0,1); color: rgba(255,255,255,1);}
+menu button:active{background:rgba(0,172,152,1) !important; color: rgba(255,255,255,1) !important;}
+menu button:disabled{background: rgba(230,230,230,1); color: rgba(0,0,0,.1);}
+menu button:active:disabled{background: rgba(230,230,230,1) !important; color: rgba(0,0,0,.1) !important;}
+
+header{position: fixed; left: 0; top: 0; width: 100%; z-index: 10;}
+header .header{min-height: 2.5rem; line-height: 2.5rem; background: rgba(55,160,210,1); position: relative;}
+/*header .header{min-height: 2.5rem; line-height: 2.5rem; background: rgba(30,40,210,1); position: relative;}*/
+header h1{color: #fff; text-align: center; font-size: 1rem;}
+header h1 i{font-size: 1.5rem; position: absolute; left: .2rem; top: 0px; color: rgba(255,255,230,1);}
+header h1 img{width: 5rem; position: absolute; left: 0rem; top: .3rem;}
+header p{height: 1rem; background: rgba(0,172,152,.95);}
+
+.return,.head-l{position: absolute; height: 2.5rem; line-height: 2.5rem; left: 0; top: 0; cursor: pointer; padding: 0 .8rem; color: rgba(255,255,255,1);}
+.return:active{background: rgba(0,0,0,.1);}
+.return:active i:before{border-left:.1rem solid rgba(255,255,255,.8); border-top: .1rem solid rgba(255,255,255,.8);}
+.return i{width: .6rem; height: 1.25rem; display: inline-block; overflow: hidden; clip:rect(0 .6rem 2.05rem 0); position: relative; vertical-align: sub; margin-right: .4rem;}
+.return i:before{content:''; width: .8rem; height: .8rem; border-left:.1rem solid rgba(255,255,255,1); border-top: .1rem solid rgba(255,255,255,1); -webkit-transform:rotate(-45deg); -moz-transform:rotate(-45deg); -ms-transform:rotate(-45deg); -o-transform:rotate(-45deg); transform:rotate(-45deg); position: absolute; top: .2rem; left: .25rem;}
+
+.header-cart{position: absolute; width: 2.5rem; height: 2.5rem; line-height: 2.5rem; text-align: center; right: 0; top: 0; font-size: 1.5rem; color: rgba(255,255,255,1) !important; overflow: hidden; display: block;}
+.header-cart:active{background: rgba(0,0,0,.1);}
+.header-cart.active .point{position:absolute; right: .2rem; top: .2rem; width: 1rem; height: 1rem; line-height: 1rem; border-radius: 50%; background: rgba(255,255,0,1); box-shadow: 0 0 3px rgba(0,0,0,.15); color: rgba(244,83,91,1); font-size: .6rem; -webkit-transform: scale(.6);}
+
+.close{position: absolute; width: 2.5rem; height: 2.5rem; line-height: 2.35rem; right: 0; top: 0; cursor: pointer; text-align: center; background: transparent; font-size: 1.3rem; color: rgba(255,255,255,1);}
+.close:active{background:rgba(0,0,0,.05); color: rgba(255,255,255,.5);}
+.close i{display: block; margin: 0 .08rem 0 0;}
+
+.browse{right: 2.5rem !important;}
+.browse,.head-r{ position: absolute; width: 2.5rem; height: 2.5rem; line-height: 2.5rem; text-align: center; right: 0; top: 0; font-size: 1.5rem; color: rgba(255,255,255,1) !important; overflow: hidden; display: block;}
+.browse:active,.head-r:active{background: rgba(0,0,0,.1);}
+.head-r{font-size: 1rem; width: initial; padding: 0 .8rem; display: inline-block; background: transparent;}
+.head-r i{font-size: 1.4rem;}
+
+.head-delivery{line-height: .95rem; height: 2.1rem; padding: .4rem 0 0 0; width: 3rem;}
+.head-delivery i{display: block;}
+.head-delivery span{ font-size: .75rem; -webkit-transform: scale(.8); display: block;}

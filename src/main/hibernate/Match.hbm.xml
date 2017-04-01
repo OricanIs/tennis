@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.tennis.model.db.Match" table="match" schema="tennis">
+        <id name="id" column="id"/>
+        <property name="defenderMainUser" column="defender_main_user"/>
+        <property name="deferderMinUser" column="deferder_min_user"/>
+        <property name="challengeMainUser" column="challenge_main_user"/>
+        <property name="challengeMinUser" column="challenge_min_user"/>
+        <property name="state" column="state"/>
+        <property name="playWay" column="play_way"/>
+        <property name="matchType" column="match_type"/>
+        <property name="matchProvince" column="match_province"/>
+        <property name="matchCity" column="match_city"/>
+        <property name="startTime" column="start_time"/>
+        <property name="endTime" column="end_time"/>
+        <property name="createTime" column="create_time"/>
+        <property name="defenderScore" column="defender_score"/>
+        <property name="challengeScore" column="challenge_score"/>
+    </class>
+</hibernate-mapping>
