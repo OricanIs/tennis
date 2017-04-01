@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="MySQL - tennis@localhost" uuid="61242e9b-f529-4fef-ba6d-2b7233dc6e7c">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <introspection-scope>tennis:</introspection-scope>
+      <resolve-scope>tennis:</resolve-scope>
+    </data-source>
+  </component>
+</project>
