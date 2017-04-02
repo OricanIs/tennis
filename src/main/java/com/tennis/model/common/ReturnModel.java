@@ -14,6 +14,7 @@ public class ReturnModel
 {
 	private int code;
 	private String msg;
+	private String reason;
 	private Object result;
 
 	public int getCode()
@@ -44,5 +45,15 @@ public class ReturnModel
 	public void setResult(Object result)
 	{
 		this.result = result;
+	}
+
+	public String getReason()
+	{
+		return reason;
+	}
+
+	public void setReason(String reason)
+	{
+		this.reason = reason;
 	}
 }

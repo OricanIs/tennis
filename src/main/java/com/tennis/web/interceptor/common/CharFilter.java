@@ -43,13 +43,12 @@ public class CharFilter implements Filter
 		HttpServletResponse resp     = (HttpServletResponse) response;
 		request.setCharacterEncoding(encoding);
 		resp.setContentType("text/html;charset=" + encoding);
-
 		// 处理GET参数
-		if (request.getMethod().equalsIgnoreCase("get") )
+		if (request.getMethod().equalsIgnoreCase("get") ||request.getMethod().equalsIgnoreCase
+				("post"))
 		{
 			Map      paramMap         = req.getParameterMap();
 			String[] queryStringArray = {""};
-
 			if (request.getQueryString() != null)
 			{
 				String result = java.net.URLDecoder.decode(request.getQueryString(), "UTF-8");

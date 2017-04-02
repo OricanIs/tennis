@@ -13,7 +13,7 @@ package com.tennis.model.db;
 public class Match
 {
 
-	private int id;
+	private int     id;
 	private Integer defenderMainUser;
 	private Integer deferderMinUser;
 	private Integer challengeMainUser;
@@ -21,13 +21,15 @@ public class Match
 	private Integer state;
 	private Integer playWay;
 	private Integer matchType;
-	private String matchProvince;
-	private String matchCity;
+	private String  matchProvince;
+	private String  matchCity;
+	private String  matchAddr;
 	private Integer startTime;
 	private Integer endTime;
 	private Integer defenderScore;
 	private Integer challengeScore;
 	private Integer createTime;
+	private Integer integral;
 
 	public int getId()
 	{
@@ -177,6 +179,26 @@ public class Match
 	public void setCreateTime(Integer createTime)
 	{
 		this.createTime = createTime;
+	}
+
+	public Integer getIntegral()
+	{
+		return integral;
+	}
+
+	public void setIntegral(Integer integral)
+	{
+		this.integral = integral;
+	}
+
+	public String getMatchAddr()
+	{
+		return matchAddr;
+	}
+
+	public void setMatchAddr(String matchAddr)
+	{
+		this.matchAddr = matchAddr;
 	}
 
 	@Override

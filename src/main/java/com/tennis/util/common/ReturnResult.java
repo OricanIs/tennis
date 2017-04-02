@@ -28,7 +28,8 @@ public class ReturnResult
 	{
 		ReturnModel returnModel = new ReturnModel();
 		returnModel.setCode(em.getCode());
-		returnModel.setMsg(em.getReason());
+		returnModel.setMsg(em.getName());
+		returnModel.setReason(em.getReason());
 		if(result == null)
 			returnModel.setResult("");
 		else

@@ -23,7 +23,16 @@
     <!--用户 action-->
     <bean id="userAction" class="com.tennis.action.app.UserAction" scope="prototype">
         <property name="userService" ref="userService"/>
+        <property name="matchService" ref="matchService"/>
     </bean>
+
+    <!--用户 action-->
+    <bean id="matchAction" class="com.tennis.action.app.MatchAction" scope="prototype">
+        <property name="rankService" ref="rankService"/>
+        <property name="userService" ref="userService"/>
+    </bean>
+
+
 
 
 </beans>

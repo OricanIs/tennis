@@ -13,9 +13,12 @@ package com.tennis.em;
 public enum EM_GLOBAL_RESULT
 {
 
-	OK(0, "SUCCESS", "success"),
-	ERR_STATUS(10001, "ERR_STATUS", "status abnormal"),
-	ERR_PARAM(10002,"ERR_PARAM","请求参数不合法")
+	OK(0, "success", "success"),
+	ERR_STATUS(10001, "errStatus", "status abnormal"),
+	ERR_PARAM(10002,"errParam","请求参数不合法"),
+	NOT_FOUND(10003,"notFound","找不到用户"),
+	NO_CHANCE(10004,"noChance","您的机会已用尽,或者您是休息状态"),
+	CANNOT_CHALL(10005,"cannotChallenge","对手不可挑战")
 
 	;
 

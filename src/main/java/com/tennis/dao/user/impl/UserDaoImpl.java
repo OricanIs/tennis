@@ -61,4 +61,17 @@ public class UserDaoImpl extends GenericDaoImpl<User,Integer> implements IUserDa
 		User   user = this.getBySQL(sql, openid);
 		return user;
 	}
+
+	/**
+	 * 通过手机号查询用户
+	 *
+	 * @param mobile
+	 * @return
+	 */
+	public User getUserByMobile(String mobile)
+	{
+		String sql = "select * from user u where u.mobile =?";
+		User bySQL = this.getBySQL(sql, mobile);
+		return bySQL;
+	}
 }

@@ -92,19 +92,7 @@
                 <prop key="hibernate.show_sql">true</prop> <!-- 控制台上打印SQL -->
                 <prop key="hibernate.format_sql">true</prop> <!-- 控制台输出时，对SQL语句格式化 -->
                 <prop key="current_session_context_class">thread</prop>
-                <prop key="hibernate.connection.url">jdbc:mysql://localhost:3306/tennis</prop>
-                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
-
             </props>
-        </property>
-        <property name="mappingLocations">
-            <list>
-                <value>classpath:Integral.hbm.xml</value>
-                <value>classpath:Match.hbm.xml</value>
-                <value>classpath:User.hbm.xml</value>
-                <value>classpath:UserRankHistory.hbm.xml</value>
-                <value>classpath:UserRankToday.hbm.xml</value>
-            </list>
         </property>
     </bean>
 

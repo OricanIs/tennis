@@ -1,6 +1,7 @@
 package com.tennis.service.user;
 
 import com.tennis.model.db.User;
+import com.tennis.model.response.match.MatchUserInfo;
 import com.tennis.model.response.user.UserInfoModel;
 
 /**
@@ -62,4 +63,18 @@ public interface IUserService
 	 * @return
 	 */
 	public boolean canMatch(int user1, int user2);
+
+	/**
+	 * 通过手机号查询用户
+	 * @param mobile
+	 * @return
+	 */
+	public User getUserByMobile(String mobile);
+
+	/**
+	 * 获取用户的userinfo
+	 * @param userId
+	 * @return
+	 */
+	public MatchUserInfo getMatchUserInfo(int userId);
 }

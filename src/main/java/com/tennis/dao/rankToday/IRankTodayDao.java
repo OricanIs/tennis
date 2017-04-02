@@ -32,7 +32,8 @@ public interface IRankTodayDao
 	 * @param pageSize
 	 * @return
 	 */
-	public PageResults<UserRankModel> userRankList(int proviceId, int cityId, int matchType, int level, int
+	public PageResults<UserRankModel> userRankList(int proviceId, int cityId, int matchType, int
+			level,int state, int
 			page,int pageSize);
 
 

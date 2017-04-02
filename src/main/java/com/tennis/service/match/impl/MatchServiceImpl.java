@@ -3,7 +3,7 @@ package com.tennis.service.match.impl;
 import com.tennis.dao.match.IMatchDao;
 import com.tennis.model.db.Match;
 import com.tennis.model.response.match.UserMatchStatistics;
-import com.tennis.service.match.IMathchService;
+import com.tennis.service.match.IMatchService;
 import com.tennis.util.common.DateUtil;
 
 import java.util.Date;
@@ -19,7 +19,7 @@ import java.util.List;
  * @Date: 2017/3/29
  * @Description:
  */
-public class MatchServiceImpl implements IMathchService
+public class MatchServiceImpl implements IMatchService
 {
 
 	private IMatchDao matchDao;
@@ -138,4 +138,35 @@ public class MatchServiceImpl implements IMathchService
 
 	}
 
+	/**
+	 * 更新
+	 *
+	 * @param match
+	 */
+	public void update(Match match)
+	{
+		matchDao.update(match);
+	}
+
+	/**
+	 * 保存
+	 *
+	 * @param match
+	 */
+	public void saveMatch(Match match)
+	{
+		matchDao.saveMatch(match);
+
+	}
+
+	/**
+	 * 获取
+	 *
+	 * @param matchId
+	 */
+	public Match get(int matchId)
+	{
+		return matchDao.getMatch(matchId);
+
+	}
 }

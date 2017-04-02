@@ -9,12 +9,14 @@
 	<session-factory>
         <property name="connection.url">jdbc:mysql://localhost:3306/tennis</property>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-
-        <mapping resource="User.hbm.xml"/>
-        <mapping resource="Region.hbm.xml"/>
-        <mapping resource="Nation.hbm.xml"/>
-        <mapping resource="MatchResult.hbm.xml"/>
-
+        <!--<property name="connection.url">jdbc:mysql://localhost:3306/tennis</property>-->
+        <!--<property name="connection.driver_class">com.mysql.jdbc.Driver</property>-->
+            <mapping resource="User.hbm.xml"/>
+            <mapping resource="Region.hbm.xml"/>
+            <mapping resource="Nation.hbm.xml"/>
+            <mapping resource="MatchResult.hbm.xml"/>
+            <mapping resource="Match.hbm.xml"/>
+            <mapping resource="Integral.hbm.xml"/>
     </session-factory>
 
 </hibernate-configuration>

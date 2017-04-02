@@ -5,10 +5,11 @@ import com.tennis.em.EM_USER_LEVEL;
 import com.tennis.model.db.Match;
 import com.tennis.model.db.Nation;
 import com.tennis.model.db.User;
+import com.tennis.model.response.match.MatchUserInfo;
 import com.tennis.model.response.match.UserMatchStatistics;
 import com.tennis.model.response.region.CityInfo;
 import com.tennis.model.response.user.UserInfoModel;
-import com.tennis.service.match.IMathchService;
+import com.tennis.service.match.IMatchService;
 import com.tennis.service.rank.IRankService;
 import com.tennis.service.region.IRegionService;
 import com.tennis.service.user.IUserService;
@@ -32,7 +33,7 @@ public class UserServiceImpl implements IUserService
 	private IUserDao       userDao;
 	private IRegionService regionService;
 	private IRankService   rankService;
-	private IMathchService matchService;
+	private IMatchService  matchService;
 
 	/**
 	 * getUser 精准获取用户的id
@@ -177,7 +178,7 @@ public class UserServiceImpl implements IUserService
 		if (matches.size() > 4)
 			return false;
 
-		return false;
+		return true;
 	}
 	/**
 	 * 查看两个用户能不能比赛
@@ -198,6 +199,70 @@ public class UserServiceImpl implements IUserService
 		return false;
 
 	}
+
+	/**
+	 * 通过手机号查询用户
+	 *
+	 * @param mobile
+	 * @return
+	 */
+	public User getUserByMobile(String mobile)
+	{
+		return userDao.getUserByMobile(mobile);
+	}
+
+
+	/**
+	 * 获取用户的userinfo
+	 *
+	 * @param userId
+	 * @return
+	 */
+	public MatchUserInfo getMatchUserInfo(int userId)
+	{
+
+
+		MatchUserInfo matchUserInfo = new MatchUserInfo();
+		User user = userDao.getUser(userId);
+		//设置级别
+		EM_USER_LEVEL levelEm = EM_USER_LEVEL.getEmByIndex(user.getLevel());
+		matchUserInfo.setLevel(levelEm.getName());
+		//设置用户基本信息
+		matchUserInfo.setId(user.getId());
+		matchUserInfo.setName(user.getName());
+		matchUserInfo.setIntegral(user.getIntegral());
+		matchUserInfo.setNationFlag(user.getNationFlag());
+		//获取排名
+		matchUserInfo.setRank(rankService.getOneRank(userId).getRank());
+
+		UserMatchStatistics statistics = matchService.userStatistics(userId);
+		//统计用户的比赛数据
+		if (statistics != null)
+		{
+			if(statistics.getTeamGameCount()+statistics.getSingleGameCount()==0){
+				matchUserInfo.setWinRate(0);
+			}
+			else
+			{
+				int winCount = statistics.getSingleWinCount()+statistics.getTeamWinCount();
+				int totalCount = statistics.getSingleGameCount() + statistics.getTeamGameCount();
+				matchUserInfo.setWinRate(intDivide(winCount,totalCount));
+
+			}
+		}
+
+		return matchUserInfo;
+	}
+
+
+
+
+
+
+
+
+
+
 
 
 	//privates
@@ -241,6 +306,7 @@ public class UserServiceImpl implements IUserService
 	}
 
 
+
 	//sets
 	public void setUserDao(IUserDao userDao)
 	{
@@ -257,7 +323,7 @@ public class UserServiceImpl implements IUserService
 		this.rankService = rankService;
 	}
 
-	public void setMatchService(IMathchService matchService)
+	public void setMatchService(IMatchService matchService)
 	{
 		this.matchService = matchService;
 	}

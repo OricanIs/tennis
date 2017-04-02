@@ -1,6 +1,7 @@
 ## 用户端
->所有的参数拼接在网址后面 
->所有的返回结果都是json类型
+>所有的参数拼接在网址后面  <br>
+>所有的返回结果都是json类型 <br>
+>如果返回的 msg不在解析的范围内，直接输出reason，并终止操作 <br>
 >
 
 
@@ -17,6 +18,7 @@
 {
 	 "code": 0,
     "msg": "success", 	//success 成功;needLogin 需要登录 ;
+    "reason": "success",
     "result": {
         "city": "东城区",
         "level": "入门",
@@ -60,9 +62,10 @@ forehand=0
 height=69
 weight=79
 name=orican
-sex=1
+sex=1					//0 未知 1女 2男
 nation=1
 nation_flay=url
+status=1 			//status  0 正常 ；1 休息
 
 ```
 #### response
@@ -71,6 +74,7 @@ nation_flay=url
 {
     "msg": "success",
     "result": "",
+    "reason": "success",
     "code": 0
 }
 
@@ -81,6 +85,7 @@ nation_flay=url
 #### request
 ```js
 	id=1  //required
+	matchId =1 //非必需，通过查看比赛详情页面查看用户信息，那么matchId是必须的
 ```
 #### response
 
@@ -112,10 +117,68 @@ nation_flay=url
         "nationFlag": "http://muxu.oss-cn-hangzhou.aliyuncs.com/china.png",
         "teamWinningRate": 0
     },
+    "reason": "success",
+    "code": 0
+}
+```
+
+### 通过手机号查找到其他人
+>
+>主要用于双打比赛中添加比赛伙伴用
+>
+
+**url** `/user/findPartner`
+
+#### request
+
+```js
+
+mobile=13122210065
+
+```
+
+#### response
+```js
+{
+    "msg": "success",
+    "result": {
+        "mobil": "13122210065",
+        "name": "orican",
+        "avatar": "headimage",
+        "id": 1
+    },
+    "reason": "success",
+    "code": 0
+}
+```
+
+### 个人中心
+
+**url** `/user/center`
+
+#### request
+
+```js
+
+
+```
+
+#### response
+```js
+
+{
+    "msg": "success",
+    "result": {
+        "integral": 201,
+        "rank": 0,
+        "avatar": "headimage",
+        "id": 1,
+        "status": 0,
+        "username": "orican"
+    },
+    "reason": "success",
     "code": 0
 }
 
 ```
-
-
 

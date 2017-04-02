@@ -23,20 +23,22 @@ import static com.tennis.util.common.HttpPrintWriter.responseWrite;
 public class RankAction extends ActionSupport
 {
 	//页数
-	private int page;
+	private int          page;
 	private IRankService rankService;
-	private int province;
-	private int city;
-	private int level;
-	private int pageSize;
+	private int          province;
+	private int          city;
+	private int          level;
+	private int          pageSize;
 	private EM_GLOBAL_RESULT SuccessEM = EM_GLOBAL_RESULT.getEmByCode(0);
 
 	/**
 	 * getRankToday 获取今日排行榜
+	 *
 	 * @return
 	 */
-	public String rankList(){
-		PageResults<UserRankModel> pageResults = rankService.userRankList(province, city, 0, level, page, pageSize);
+	public String rankList()
+	{
+		PageResults<UserRankModel> pageResults = rankService.userRankList(province, city, 0, level, 0, page, pageSize);
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, pageResults);
 		return SUCCESS;
 	}
@@ -44,9 +46,9 @@ public class RankAction extends ActionSupport
 
 	/**
 	 * ===========================
-	 *
-	 * 	增加一个每日轮询的任务
-	 *
+	 * <p>
+	 * 增加一个每日轮询的任务
+	 * <p>
 	 * ===========================
 	 */
 

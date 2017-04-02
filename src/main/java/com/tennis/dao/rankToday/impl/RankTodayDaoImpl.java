@@ -22,7 +22,7 @@ import java.util.List;
  * @Date: 2017/3/29
  * @Description:
  */
-public class RankTodayDaoImpl extends GenericDaoImpl<UserRankToday,Integer> implements IRankTodayDao
+public class RankTodayDaoImpl extends GenericDaoImpl<UserRankToday, Integer> implements IRankTodayDao
 {
 
 	/**
@@ -31,9 +31,9 @@ public class RankTodayDaoImpl extends GenericDaoImpl<UserRankToday,Integer> impl
 	 */
 	public int getRankByUser(int userId)
 	{
-		String hql = "select count(*) from User u where u.integral > (select integral from User u1 where u1.id=?)";
-		Long   count = this.countByHql(hql,userId);
-		return count.intValue() +1;
+		String hql   = "select count(*) from User u where u.integral > (select integral from User u1 where u1.id=?)";
+		Long   count = this.countByHql(hql, userId);
+		return count.intValue() + 1;
 	}
 
 	/**
@@ -47,30 +47,37 @@ public class RankTodayDaoImpl extends GenericDaoImpl<UserRankToday,Integer> impl
 	 * @return
 	 */
 	public PageResults<UserRankModel> userRankList(int proviceId, int cityId, int matchType, int
-			level, int page,int pageSize)
+			level,int state, int page, int pageSize)
 	{
 
 		String hql = "select new com.tennis.model.response.rank.UserRankModel(u.id,u.name,u.province,u.city,u.integral) from User u where 1=1 ";
 
-		String countHql = "select count(*) from User where 1=1";
+		String countHql = "select count(*) from User u where 1=1";
 
-		if(proviceId!=0){
-			hql += " and u.province="+proviceId;
-			countHql += " and u.province="+proviceId;
+		if (proviceId != 0)
+		{
+			hql += " and u.province=" + proviceId;
+			countHql += " and u.province=" + proviceId;
 		}
 
-		if(cityId !=0){
-			hql += " and u.city="+cityId;
-			countHql += " and u.city="+cityId;
+		if (cityId != 0)
+		{
+			hql += " and u.city=" + cityId;
+			countHql += " and u.city=" + cityId;
 		}
-		if( level != 0){
+		if (level != 0)
+		{
 
-			hql += " and u.level="+level;
-			countHql += " and u.level="+level;
+			hql += " and u.level=" + level;
+			countHql += " and u.level=" + level;
+		}
+		if(state != -1){
+			hql += " and u.status=" + state;
+			countHql += " and u.status=" + state;
 		}
 
-//		hql += " and u.matchType="+matchType;
-//		countHql += " and u.matchType="+matchType;
+		//		hql += " and u.matchType="+matchType;
+		//		countHql += " and u.matchType="+matchType;
 
 		hql += " order by u.integral desc,u.id desc";
 
@@ -80,10 +87,9 @@ public class RankTodayDaoImpl extends GenericDaoImpl<UserRankToday,Integer> impl
 	}
 
 
-
 	//private functions
+
 	/**
-	 *
 	 * @param hql      HQL语句
 	 * @param countHql 查询记录条数的HQL语句
 	 * @param pageNo   下一页
@@ -91,11 +97,10 @@ public class RankTodayDaoImpl extends GenericDaoImpl<UserRankToday,Integer> impl
 	 * @param values   不定Object数组参数
 	 * @return PageResults的封装类，里面包含了页码的信息以及查询的数据List集合
 	 */
-	private PageResults<UserRankModel> findRankList(String hql, String countHql, int pageNo, int
-		pageSize, Object... values)
+	private PageResults<UserRankModel> findRankList(String hql, String countHql, int pageNo, int pageSize, Object... values)
 	{
 		PageResults<UserRankModel> retValue = new PageResults<UserRankModel>();
-		Query          query    = this.getSession().createQuery(hql);
+		Query                      query    = this.getSession().createQuery(hql);
 		if (values != null)
 		{
 			for (int i = 0; i < values.length; i++)

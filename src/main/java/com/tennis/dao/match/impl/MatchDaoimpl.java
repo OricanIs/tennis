@@ -67,10 +67,11 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 	 */
 	public List<Match> getEffectiveMatchs(int userId, int startDate, int endDate)
 	{
-		String sql = "select * from `match` m where m.defender_main_user=? or m" +
+		String sql = "select * from matchs m where m.defender_main_user=? or m" +
 				".deferder_min_user=? or m.challenge_main_user=? or m.challenge_min_user=? and m" +
 				".start_time >=? and m.end_time<=?  and state in (1,2) order by id desc";
 		List<Match> listBySQL = this.getListBySQL(sql, userId, userId, userId, userId, startDate, endDate);
+
 		return listBySQL;
 	}
 
@@ -124,4 +125,25 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 		return retValue;
 	}
 
+	/**
+	 * 获取
+	 *
+	 * @param matchId
+	 */
+	public Match getMatch(int matchId)
+	{
+		return this.get(matchId);
+	}
+
+	/**
+	 * 保存
+	 *
+	 * @param match
+	 */
+	public void saveMatch(Match match)
+	{
+
+
+		save(match);
+	}
 }

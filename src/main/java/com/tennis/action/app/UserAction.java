@@ -3,8 +3,12 @@ package com.tennis.action.app;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.tennis.em.EM_GLOBAL_RESULT;
+import com.tennis.model.db.Match;
 import com.tennis.model.db.User;
+import com.tennis.model.response.user.SimpleUserInfo;
+import com.tennis.model.response.user.UserCenter;
 import com.tennis.model.response.user.UserInfoModel;
+import com.tennis.service.match.IMatchService;
 import com.tennis.service.user.IUserService;
 import com.tennis.util.common.CommonUtil;
 
@@ -34,11 +38,19 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 	}
 
 	private IUserService userService;
+	private IMatchService matchService;
 
 	public void setUserService(IUserService userService)
 	{
 		this.userService = userService;
 	}
+
+	public void setMatchService(IMatchService matchService)
+	{
+		this.matchService = matchService;
+	}
+
+	private int matchId;
 
 
 	public String login()
@@ -76,7 +88,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 	{
 		//从session里面拿值
 		User sessionUser = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-//		sessionUser.setId(1);
+		//		sessionUser.setId(1);
 		UserInfoModel userInfo = userService.getUserInfo(1);
 		if (userInfo == null)
 		{
@@ -145,6 +157,9 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 
 		if (user.getBackhand() != null)
 			findUser.setBackhand(user.getBackhand());
+		if(user.getStatus()!=null &&(user.getStatus().equals(0) || user.getStatus().equals(1))){
+			findUser.setStatus(user.getStatus());
+		}
 
 		//保存
 		userService.updateUser(findUser);
@@ -169,8 +184,77 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 			return SUCCESS;
 		}
 		userInfo.setMobile(CommonUtil.telHandle(userInfo.getMobile()));
+		if(matchId != 0)
+		{
+			Match match = matchService.get(matchId);
+			if(match.getState()>=1)
+				userInfo.setMobile(userInfo.getMobile());
+		}
+
+
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, userInfo);
 		return SUCCESS;
 	}
 
+	/**
+	 * 通过手机号获取用户
+	 *
+	 * @return
+	 */
+	public String findParnter()
+	{
+		User findUser = userService.getUserByMobile(user.getMobile());
+		if (findUser == null)
+		{
+			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10003), null);
+			return SUCCESS;
+		}
+
+		//构建成功的返回结果
+		SimpleUserInfo userInfo = new SimpleUserInfo();
+		userInfo.setId(findUser.getId());
+		userInfo.setName(findUser.getName());
+		userInfo.setMobil(findUser.getMobile());
+		userInfo.setAvatar(findUser.getAvatar());
+		responseWrite(ServletActionContext.getResponse(), SuccessEM, userInfo);
+
+		return SUCCESS;
+	}
+
+	/**
+	 * 用户个人中心
+	 * @return
+	 */
+	public String center()
+	{
+		User user = (User)ServletActionContext.getRequest().getSession().getAttribute("user");
+		int  userId = 1;
+		UserInfoModel userInfo = userService.getUserInfo(userId);
+		UserCenter userCenter = new UserCenter();
+		userCenter.setAvatar(userInfo.getAvatar());
+		userCenter.setId(userInfo.getId());
+		userCenter.setIntegral(userInfo.getIntegral());
+		userCenter.setRank(userInfo.getRank());
+		if(userInfo.getState().equals("正常")){
+			userCenter.setStatus(0);
+		}
+		else
+		{
+			userCenter.setStatus(1);
+		}
+		userCenter.setUsername(userInfo.getName());
+
+		responseWrite(ServletActionContext.getResponse(), SuccessEM, userCenter);
+		return SUCCESS;
+	}
+
+
+
+	//sets
+
+
+	public void setMatchId(int matchId)
+	{
+		this.matchId = matchId;
+	}
 }

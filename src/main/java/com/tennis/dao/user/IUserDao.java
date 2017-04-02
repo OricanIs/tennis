@@ -41,4 +41,11 @@ public interface IUserDao
 	 */
 	public User getUserByOpenid(String openid);
 
+	/**
+	 * 通过手机号查询用户
+	 * @param mobile
+	 * @return
+	 */
+	public User getUserByMobile(String mobile);
+
 }

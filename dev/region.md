@@ -1,4 +1,9 @@
 ## 国家-国旗 省份-城市 接口
+>所有的参数拼接在网址后面 <br>
+>所有的返回结果都是json类型 <br>
+>如果返回的 msg不在解析的范围内，直接输出reason，并终止操作<br>
+>
+
 
 
 ### 获取所有国家
@@ -16,6 +21,7 @@
 ```js
 {
     "msg": "success",
+    "reason":"success",
     "result": [
         {
             "image": "http://muxu.oss-cn-hangzhou.aliyuncs.com/china.png",
@@ -58,6 +64,7 @@ nationId=1  //required
 ```js
 {
     "msg": "success",
+    "reason":"success",
     "result": {
         "image": "http://muxu.oss-cn-hangzhou.aliyuncs.com/america.png",
         "name": "美国",
@@ -84,6 +91,7 @@ nationId=1  //required
 
 {
     "msg": "success",
+    "reason":"success",
     "result": [
         {
             "name": "澳门特别行政区",
@@ -134,6 +142,7 @@ provinceId=1  //required
 ```js
 {
     "msg": "success",
+    "reason":"success",
     "result": [
         {
             "name": "延庆县",

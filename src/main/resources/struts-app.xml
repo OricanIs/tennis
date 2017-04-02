@@ -50,6 +50,23 @@
             </result>
         </action>
 
+        <!--查找伙伴-->
+        <action name="findPartner" class="com.tennis.action.app.UserAction"
+                method="findParnter">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+        <!--查找伙伴-->
+        <action name="center" class="com.tennis.action.app.UserAction"
+                method="center">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+
     </package>
 
     <package name="region" extends="json-default,struts-default" namespace="/region">

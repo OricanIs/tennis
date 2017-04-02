@@ -37,4 +37,24 @@ public interface IMatchDao
 	 */
 	public List<Match> getEffectiveMatchs(int userId,int startDate,int endDate);
 
+
+	/**
+	 * 更新
+	 * @param match
+	 */
+	public void update(Match match);
+
+	/**
+	 * 保存
+	 * @param match
+	 */
+	public void saveMatch(Match match);
+
+	/**
+	 * 获取
+	 *
+	 * @param matchId
+	 */
+	public Match getMatch(int matchId);
+
 }
