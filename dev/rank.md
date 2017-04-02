@@ -11,7 +11,7 @@
 >
 
 ### 获取排行榜
-
+**url** `rank/rankList`
 #### request
 
 ```js

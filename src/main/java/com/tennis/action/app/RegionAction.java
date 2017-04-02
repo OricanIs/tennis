@@ -50,7 +50,6 @@ public class RegionAction extends ActionSupport
 	 * @return
 	 */
 	public String getCitys(){
-
 		List<Region> allCitys = regionService.getCityByProvice(provinceId);
 		List<RegionModel> regionModels = structResponseRegion(allCitys);
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, regionModels);

@@ -94,7 +94,6 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	public String confirm()
 	{
 
-
 		return SUCCESS;
 	}
 

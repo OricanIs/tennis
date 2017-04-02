@@ -76,6 +76,7 @@ public class RankTodayDaoImpl extends GenericDaoImpl<UserRankToday, Integer> imp
 			countHql += " and u.status=" + state;
 		}
 
+
 		//		hql += " and u.matchType="+matchType;
 		//		countHql += " and u.matchType="+matchType;
 
