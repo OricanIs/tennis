@@ -1,6 +1,7 @@
 package com.tennis.service.match;
 
 import com.tennis.model.db.Match;
+import com.tennis.model.response.match.PendingMatchModel;
 import com.tennis.model.response.match.UserMatchStatistics;
 
 import java.util.List;
@@ -56,5 +57,14 @@ public interface IMatchService
 	 * @param matchId
 	 */
 	public Match get(int matchId);
+
+
+	/**
+	 * 获取待挑战的比赛记录
+	 * @param userId
+	 * @param playWay
+	 * @return
+	 */
+	public List<PendingMatchModel> pendingMatchs(int userId, int playWay);
 
 }

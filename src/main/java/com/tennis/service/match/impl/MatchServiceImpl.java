@@ -2,10 +2,13 @@ package com.tennis.service.match.impl;
 
 import com.tennis.dao.match.IMatchDao;
 import com.tennis.model.db.Match;
+import com.tennis.model.response.match.PendingMatchModel;
 import com.tennis.model.response.match.UserMatchStatistics;
 import com.tennis.service.match.IMatchService;
+import com.tennis.service.user.IUserService;
 import com.tennis.util.common.DateUtil;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,11 +25,17 @@ import java.util.List;
 public class MatchServiceImpl implements IMatchService
 {
 
-	private IMatchDao matchDao;
+	private IMatchDao    matchDao;
+	private IUserService userService;
 
 	public void setMatchDao(IMatchDao matchDao)
 	{
 		this.matchDao = matchDao;
+	}
+
+	public void setUserService(IUserService userService)
+	{
+		this.userService = userService;
 	}
 
 	/**
@@ -52,9 +61,9 @@ public class MatchServiceImpl implements IMatchService
 	public List<Match> userWeekMatchs(int userId)
 	{
 		//构建时间戳
-		Date today = new Date();
-		int monday = DateUtil.DateToTimestamp(DateUtil.getMondayOfThisWeek(today));
-		int sunday = DateUtil.DateToTimestamp(DateUtil.getSundayOfThisWeek(today));
+		Date today  = new Date();
+		int  monday = DateUtil.DateToTimestamp(DateUtil.getMondayOfThisWeek(today));
+		int  sunday = DateUtil.DateToTimestamp(DateUtil.getSundayOfThisWeek(today));
 
 		List<Match> effectiveMatchs = matchDao.getEffectiveMatchs(userId, monday, sunday);
 		return effectiveMatchs;
@@ -99,14 +108,14 @@ public class MatchServiceImpl implements IMatchService
 					teamGameCount++;
 					//确定输赢
 					if (match.getChallengeScore() > match.getDefenderScore())
-						teamWinCount ++;
+						teamWinCount++;
 				}
 				else
 				{
 					singleGameCount++;
 
 					if (match.getChallengeScore() > match.getDefenderScore())
-						singleGameCount ++;
+						singleGameCount++;
 
 				}
 
@@ -120,7 +129,7 @@ public class MatchServiceImpl implements IMatchService
 
 					//确定输赢
 					if (match.getChallengeScore() < match.getDefenderScore())
-						teamWinCount ++;
+						teamWinCount++;
 
 				}
 				else
@@ -128,13 +137,13 @@ public class MatchServiceImpl implements IMatchService
 					singleGameCount++;
 					//确定输赢
 					if (match.getChallengeScore() < match.getDefenderScore())
-						singleGameCount ++;
+						singleGameCount++;
 
 				}
 			}
 		}
 
-		return new UserMatchStatistics(singleGameCount,teamGameCount,singleWinCount,teamWinCount);
+		return new UserMatchStatistics(singleGameCount, teamGameCount, singleWinCount, teamWinCount);
 
 	}
 
@@ -168,5 +177,42 @@ public class MatchServiceImpl implements IMatchService
 	{
 		return matchDao.getMatch(matchId);
 
+	}
+
+	/**
+	 * 获取待挑战的比赛记录
+	 *
+	 * @param userId
+	 * @param playWay
+	 * @return
+	 */
+	public List<PendingMatchModel> pendingMatchs(int userId, int playWay)
+	{
+		List<Match>             matches = matchDao.pendingMatchs(userId, playWay);
+		List<PendingMatchModel> models  = new ArrayList<PendingMatchModel>();
+		for (int i = 0; i < matches.size(); i++)
+		{
+			PendingMatchModel model = new PendingMatchModel();
+			Match             match = matches.get(i);
+			model.setId(match.getId());
+			model.setPlayWay(playWay);
+			if (playWay == 0)
+			{
+				model.setMainUser(userService.getMatchUserInfo(match.getChallengeMainUser()));
+			}
+			else
+			{
+				model.setMainUser(userService.getMatchUserInfo(match.getChallengeMainUser()));
+				model.setMinUser(userService.getMatchUserInfo(match.getChallengeMinUser()));
+			}
+			Date startDate = DateUtil.TimestampToDate(match.getCreateTime());
+			Date endDate   = DateUtil.TimestampToDate(match.getEndTime());
+			model.setStartTime(DateUtil.getStringDate(startDate, DateUtil.DATE_YY_MM_DD_HH_MM));
+			model.setEndTime(DateUtil.getStringDate(endDate, DateUtil.DATE_YY_MM_DD_HH_MM));
+
+			models.add(model);
+		}
+
+		return models;
 	}
 }

@@ -32,6 +32,7 @@
     <!--注册比赛的service 和 dao-->
     <bean id="matchService" class="com.tennis.service.match.impl.MatchServiceImpl">
         <property name="matchDao" ref="matchDao"/>
+        <property name="userService" ref="userService"/>
     </bean>
     <bean id="matchDao" class="com.tennis.dao.match.impl.MatchDaoimpl">
         <property name="entityClass" value="com.tennis.model.db.Match"/>

@@ -4,6 +4,48 @@
 >如果返回的 msg不在解析的范围内，直接输出reason，并终止操作 <br>
 >
 
+### 微信登陆验证
+
+**url** `/user/login`
+#### request
+```js
+
+	code:1sfsdfsdfsfsfsfsd
+
+```
+
+#### response
+```js
+	{
+    "msg": "success",
+    "result": {
+        "birthday": 0,
+        "backhand": 0,
+        "city": 0,
+        "level": 0,
+        "nation": 0,
+        "registerTime": 1491233464,
+        "openid": "otOAZ0W6LmqT9v8JknEKd9xGAWNQ",
+        "sex": 0,
+        "mobile": "",
+        "weight": 0,
+        "avatar": "",
+        "pinyin": "",
+        "province": 0,
+        "integral": 0,
+        "name": "",
+        "id": 0,
+        "age": 0,
+        "forehand": 0,
+        "height": 0,
+        "nationFlag": "",
+        "status": 0
+    },
+    "reason": "success",
+    "code": 0
+}
+
+```
 
 ### 获取我的资料
 **url** `/user/myInfo`

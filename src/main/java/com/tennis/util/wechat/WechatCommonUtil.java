@@ -3,6 +3,7 @@ package com.tennis.util.wechat;
 import com.tennis.constant.wechat.WechatConfig;
 import com.tennis.handler.wechat.OAuthToken;
 import com.tennis.handler.wechat.Token;
+import com.tennis.model.wechat.OpenidModel;
 
 import net.sf.json.JSONException;
 import net.sf.json.JSONObject;
@@ -36,6 +37,7 @@ public class WechatCommonUtil
 	public static final  int    DEF_READ_TIMEOUT  = 30000;
 	public static        String userAgent         = "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36";
 
+	public final static String access_openid_url = "https://api.weixin.qq.com/sns/jscode2session?appid=APPID&secret=SECRET&js_code=JSCODE&grant_type=authorization_code";
 
 	/**
 	 * 获取接口访问凭证
@@ -66,6 +68,34 @@ public class WechatCommonUtil
 			}
 		}
 		return token;
+	}
+
+	/**
+	 * 根据code换取appid
+	 * @param code
+	 * @return
+	 */
+	public static OpenidModel getOpenId(String code)
+	{
+		String requestUrl = access_openid_url.replace("APPID", WechatConfig.APP_ID).replace("SECRET", WechatConfig.APP_SECRET).replace("JSCODE", code);
+		JSONObject jsonObject = httpsRequest(requestUrl, requestMethodGet, null);
+		System.out.println(jsonObject);
+		if (null != jsonObject)
+		{
+			try
+			{
+				OpenidModel model = new OpenidModel();
+				model.setOpenid(jsonObject.getString("openid"));
+				model.setSession_key(jsonObject.getString("session_key"));
+				return model;
+			} catch (JSONException e)
+			{
+				System.out.println(jsonObject);
+				return null;
+				// 获取token失败
+			}
+		}
+		return null;
 	}
 
 

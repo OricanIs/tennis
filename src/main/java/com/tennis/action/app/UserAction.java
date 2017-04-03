@@ -8,11 +8,16 @@ import com.tennis.model.db.User;
 import com.tennis.model.response.user.SimpleUserInfo;
 import com.tennis.model.response.user.UserCenter;
 import com.tennis.model.response.user.UserInfoModel;
+import com.tennis.model.wechat.OpenidModel;
 import com.tennis.service.match.IMatchService;
 import com.tennis.service.user.IUserService;
 import com.tennis.util.common.CommonUtil;
+import com.tennis.util.common.DateUtil;
+import com.tennis.util.wechat.WechatCommonUtil;
 
 import org.apache.struts2.ServletActionContext;
+
+import java.util.Date;
 
 import static com.tennis.util.common.HttpPrintWriter.responseWrite;
 
@@ -31,7 +36,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 	//设置model
 	private User             user      = new User();
 	private EM_GLOBAL_RESULT SuccessEM = EM_GLOBAL_RESULT.getEmByCode(0);
-
+	private String code;
 	public User getModel()
 	{
 		return user;
@@ -39,6 +44,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 
 	private IUserService userService;
 	private IMatchService matchService;
+
+	public void setCode(String code)
+	{
+		this.code = code;
+	}
 
 	public void setUserService(IUserService userService)
 	{
@@ -55,27 +65,26 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 
 	public String login()
 	{
-		//检查openid是否符合标准
-		if (user.getOpenid() == null)
-		{
 
-			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByName("ERR_PARAM"), null);
-			return ERROR;
+		OpenidModel openidModel = WechatCommonUtil.getOpenId(code);
+		if(openidModel != null){
+			User findUser = userService.getUserByOpenid(openidModel.getOpenid());
+			if(findUser==null){
+				findUser = new User();
+				findUser.setStatus(0);
+				findUser.setOpenid(openidModel.getOpenid());
+				Integer createAt = DateUtil.DateToTimestamp(new Date());
+				findUser.setRegisterTime(createAt);
+				userService.saveUser(findUser);
+			}
+			ServletActionContext.getRequest().getSession().setAttribute("user",findUser);
+			responseWrite(ServletActionContext.getResponse(), SuccessEM, findUser);
+			return SUCCESS;
+		}else {
+			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10002), null);
+			return SUCCESS;
 		}
 
-		User findUser = userService.getUserByOpenid(user.getOpenid());
-
-		//检查是否存在
-		if (findUser == null)
-		{
-
-			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByName("ERR_PARAM"), null);
-			return ERROR;
-		}
-
-		ServletActionContext.getRequest().getSession().setAttribute("user", findUser);
-		responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
-		return SUCCESS;
 	}
 
 
@@ -89,7 +98,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		//从session里面拿值
 		User sessionUser = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		//		sessionUser.setId(1);
-		UserInfoModel userInfo = userService.getUserInfo(1);
+		UserInfoModel userInfo = userService.getUserInfo(sessionUser.getId());
 		if (userInfo == null)
 		{
 			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10002), null);
@@ -247,6 +256,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, userCenter);
 		return SUCCESS;
 	}
+
 
 
 

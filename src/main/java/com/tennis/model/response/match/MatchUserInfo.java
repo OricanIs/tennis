@@ -19,6 +19,7 @@ public class MatchUserInfo
 	private int integral;
 	private float winRate;
 	private String level;
+	private String avatar;
 
 	public int getId()
 	{
@@ -88,5 +89,15 @@ public class MatchUserInfo
 	public void setLevel(String level)
 	{
 		this.level = level;
+	}
+
+	public String getAvatar()
+	{
+		return avatar;
+	}
+
+	public void setAvatar(String avatar)
+	{
+		this.avatar = avatar;
 	}
 }

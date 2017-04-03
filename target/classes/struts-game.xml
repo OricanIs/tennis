@@ -30,6 +30,14 @@
             </result>
         </action>
 
+        <!--查看比赛详情-->
+        <action name="pendingMatchs" class="com.tennis.action.app.MatchAction"
+                method="pendingMatchs">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
 
 
     </package>

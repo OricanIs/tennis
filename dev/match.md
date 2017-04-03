@@ -95,14 +95,94 @@ deferderMinUser=0
 
 ```
 
-### 填入比赛成绩
+### 应战列表
 
-**url** `/match/`
+**url** `/match/pendingMatchs`
 
 #### request
+>
+>解释 ：playWay：0 返回结果minUser为null 不需要解析 ，playWay：1 minUser不为null
+>
+
+```js
+playWay=0  //0 单打 1 双打  required
+
+```
 
 #### response
+```js
 
+//结果1
+{
+    "msg": "success",
+    "result": [],
+    "reason": "success",
+    "code": 0
+}
+
+//结果2
+{
+    "msg": "success",
+    "result": [
+        {
+            "minUser": null,
+            "startTime": "2017-04-02 20:58",
+            "endTime": "2017-04-02 19:39",
+            "id": 7,
+            "mainUser": {
+                "level": "初级",
+                "integral": 301,
+                "name": "orican",
+                "rank": 0,
+                "avatar": "http://b.hiphotos.baidu.com/zhidao/wh%3D450%2C600/sign=f0c5c08030d3d539c16807c70fb7c566/8ad4b31c8701a18bbef9f231982f07082838feba.jpg",
+                "id": 1,
+                "winRate": 0,
+                "nationFlag": "http://muxu.oss-cn-hangzhou.aliyuncs.com/china.png"
+            },
+            "playWay": 0
+        }
+    ],
+    "reason": "success",
+    "code": 0
+}
+
+//结果3
+{
+    "msg": "success",
+    "result": [
+        {
+            "minUser": {
+                "level": "初级",
+                "integral": 310,
+                "name": "orican1",
+                "rank": 0,
+                "avatar": "http://muxu.oss-cn-hangzhou.aliyuncs.com/user/5366d0160924ab18d9105e4432fae6cd7b890bba.jpg",
+                "id": 2,
+                "winRate": 0,
+                "nationFlag": "http://muxu.oss-cn-hangzhou.aliyuncs.com/china.png"
+            },
+            "startTime": "2017-04-02 20:58",
+            "endTime": "2017-04-02 19:39",
+            "id": 7,
+            "mainUser": {
+                "level": "初级",
+                "integral": 301,
+                "name": "orican",
+                "rank": 0,
+                "avatar": "http://muxu.oss-cn-hangzhou.aliyuncs.com/user/5366d0160924ab18d9105e4432fae6cd7b890bba.jpg",
+                "id": 1,
+                "winRate": 0,
+                "nationFlag": "http://muxu.oss-cn-hangzhou.aliyuncs.com/china.png"
+            },
+            "playWay": 1
+        }
+    ],
+    "reason": "success",
+    "code": 0
+}
+
+
+```
 
 ### 查看比赛
 

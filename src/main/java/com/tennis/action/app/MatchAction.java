@@ -7,15 +7,18 @@ import com.tennis.model.common.PageResults;
 import com.tennis.model.db.Match;
 import com.tennis.model.db.User;
 import com.tennis.model.response.match.MatchInfo;
+import com.tennis.model.response.match.PendingMatchModel;
 import com.tennis.model.response.rank.UserRankModel;
 import com.tennis.service.match.IMatchService;
 import com.tennis.service.rank.IRankService;
 import com.tennis.service.user.IUserService;
+import com.tennis.util.common.CommonUtil;
 import com.tennis.util.common.DateUtil;
 
 import org.apache.struts2.ServletActionContext;
 
 import java.util.Date;
+import java.util.List;
 
 import static com.tennis.util.common.HttpPrintWriter.responseWrite;
 
@@ -70,7 +73,6 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	{
 
 
-
 		return SUCCESS;
 	}
 
@@ -98,9 +100,27 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	}
 
 	/**
+	 * 待确认的比赛
+	 * @return
+	 */
+	public String pendingMatchs()
+	{
+		//playType = 0 单打
+		//playType = 1 双打
+		User      user      = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		user = userService.getUser(1);
+		List<PendingMatchModel> pendingMatchModels = matchService.pendingMatchs(user.getId(), match.getPlayWay());
+
+		//返回结果
+		responseWrite(ServletActionContext.getResponse(), SuccessEM, pendingMatchModels);
+		return SUCCESS;
+	}
+
+	/**
 	 * 获取详情
 	 * 参数：
-	 * 	* id :比赛的id
+	 * * id :比赛的id
+	 *
 	 * @return
 	 */
 	public String matchInfo()
@@ -118,7 +138,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 		matchInfo.setChScore(match.getChallengeScore());
 		matchInfo.setDeScore(match.getDefenderScore());
 
-		Date startDate = DateUtil.TimestampToDate(match.getCreateTime());
+		Date startDate = DateUtil.TimestampToDate(match.getStartTime());
 		Date endDate   = DateUtil.TimestampToDate(match.getEndTime());
 		matchInfo.setStartTime(DateUtil.getStringDate(startDate, DateUtil.DATE_YY_MM_DD_HH_MM));
 		matchInfo.setEndTime(DateUtil.getStringDate(endDate, DateUtil.DATE_YY_MM_DD_HH_MM));
@@ -136,16 +156,16 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10002), null);
 			return SUCCESS;
 		}
-		if(match.getChallengeMainUser() != null && !match.getChallengeMainUser().equals(0))
+		if (match.getChallengeMainUser() != null && !match.getChallengeMainUser().equals(0))
 			matchInfo.setChMainUser(userService.getMatchUserInfo(match.getChallengeMainUser()));
 
-		if(match.getChallengeMinUser() != null && !match.getChallengeMinUser().equals(0))
+		if (match.getChallengeMinUser() != null && !match.getChallengeMinUser().equals(0))
 			matchInfo.setChMinUser(userService.getMatchUserInfo(match.getChallengeMinUser()));
 
-		if(match.getDefenderMainUser() != null && !match.getDefenderMainUser().equals(0))
+		if (match.getDefenderMainUser() != null && !match.getDefenderMainUser().equals(0))
 			matchInfo.setDeMainUser(userService.getMatchUserInfo(match.getDefenderMainUser()));
 
-		if(match.getDeferderMinUser() != null && !match.getDeferderMinUser().equals(0))
+		if (match.getDeferderMinUser() != null && !match.getDeferderMinUser().equals(0))
 			matchInfo.setDeMinUser(userService.getMatchUserInfo(match.getDeferderMinUser()));
 
 		//返回结果
@@ -200,7 +220,13 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 					responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10005), null);
 					return SUCCESS;
 				}
-
+				//检查数据是否合法
+				boolean equalsEachOther = CommonUtil.isEqualsEachOther(user.getId(), match.getDefenderMainUser());
+				if (equalsEachOther)
+				{
+					responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10002), null);
+					return SUCCESS;
+				}
 				//创建比赛
 				createMatch(match.getChallengeMainUser(), match.getChallengeMinUser(), match.getDefenderMainUser(), match.getDeferderMinUser(), match.getPlayWay(), match.getMatchType(), match.getMatchCity(), match.getMatchProvince(), match.getMatchAddr(), match.getIntegral(), match.getStartTime(), match.getEndTime());
 				responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
@@ -229,6 +255,14 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 					responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10002), null);
 					return SUCCESS;
 				}
+				//检查数据是否合法
+				boolean equalsEachOther = CommonUtil.isEqualsEachOther(user.getId(), match.getChallengeMinUser(), match.getDefenderMainUser());
+				if (equalsEachOther)
+				{
+					responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10002), null);
+					return SUCCESS;
+				}
+
 				//创建比赛
 				createMatch(match.getChallengeMainUser(), match.getChallengeMinUser(), match.getDefenderMainUser(), match.getDeferderMinUser(), match.getPlayWay(), match.getMatchType(), match.getMatchCity(), match.getMatchProvince(), match.getMatchAddr(), match.getIntegral(), match.getStartTime(), match.getEndTime());
 				responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
@@ -240,7 +274,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			//判断单双打
 			if (match.getPlayWay().equals(0))
 			{
-				createMatch(0, 0, 0, user.getId(), match.getPlayWay(), match.getMatchType(), match.getMatchCity(), match.getMatchProvince(), match.getMatchAddr(), match.getIntegral(), match.getStartTime(), match.getEndTime());
+				createMatch(0, 0, user.getId(), 0, match.getPlayWay(), match.getMatchType(), match.getMatchCity(), match.getMatchProvince(), match.getMatchAddr(), match.getIntegral(), match.getStartTime(), match.getEndTime());
 				responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
 				return SUCCESS;
 			}
@@ -254,7 +288,15 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 					return SUCCESS;
 				}
 
-				createMatch(0, 0, findUser.getId(), user.getId(), match.getPlayWay(), match.getMatchType(), match.getMatchCity(), match.getMatchProvince(), match.getMatchAddr(), match.getIntegral(), match.getStartTime(), match.getEndTime());
+				//检查数据是否合法
+				boolean equalsEachOther = CommonUtil.isEqualsEachOther(user.getId(), findUser.getId());
+				if (equalsEachOther)
+				{
+					responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10005), null);
+					return SUCCESS;
+				}
+				//创建比赛
+				createMatch(0, 0, user.getId(), findUser.getId(), match.getPlayWay(), match.getMatchType(), match.getMatchCity(), match.getMatchProvince(), match.getMatchAddr(), match.getIntegral(), match.getStartTime(), match.getEndTime());
 				responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
 				return SUCCESS;
 
@@ -339,4 +381,6 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	{
 		this.matchService = matchService;
 	}
+
+
 }

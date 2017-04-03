@@ -57,4 +57,15 @@ public interface IMatchDao
 	 */
 	public Match getMatch(int matchId);
 
+
+	/**
+	 * 获取待挑战的比赛记录
+	 *
+	 * @param userId
+	 * @param playWay
+	 * @return
+	 */
+	public List<Match> pendingMatchs(int userId, int playWay);
+
+
 }

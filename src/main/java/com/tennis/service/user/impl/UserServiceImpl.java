@@ -96,8 +96,8 @@ public class UserServiceImpl implements IUserService
 			CityInfo cityInfo = regionService.getCityInfo(user.getCity());
 			if (cityInfo != null)
 			{
-				model.setProvice(cityInfo.getProvice());
-				model.setCity(cityInfo.getCity());
+				model.setProvice(cityInfo.getProvice().substring(0, cityInfo.getProvice().length() - 1));
+				model.setCity(cityInfo.getCity().substring(0, cityInfo.getCity().length() - 1));
 			}
 			else
 			{
@@ -180,8 +180,10 @@ public class UserServiceImpl implements IUserService
 
 		return true;
 	}
+
 	/**
 	 * 查看两个用户能不能比赛
+	 *
 	 * @param user1
 	 * @param user2
 	 * @return
@@ -223,7 +225,7 @@ public class UserServiceImpl implements IUserService
 
 
 		MatchUserInfo matchUserInfo = new MatchUserInfo();
-		User user = userDao.getUser(userId);
+		User          user          = userDao.getUser(userId);
 		//设置级别
 		EM_USER_LEVEL levelEm = EM_USER_LEVEL.getEmByIndex(user.getLevel());
 		matchUserInfo.setLevel(levelEm.getName());
@@ -232,6 +234,7 @@ public class UserServiceImpl implements IUserService
 		matchUserInfo.setName(user.getName());
 		matchUserInfo.setIntegral(user.getIntegral());
 		matchUserInfo.setNationFlag(user.getNationFlag());
+		matchUserInfo.setAvatar(user.getAvatar());
 		//获取排名
 		matchUserInfo.setRank(rankService.getOneRank(userId).getRank());
 
@@ -239,30 +242,21 @@ public class UserServiceImpl implements IUserService
 		//统计用户的比赛数据
 		if (statistics != null)
 		{
-			if(statistics.getTeamGameCount()+statistics.getSingleGameCount()==0){
+			if (statistics.getTeamGameCount() + statistics.getSingleGameCount() == 0)
+			{
 				matchUserInfo.setWinRate(0);
 			}
 			else
 			{
-				int winCount = statistics.getSingleWinCount()+statistics.getTeamWinCount();
+				int winCount   = statistics.getSingleWinCount() + statistics.getTeamWinCount();
 				int totalCount = statistics.getSingleGameCount() + statistics.getTeamGameCount();
-				matchUserInfo.setWinRate(intDivide(winCount,totalCount));
+				matchUserInfo.setWinRate(intDivide(winCount, totalCount));
 
 			}
 		}
 
 		return matchUserInfo;
 	}
-
-
-
-
-
-
-
-
-
-
 
 
 	//privates
@@ -304,7 +298,6 @@ public class UserServiceImpl implements IUserService
 		String        s   = df.format(num);//返回的是String类型
 		return Float.valueOf(s);
 	}
-
 
 
 	//sets

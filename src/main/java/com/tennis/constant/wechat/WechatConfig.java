@@ -7,8 +7,8 @@ public class WechatConfig
 	 */
 
 	//初始化
-	public static String APP_ID         = "wx4c1f3c035b8a37b3";//微信开发平台应用id
-	public static String APP_SECRET     = "730e8cbc8825429fad77d30315468f87";//应用对应的凭证
+	public static String APP_ID         = "wx22cba7eb64b2b507";//微信开发平台应用id
+	public static String APP_SECRET     = "68432515f841bc79c8b796909144368d";//应用对应的凭证
 	//应用对应的密钥
 	public static String APP_KEY        = "L8LrMqqeGRxST5reouB0K66CaYAWpqhAVsq7ggKkxHCOastWksvuX1uvmvQclxaHoYd3ElNBrNO2DHnnzgfVG9Qs473M3DTOZug5er46FhuGofumV8H2FVR9qkjSlC5K";
 	public static String PARTNER        = "1286981701";//财付通商户号

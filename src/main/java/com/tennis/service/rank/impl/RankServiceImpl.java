@@ -66,15 +66,16 @@ public class RankServiceImpl implements IRankService
 		if (pageSize <= 0)
 			pageSize = 20;
 		PageResults<UserRankModel> models = rankTodayDao.userRankList(proviceId, cityId, matchType, level, state, page, pageSize);
-		List<UserRankModel> ranks = models.getResults();
+		List<UserRankModel>        ranks  = models.getResults();
 		for (int i = 0; i < ranks.size(); i++)
 		{
 
 			CityInfo cityInfo = regionService.getCityInfo(ranks.get(i).getCity());
 			if (cityInfo != null)
 			{
-				ranks.get(i).setCityStr(cityInfo.getCity());
-				ranks.get(i).setProvinceStr(cityInfo.getProvice());
+				ranks.get(i).setCityStr(cityInfo.getCity().substring(0, cityInfo.getCity().length() - 1));
+				ranks.get(i).setProvinceStr(cityInfo.getProvice().substring(0,cityInfo.getProvice
+						().length() - 1));
 			}
 		}
 
