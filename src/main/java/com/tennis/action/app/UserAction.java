@@ -3,6 +3,7 @@ package com.tennis.action.app;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 import com.tennis.em.EM_GLOBAL_RESULT;
+import com.tennis.em.EM_USER_LEVEL;
 import com.tennis.model.db.Match;
 import com.tennis.model.db.User;
 import com.tennis.model.response.user.SimpleUserInfo;
@@ -173,6 +174,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		if(user.getStatus()!=null &&(user.getStatus().equals(0) || user.getStatus().equals(1))){
 			findUser.setStatus(user.getStatus());
 		}
+		if((findUser.getLevel()==null ||findUser.getLevel().equals(0))&&!user.getLevel().equals(0)){
+			EM_USER_LEVEL emByIndex = EM_USER_LEVEL.getEmByIndex(user.getLevel());
+			findUser.setLevel(user.getLevel());
+			findUser.setIntegral(emByIndex.getInitial());
+		}
 
 		//保存
 		userService.updateUser(findUser);
@@ -247,7 +253,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		userCenter.setId(userInfo.getId());
 		userCenter.setIntegral(userInfo.getIntegral());
 		userCenter.setRank(userInfo.getRank());
-		if(userInfo.getState().equals("正常")){
+		if(userInfo.getState()==null||userInfo.getState().equals("正常")){
 			userCenter.setStatus(0);
 		}
 		else

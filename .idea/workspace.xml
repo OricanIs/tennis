@@ -2,436 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55d37830-6642-487d-9630-62f3364d0b3a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/action/common/CommonAction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/web/interceptor/common/SysErrInterceptor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/web/interceptor/common/UserLoginInterceptor.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/struts-interceptor-action.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Integral.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Match.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/MatchResult.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Nation.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/Region.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/User.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/UserRankHistory.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/UserRankToday.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/applicationContext.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/beans-action.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/beans.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/action/app/AccessOpenIdAction.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/action/app/MatchAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/action/app/RankAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/action/app/RegionAction.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/action/app/UserAction.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/action/test/TestAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/constant/common/GlobalVariable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/constant/oss/OssConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/constant/wechat/WechatConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/common/IGenericDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/common/impl/GenericDaoImpl$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/common/impl/GenericDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/match/IMatchDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/match/IMatchResultDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/match/impl/MatchDaoimpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/match/impl/MatchResultDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/rankHistory/IRankHistoryDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/rankHistory/impl/RankHistoryDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/rankToday/IRankTodayDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/rankToday/impl/RankTodayDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/region/INationDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/region/IRegionDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/region/impl/NationDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/region/impl/RegionDaoImpl.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/test/ITestDao.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/test/impl/TestDaoImpl.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/user/IUserDao.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/dao/user/impl/UserDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/em/EM_GLOBAL_RESULT.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/em/EM_MATCH_STATE.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/em/EM_USER_LEVEL.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/handler/wechat/AccessTokenHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/handler/wechat/ClientCustomSSL.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/handler/wechat/GetWxOrderno.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/handler/wechat/HttpClientConnectionManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/handler/wechat/MySSLSocketFactory.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/handler/wechat/MyX509TrustManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/handler/wechat/OAuthToken.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/handler/wechat/RequestHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/handler/wechat/Token.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/handler/wechat/TrustAnyTrustManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/handler/wechat/WechatCommon.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/handler/wechat/WeixinOauth2Token.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/common/PageResults.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/common/ReturnModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/db/Integral.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/db/Match.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/db/MatchResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/db/Nation.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/db/Region.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/db/User.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/db/UserRankHistory.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/db/UserRankToday.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/response/match/MatchInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/response/match/MatchUserInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/response/match/PendingMatchModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/response/match/UserMatchStatistics.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/response/rank/RankModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/response/rank/UserRankModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/response/region/CityInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/response/region/RegionModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/response/user/RspUserModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/response/user/SimpleUserInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/response/user/UserCenter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/response/user/UserInfoModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/wechat/Button.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/wechat/ClickButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/wechat/ComplexButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/wechat/Menu.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/wechat/MenuManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/wechat/OpenidModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/wechat/QrBaseModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/wechat/QrTicket.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/wechat/TemplateData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/wechat/TemplateMessage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/wechat/ViewButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/model/wechat/WechatBean.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/service/integral/IIntegralService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/service/integral/impl/IntegralServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/service/match/IMatchService.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/service/match/impl/MatchServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/service/rank/IRankService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/service/rank/impl/RankServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/service/region/IRegionService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/service/region/impl/RegionServiceImpl.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/service/test/ITestService.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/service/test/impl/TestServiceImpl.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/service/user/IUserService.class" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/service/user/impl/UserServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/util/common/CommonUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/util/common/DateUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/util/common/HttpPrintWriter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/util/common/ReturnResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/util/common/http/DownloadFileUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/util/common/oss/OssUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/util/common/qr/QrCodeUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/util/wechat/MD5Util.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/util/wechat/MenuUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/util/wechat/Sha1Util.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/util/wechat/TenpayUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/util/wechat/WechatCommonUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/util/wechat/WechatQrCodeUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/web/interceptor/common/CharFilter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/hibernate.cfg.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/jdbc.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/log4j.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/struts-app.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/struts-game.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/struts-test.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/struts.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/META-INF/MANIFEST.MF" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/Integral.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/Match.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/MatchResult.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/Nation.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/Region.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/User.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/UserRankHistory.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/UserRankToday.hbm.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/applicationContext.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/beans-action.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/beans.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/action/app/AccessOpenIdAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/action/app/MatchAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/action/app/RankAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/action/app/RegionAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/action/app/UserAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/action/test/TestAction.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/constant/common/GlobalVariable.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/constant/oss/OssConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/constant/wechat/WechatConfig.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/common/IGenericDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/common/impl/GenericDaoImpl$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/common/impl/GenericDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/match/IMatchDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/match/IMatchResultDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/match/impl/MatchDaoimpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/match/impl/MatchResultDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/rankHistory/IRankHistoryDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/rankHistory/impl/RankHistoryDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/rankToday/IRankTodayDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/rankToday/impl/RankTodayDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/region/INationDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/region/IRegionDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/region/impl/NationDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/region/impl/RegionDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/test/ITestDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/test/impl/TestDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/user/IUserDao.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/dao/user/impl/UserDaoImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/em/EM_GLOBAL_RESULT.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/em/EM_MATCH_STATE.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/em/EM_USER_LEVEL.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/handler/wechat/AccessTokenHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/handler/wechat/ClientCustomSSL.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/handler/wechat/GetWxOrderno.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/handler/wechat/HttpClientConnectionManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/handler/wechat/MySSLSocketFactory.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/handler/wechat/MyX509TrustManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/handler/wechat/OAuthToken.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/handler/wechat/RequestHandler.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/handler/wechat/Token.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/handler/wechat/TrustAnyTrustManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/handler/wechat/WechatCommon.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/handler/wechat/WeixinOauth2Token.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/common/PageResults.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/common/ReturnModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/db/Integral.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/db/Match.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/db/MatchResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/db/Nation.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/db/Region.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/db/User.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/db/UserRankHistory.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/db/UserRankToday.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/response/match/MatchInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/response/match/MatchUserInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/response/match/PendingMatchModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/response/match/UserMatchStatistics.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/response/rank/RankModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/response/rank/UserRankModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/response/region/CityInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/response/region/RegionModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/response/user/RspUserModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/response/user/SimpleUserInfo.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/response/user/UserCenter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/response/user/UserInfoModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/wechat/Button.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/wechat/ClickButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/wechat/ComplexButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/wechat/Menu.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/wechat/MenuManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/wechat/OpenidModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/wechat/QrBaseModel.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/wechat/QrTicket.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/wechat/TemplateData.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/wechat/TemplateMessage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/wechat/ViewButton.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/model/wechat/WechatBean.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/service/integral/IIntegralService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/service/integral/impl/IntegralServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/service/match/IMatchService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/service/match/impl/MatchServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/service/rank/IRankService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/service/rank/impl/RankServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/service/region/IRegionService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/service/region/impl/RegionServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/service/test/ITestService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/service/test/impl/TestServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/service/user/IUserService.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/service/user/impl/UserServiceImpl.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/util/common/CommonUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/util/common/DateUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/util/common/HttpPrintWriter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/util/common/ReturnResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/util/common/http/DownloadFileUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/util/common/oss/OssUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/util/common/qr/QrCodeUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/util/wechat/MD5Util.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/util/wechat/MenuUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/util/wechat/Sha1Util.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/util/wechat/TenpayUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/util/wechat/WechatCommonUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/util/wechat/WechatQrCodeUtil.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/web/interceptor/common/CharFilter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/hibernate.cfg.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/jdbc.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/log4j.properties" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/struts-app.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/struts-game.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/struts-test.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/struts.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/aliyun-sdk-oss-2.4.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/antlr-2.7.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/asm-5.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/asm-commons-5.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/asm-tree-5.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/aspectjweaver-1.8.9.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/c3p0-0.9.2.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/cdi-api-1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/classmate-1.3.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/commons-beanutils-1.9.3.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/commons-codec-1.9.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/commons-collections-3.2.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/commons-fileupload-1.3.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/commons-io-2.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/commons-lang-2.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/commons-lang3-3.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/commons-logging-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/core-3.3.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/dom4j-1.6.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/el-api-2.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/ezmorph-1.0.6.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/freemarker-2.3.23.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/geronimo-jta_1.1_spec-1.1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/hibernate-c3p0-5.2.5.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/hibernate-commons-annotations-5.0.1.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/hibernate-core-5.2.5.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/hibernate-jpa-2.0-api-1.0.1.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/hibernate-jpa-2.1-api-1.0.0.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/httpclient-4.4.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/httpcore-4.4.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/jandex-2.0.3.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/javassist-3.20.0-GA.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/javax.inject-1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/javax.servlet-api-3.1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/jboss-interceptors-api_1.1_spec-1.0.0.Beta1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/jboss-logging-3.3.0.Final.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/jdom-1.1.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/json-lib-2.4-jdk15.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/jsr250-api-1.0.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/jstl-1.2.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/log4j-1.2.17.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/log4j-api-2.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/log4j-core-2.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/log4j-web-2.7.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/mchange-commons-java-0.2.3.4.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/mysql-connector-java-5.1.13.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/ognl-3.1.10.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/servlet-api-3.0.20100224.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/spring-aop-4.3.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/spring-aspects-4.3.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/spring-beans-4.3.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/spring-context-4.3.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/spring-core-4.3.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/spring-expression-4.3.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/spring-jdbc-4.3.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/spring-orm-4.3.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/spring-test-4.3.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/spring-tx-4.3.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/spring-web-4.3.5.RELEASE.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/struts2-convention-plugin-2.5.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/struts2-core-2.5.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/struts2-json-plugin-2.5.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/lib/struts2-spring-plugin-2.5.5.jar" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/web.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/css/mobiscroll.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/css/mobiscroll_002.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/css/mobiscroll_003.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/font/demo.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/font/iconfont.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/font/iconfont.eot" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/font/iconfont.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/font/iconfont.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/font/iconfont.ttf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/font/iconfont.woff" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/js/jquery-1.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/js/jquery.1.7.2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/js/mobiscroll.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/js/mobiscroll_002.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/js/mobiscroll_003.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/js/mobiscroll_004.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/asset/js/mobiscroll_005.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/index.jsp" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/center.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/base2013.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/common.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/font.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/footer.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/guessing.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/header(1).css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/header.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/index.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/list.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/myhome1.01.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/rank.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/record.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/responsive.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/slick.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/ss.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/css/user-detail.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/10.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/2.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/3.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/4.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/5.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/547bc6b5Ncc52a3b8.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/547bc6dbN3dabf32a.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/547bc6eaN6c97383c.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/547bc70aNf7e3462a.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/547bc727Nde7da59c.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/547bc742N95a14876.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/547bc75fNc5c6209c.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/547bc772Nbdf299f1.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/55546b06Nbd7a17eb.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/6.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/7.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/8.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/9.PNG" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/Thumbs.db" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/ajax-loader.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/appright.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/ban01.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/ban02.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/ban03.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/ban04.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/center-female.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/center-male.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/chimpon.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/defaul.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/headbg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/icon01.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/icon02.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/icon03.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/icon04.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/icon05.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/input.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/jd-sprites_v=12.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/jin.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/model.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/s-index-icon-3.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/tong.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/tuxing.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/images/yin.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/common.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/downloadAppPlugIn.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/frame.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/jdslider.src.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/jquery-1.6.2.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/jquery-1.7.1.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/jquery.mobile-1.4.5.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/jquery.slides.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/m_common.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/news1.0.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/ojbUrl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/pingJS.1.0.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/spin.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/swipe-min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/js/swipe.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/rank.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/record.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/tennis/userPages/user-detail.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/DownloadImage.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/OpenidTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/test-classes/TestDate.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/tennis/web/interceptor/common/UserLoginInterceptor.class" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/action/app/UserAction.class" afterPath="$PROJECT_DIR$/target/tennis/WEB-INF/classes/com/tennis/action/app/UserAction.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/match.md" afterPath="$PROJECT_DIR$/dev/match.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dev/user.md" afterPath="$PROJECT_DIR$/dev/user.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tennis/action/app/MatchAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/action/app/MatchAction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tennis/action/app/UserAction.java" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/action/app/UserAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tennis/dao/match/IMatchDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/dao/match/IMatchDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tennis/dao/match/impl/MatchDaoimpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/dao/match/impl/MatchDaoimpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tennis/em/EM_GLOBAL_RESULT.java" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/em/EM_GLOBAL_RESULT.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tennis/model/db/MatchResult.java" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/model/db/MatchResult.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tennis/model/response/match/MatchInfo.java" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/model/response/match/MatchInfo.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tennis/service/match/IMatchService.java" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/service/match/IMatchService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tennis/service/match/impl/MatchServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/service/match/impl/MatchServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tennis/service/user/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/service/user/impl/UserServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/beans-action.xml" afterPath="$PROJECT_DIR$/src/main/resources/beans-action.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/struts-app.xml" afterPath="$PROJECT_DIR$/src/main/resources/struts-app.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/struts-game.xml" afterPath="$PROJECT_DIR$/src/main/resources/struts-game.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/struts.xml" afterPath="$PROJECT_DIR$/src/main/resources/struts.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tennis/em/EM_USER_LEVEL.java" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/em/EM_USER_LEVEL.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/tennis/model/db/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/tennis/model/db/User.java" />
     </list>
     <ignored path="tennis.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -471,37 +62,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="MatchServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/service/match/impl/MatchServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#5039#5040#0" expanded="true" />
-                <element signature="e#5083#5084#0" expanded="true" />
-                <element signature="e#5176#5177#0" expanded="true" />
-                <element signature="e#5222#5223#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MatchDaoimpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/dao/match/impl/MatchDaoimpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="520">
-              <caret line="211" column="41" selection-start-line="211" selection-start-column="41" selection-end-line="211" selection-end-column="41" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="docComment;method#findMatchs#0;class#MatchDaoimpl#0" expanded="false" />
-                <element signature="e#4421#4422#0" expanded="true" />
-                <element signature="e#4463#4464#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="EM_GLOBAL_RESULT.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/em/EM_GLOBAL_RESULT.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -512,10 +72,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="UserServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/service/user/impl/UserServiceImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="97" column="32" selection-start-line="97" selection-start-column="23" selection-end-line="97" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="MatchAction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/action/app/MatchAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
+            <state relative-caret-position="527">
               <caret line="160" column="38" selection-start-line="160" selection-start-column="38" selection-end-line="160" selection-end-column="38" />
               <folding>
                 <element signature="e#1466#1467#0" expanded="true" />
@@ -525,6 +95,50 @@
                 <element signature="method#create#0;class#MatchAction#0" expanded="false" />
                 <element signature="method#createMatch#0;class#MatchAction#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserAction.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/action/app/UserAction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="162">
+              <caret line="180" column="9" selection-start-line="180" selection-start-column="9" selection-end-line="180" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EM_USER_LEVEL.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/em/EM_USER_LEVEL.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="452">
+              <caret line="106" column="5" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
+              <folding>
+                <element signature="e#1756#1757#0" expanded="true" />
+                <element signature="e#1797#1798#0" expanded="true" />
+                <element signature="e#1826#1827#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IUserService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/service/user/IUserService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="172">
+              <caret line="49" column="36" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserDaoImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/dao/user/impl/UserDaoImpl.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-520">
+              <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -552,41 +166,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GenericDaoImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/dao/common/impl/GenericDaoImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="395" column="0" selection-start-line="395" selection-start-column="0" selection-end-line="395" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="struts-game.xml" pinned="false" current-in-tab="true">
+      <file leaf-file-name="struts-game.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/struts-game.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="350">
               <caret line="106" column="58" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="struts.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/struts.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="23" column="48" selection-start-line="23" selection-start-column="48" selection-end-line="23" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="struts-app.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/struts-app.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-493">
-              <caret line="34" column="57" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -620,8 +204,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/tennis/model/common/ReturnModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tennis/util/common/ReturnResult.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tennis/action/app/ChallengeMatchAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tennis/service/rank/IRankService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tennis/dao/rankToday/IRankTodayDao.java" />
@@ -660,7 +242,6 @@
         <option value="$PROJECT_DIR$/src/main/resources/struts.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/tennis/action/common/CommonAction.java" />
         <option value="$PROJECT_DIR$/src/main/resources/struts-interceptor-action.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/tennis/action/app/UserAction.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tennis/em/EM_GLOBAL_RESULT.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tennis/model/db/MatchResult.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tennis/model/response/match/MatchInfo.java" />
@@ -671,6 +252,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/tennis/dao/match/impl/MatchDaoimpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/tennis/action/app/MatchAction.java" />
         <option value="$PROJECT_DIR$/src/main/resources/struts-game.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tennis/model/db/User.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tennis/em/EM_USER_LEVEL.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/tennis/action/app/UserAction.java" />
       </list>
     </option>
   </component>
@@ -962,6 +546,58 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tennis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="impl" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1741,7 +1377,7 @@
       <workItem from="1490956740844" duration="43870000" />
       <workItem from="1491123265960" duration="9910000" />
       <workItem from="1491144235050" duration="6457000" />
-      <workItem from="1491231484835" duration="14382000" />
+      <workItem from="1491231484835" duration="15522000" />
     </task>
     <servers />
   </component>
@@ -1778,11 +1414,11 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="124476000" />
+    <option name="totallyTimeSpent" value="125616000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38357842" sideWeight="0.25432277" order="7" side_tool="true" content_ui="tabs" />
@@ -1795,7 +1431,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29534313" sideWeight="0.74567723" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4227941" sideWeight="0.74567723" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27083334" sideWeight="0.32925072" order="8" side_tool="false" content_ui="tabs" x="26" y="375" width="1388" height="149" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1885,77 +1521,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/service/rank/IRankService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/util/common/CommonUtil.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="316" column="43" selection-start-line="316" selection-start-column="26" selection-end-line="316" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/model/response/match/PendingMatchModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="72" column="5" selection-start-line="72" selection-start-column="5" selection-end-line="72" selection-end-column="5" />
-          <folding>
-            <element signature="e#447#448#0" expanded="true" />
-            <element signature="e#463#464#0" expanded="true" />
-            <element signature="e#494#495#0" expanded="true" />
-            <element signature="e#513#514#0" expanded="true" />
-            <element signature="e#553#554#0" expanded="true" />
-            <element signature="e#575#576#0" expanded="true" />
-            <element signature="e#628#629#0" expanded="true" />
-            <element signature="e#659#660#0" expanded="true" />
-            <element signature="e#698#699#0" expanded="true" />
-            <element signature="e#719#720#0" expanded="true" />
-            <element signature="e#770#771#0" expanded="true" />
-            <element signature="e#799#800#0" expanded="true" />
-            <element signature="e#833#834#0" expanded="true" />
-            <element signature="e#856#857#0" expanded="true" />
-            <element signature="e#904#905#0" expanded="true" />
-            <element signature="e#937#938#0" expanded="true" />
-            <element signature="e#969#970#0" expanded="true" />
-            <element signature="e#990#991#0" expanded="true" />
-            <element signature="e#1034#1035#0" expanded="true" />
-            <element signature="e#1063#1064#0" expanded="true" />
-            <element signature="e#1113#1114#0" expanded="true" />
-            <element signature="e#1154#1155#0" expanded="true" />
-            <element signature="e#1183#1184#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/model/response/match/MatchUserInfo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="94" column="5" selection-start-line="94" selection-start-column="5" selection-end-line="94" selection-end-column="5" />
-          <folding>
-            <element signature="e#1302#1303#0" expanded="false" />
-            <element signature="e#1344#1345#0" expanded="false" />
-            <element signature="e#1371#1372#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/util/common/DateUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="265">
           <caret line="21" column="43" selection-start-line="21" selection-start-column="43" selection-end-line="21" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/service/user/IUserService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2096,30 +1665,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/service/user/impl/UserServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="88" column="31" selection-start-line="88" selection-start-column="31" selection-end-line="88" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1173#1174#0" expanded="false" />
-            <element signature="e#1210#1211#0" expanded="false" />
-            <element signature="e#1566#1567#0" expanded="false" />
-            <element signature="e#1611#1612#0" expanded="false" />
-            <element signature="e#4938#4939#0" expanded="false" />
-            <element signature="e#4983#4984#0" expanded="false" />
-            <element signature="e#7172#7173#0" expanded="false" />
-            <element signature="e#7201#7202#0" expanded="false" />
-            <element signature="e#7265#7266#0" expanded="false" />
-            <element signature="e#7306#7307#0" expanded="false" />
-            <element signature="e#7364#7365#0" expanded="false" />
-            <element signature="e#7401#7402#0" expanded="false" />
-            <element signature="e#7462#7463#0" expanded="false" />
-            <element signature="e#7501#7502#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/apache/struts/struts2-core/2.5.5/struts2-core-2.5.5.jar!/com/opensymphony/xwork2/ActionSupport.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2023">
@@ -2182,14 +1727,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="22" column="13" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/action/app/UserAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1098">
-          <caret line="196" column="9" selection-start-line="196" selection-start-column="9" selection-end-line="196" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -2310,11 +1847,11 @@
         <state relative-caret-position="119">
           <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5039#5040#0" expanded="true" />
-            <element signature="e#5083#5084#0" expanded="true" />
-            <element signature="e#5176#5177#0" expanded="true" />
-            <element signature="e#5222#5223#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#5039#5040#0" expanded="false" />
+            <element signature="e#5083#5084#0" expanded="false" />
+            <element signature="e#5176#5177#0" expanded="false" />
+            <element signature="e#5222#5223#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -2346,9 +1883,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/struts-game.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="106" column="58" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/model/response/user/UserInfoModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="30" column="25" selection-start-line="30" selection-start-column="20" selection-end-line="30" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/service/user/IUserService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="172">
+          <caret line="49" column="36" selection-start-line="49" selection-start-column="25" selection-end-line="49" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/dao/user/impl/UserDaoImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-520">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/service/user/impl/UserServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="97" column="32" selection-start-line="97" selection-start-column="23" selection-end-line="97" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/action/app/MatchAction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
+        <state relative-caret-position="527">
           <caret line="160" column="38" selection-start-line="160" selection-start-column="38" selection-end-line="160" selection-end-column="38" />
           <folding>
             <element signature="e#1466#1467#0" expanded="true" />
@@ -2361,10 +1938,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/struts-game.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/model/db/User.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="106" column="58" selection-start-line="106" selection-start-column="11" selection-end-line="106" selection-end-column="58" />
+        <state relative-caret-position="275">
+          <caret line="232" column="4" selection-start-line="232" selection-start-column="4" selection-end-line="232" selection-end-column="4" />
+          <folding>
+            <element signature="e#3113#3114#0" expanded="true" />
+            <element signature="e#3133#3134#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/em/EM_USER_LEVEL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="106" column="5" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
+          <folding>
+            <element signature="e#1756#1757#0" expanded="true" />
+            <element signature="e#1797#1798#0" expanded="true" />
+            <element signature="e#1826#1827#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/tennis/action/app/UserAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="180" column="9" selection-start-line="180" selection-start-column="9" selection-end-line="180" selection-end-column="9" />
           <folding />
         </state>
       </provider>

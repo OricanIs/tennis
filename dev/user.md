@@ -100,7 +100,8 @@ age=19
 aveter=imageurl
 city=2
 province=1
-forehand=0
+forehand=0		
+backhand=1	
 height=69
 weight=79
 name=orican
@@ -108,8 +109,10 @@ sex=1					//0 未知 1女 2男
 nation=1
 nation_flay=url
 status=1 			//status  0 正常 ；1 休息
-
+mobile=13122210065
+level
 ```
+
 #### response
 
 ```js
