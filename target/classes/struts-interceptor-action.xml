@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+
+<struts>
+
+	<package name="interceptor" extends="json-default,struts-default" namespace="/interceptor">
+
+		<!--=====================用户未登录操作===========================-->
+
+		<action name="userNeedLogin"
+				class="com.tennis.action.common.CommonAction" method="userNeedLogin">
+			<result name="success" type="json">
+
+			</result>
+			<result name="error" type="json">
+
+			</result>
+		</action>
+
+
+		<!--=====================错误拦截器===========================-->
+
+		<action name="undefindErr"
+				class="com.tennis.action.common.CommonAction" method="undefindErr">
+			<result name="success" type="json">
+
+			</result>
+			<result name="error" type="json">
+
+			</result>
+		</action>
+
+
+	</package>
+</struts>

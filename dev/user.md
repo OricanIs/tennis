@@ -59,7 +59,7 @@
 ```js
 {
 	 "code": 0,
-    "msg": "success", 	//success 成功;needLogin 需要登录 ;
+    "msg": "success", 	//success 成功;needLogin 需要登录；needRegister 去完善资料 
     "reason": "success",
     "result": {
         "city": "东城区",

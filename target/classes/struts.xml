@@ -21,4 +21,5 @@
 	<include file="struts-test.xml"/>
 	<include file="struts-app.xml"/>
 	<include file="struts-game.xml"/>
+	<include file="struts-interceptor-action.xml"/>
 </struts>    

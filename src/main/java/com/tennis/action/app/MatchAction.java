@@ -5,6 +5,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import com.tennis.em.EM_GLOBAL_RESULT;
 import com.tennis.model.common.PageResults;
 import com.tennis.model.db.Match;
+import com.tennis.model.db.MatchResult;
 import com.tennis.model.db.User;
 import com.tennis.model.response.match.MatchInfo;
 import com.tennis.model.response.match.PendingMatchModel;
@@ -40,8 +41,27 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	private int city;
 	private int level;
 	private int pageSize;
+	private int partnerId;
 	private Match            match     = new Match();
+	private int chScore;
+	private int deScore;
 	private EM_GLOBAL_RESULT SuccessEM = EM_GLOBAL_RESULT.getEmByCode(0);
+
+	public void setChScore(int chScore)
+	{
+		this.chScore = chScore;
+	}
+
+	public void setDeScore(int deScore)
+	{
+		this.deScore = deScore;
+	}
+
+	public void setPartnerId(int partnerId)
+	{
+		this.partnerId = partnerId;
+	}
+
 	//注入dao
 	private IUserService  userService;
 	private IRankService  rankService;
@@ -69,10 +89,13 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	 *
 	 * @return
 	 */
-	public String myGames()
+	public String myMatchs()
 	{
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		//获取我的比赛列表
+		PageResults<Match> matchPageResults = matchService.myMatchs(user.getId(), match.getState(), page, pageSize);
 
-
+		responseWrite(ServletActionContext.getResponse(), SuccessEM, matchPageResults);
 		return SUCCESS;
 	}
 
@@ -84,6 +107,44 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	 */
 	public String fillScore()
 	{
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		match = matchService.get(this.match.getId());
+		int nowDate = DateUtil.DateToTimestamp(new Date());
+		if (match.getEndTime() > nowDate)
+		{
+			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10008), null);
+			return SUCCESS;
+		}
+		if (!match.getChallengeMainUser().equals(user.getId()) && !match.getDefenderMainUser()
+				.equals(user.getId()))
+		{
+			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10009), null);
+			return SUCCESS;
+		}
+
+		MatchResult matchResult = matchService.getMatchResultByUser(match.getId(), user.getId());
+
+		if (matchResult == null)
+		{
+			matchResult = new MatchResult();
+			matchResult.setMatchId(match.getId());
+			matchResult.setUserId(user.getId());
+			matchResult.setChallengeScore(chScore);
+			matchResult.setDefenderScore(deScore);
+			matchService.save(matchResult);
+		}
+		else
+		{
+			if (!match.getChallengeScore().equals(0) && !match.getDefenderScore().equals(0))
+			{
+				matchResult.setChallengeScore(chScore);
+				matchResult.setDefenderScore(deScore);
+				matchService.update(matchResult);
+			}
+
+		}
+
+		responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
 
 		return SUCCESS;
 	}
@@ -95,20 +156,64 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	 */
 	public String confirm()
 	{
+		//首先确认是挑战赛还是擂台赛
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		match = matchService.get(this.match.getId());
+		if (match.getMatchType().equals(0))
+		{
+			//判断单打还是双打
+			if (match.getPlayWay().equals(0))
+			{
+
+				match.setDefenderMainUser(user.getId());
+				match.setState(0);
+				matchService.update(match);
+			}
+			else
+			{
+				match.setDefenderMainUser(user.getId());
+				match.setDeferderMinUser(partnerId);
+				match.setState(0);
+				matchService.update(match);
+			}
+
+		}
+		else
+		{
+			//判断单打还是双打
+			if (match.getPlayWay().equals(0))
+			{
+
+				match.setChallengeMainUser(user.getId());
+				match.setState(0);
+				matchService.update(match);
+			}
+			else
+			{
+				match.setChallengeMainUser(user.getId());
+				match.setChallengeMinUser(partnerId);
+				match.setState(0);
+				matchService.update(match);
+			}
+
+		}
+
+		//返回结果
+		responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
 
 		return SUCCESS;
 	}
 
 	/**
 	 * 待确认的比赛
+	 *
 	 * @return
 	 */
 	public String pendingMatchs()
 	{
 		//playType = 0 单打
 		//playType = 1 双打
-		User      user      = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		user = userService.getUser(1);
+		User                    user               = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		List<PendingMatchModel> pendingMatchModels = matchService.pendingMatchs(user.getId(), match.getPlayWay());
 
 		//返回结果
@@ -126,7 +231,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	public String matchInfo()
 	{
 		User      user      = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		int       userId    = 1;
+		int       userId    = user.getId();
 		Match     match     = matchService.get(this.match.getId());
 		MatchInfo matchInfo = new MatchInfo();
 		matchInfo.setMatchType(match.getMatchType());

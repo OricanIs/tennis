@@ -244,3 +244,120 @@ id=7			//required
 }
 
 ```
+
+### 确认比赛
+
+**url** `/match/confirm`
+
+#### request
+```js
+	id=1
+	partnerId=2 //单打不需要上传，如果是双打，那么上传同伴的id
+
+```
+
+#### response
+
+```js
+{
+    "msg": "success",
+    "result": "",
+    "reason": "success",
+    "code": 0
+}
+
+```
+
+### 输入比赛成绩
+
+**url** `/match/fillScore`
+
+#### request	
+```js
+id =1						//required
+chScore = 7				//required
+deScore = 8				//required
+
+```
+
+#### response
+```js
+{
+ "msg": "success",
+ "result": "",
+ "reason": "success",
+ "code": 0
+}
+```
+
+### 我的比赛列表
+
+**url** `/match/myMatchs`
+
+#### request
+```js
+state = 0 		//0待确认   1比赛中 2 比赛完成
+page = 1
+pageSize =20
+
+```
+
+
+#### response
+```js
+{
+    "msg": "success",
+    "result": {
+        "pageCount": 1,
+        "pageNo": 1,
+        "pageSize": 10,
+        "currentPage": 1,
+        "totalCount": 2,
+        "results": [
+            {
+                "matchCity": "奉贤区",
+                "challengeMinUser": 0,
+                "matchAddr": "上海应用技术学院",
+                "matchType": 0,
+                "challengeMainUser": 2,
+                "challengeScore": 0,
+                "deferderMinUser": 0,
+                "playWay": 0,
+                "defenderMainUser": 1,
+                "createTime": 1491144182,
+                "defenderScore": 0,
+                "integral": 10,
+                "matchProvince": "上海市",
+                "startTime": 1491129554,
+                "endTime": 1491133154,
+                "id": 8,
+                "state": 0
+            },
+            {
+                "matchCity": "奉贤区",
+                "challengeMinUser": 2,
+                "matchAddr": "上海应用技术学院",
+                "matchType": 0,
+                "challengeMainUser": 1,
+                "challengeScore": 0,
+                "deferderMinUser": 0,
+                "playWay": 1,
+                "defenderMainUser": 3,
+                "createTime": 1491137902,
+                "defenderScore": 0,
+                "integral": 10,
+                "matchProvince": "上海市",
+                "startTime": 1491129554,
+                "endTime": 1491133154,
+                "id": 7,
+                "state": 0
+            }
+        ]
+    },
+    "reason": "success",
+    "code": 0
+}
+
+```
+
+

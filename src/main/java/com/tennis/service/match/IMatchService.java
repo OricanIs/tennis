@@ -1,6 +1,8 @@
 package com.tennis.service.match;
 
+import com.tennis.model.common.PageResults;
 import com.tennis.model.db.Match;
+import com.tennis.model.db.MatchResult;
 import com.tennis.model.response.match.PendingMatchModel;
 import com.tennis.model.response.match.UserMatchStatistics;
 
@@ -66,5 +68,34 @@ public interface IMatchService
 	 * @return
 	 */
 	public List<PendingMatchModel> pendingMatchs(int userId, int playWay);
+
+
+	/**
+	 * 获取用户输入的比赛成绩
+	 * @param matchId
+	 * @param userId
+	 * @return
+	 */
+	public MatchResult getMatchResultByUser(int matchId,int userId);
+
+	/**
+	 * 保存
+	 * @param matchResult
+	 */
+	public void save(MatchResult matchResult);
+
+	/**
+	 * 更新
+	 * @param matchResult
+	 */
+	public void update(MatchResult matchResult);
+
+	/**
+	 * 获取我的比赛
+	 * @param userId
+	 * @return
+	 */
+	public PageResults<Match> myMatchs(int userId,int state,int page,int pageSize);
+
 
 }

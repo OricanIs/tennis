@@ -7,9 +7,37 @@
 <struts>
 
     <package name="user" extends="json-default,struts-default" namespace="/user">
+        <interceptors>
+            <!-- 声明拦截器 -->
+            <interceptor name="errorInterceptor"
+                         class="com.tennis.web.interceptor.common.SysErrInterceptor"/>
+            <!--用户登录拦截器-->
+            <interceptor name="userLoginInterceptor"
+                         class="com.tennis.web.interceptor.common.UserLoginInterceptor"/>
+            <!-- 配置基本拦截器 -->
+            <interceptor-stack name="userBaseStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="errorInterceptor"/>
+            </interceptor-stack>
+            <!-- 配置登录拦截器 -->
+            <interceptor-stack name="userLoginStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="userLoginInterceptor"/>
+                <interceptor-ref name="errorInterceptor"/>
+            </interceptor-stack>
+        </interceptors>
+        <!-- 覆盖底层的拦截器栈 对包中的所有action都有效 -->
+        <default-interceptor-ref name="userBaseStack"/>
+
+        <global-results>
+            <result name="errorMsg" type="redirectAction">../interceptor/undefindErr
+            </result>
+            <result name="userLogin" type="redirectAction">../interceptor/userNeedLogin
+            </result>
+        </global-results>
+
         <action name="userAction" class="com.tennis.action.app.UserAction" method="execute">
             <result name="success" type="json">
-
             </result>
         </action>
 
@@ -22,6 +50,7 @@
         </action>
         <!--获取我的信息-->
         <action name="myInfo" class="com.tennis.action.app.UserAction" method="myInfo">
+            <interceptor-ref name="userLoginInterceptor"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -29,6 +58,7 @@
         </action>
         <!--保存我的信息-->
         <action name="save" class="com.tennis.action.app.UserAction" method="saveUserInfo">
+            <interceptor-ref name="userLoginInterceptor"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -36,6 +66,7 @@
         </action>
         <!--修改我的信息-->
         <action name="update" class="com.tennis.action.app.UserAction" method="updateUserInfo">
+            <interceptor-ref name="userLoginInterceptor"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -61,6 +92,7 @@
         <!--查找伙伴-->
         <action name="center" class="com.tennis.action.app.UserAction"
                 method="center">
+            <interceptor-ref name="userLoginInterceptor"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -70,6 +102,35 @@
     </package>
 
     <package name="region" extends="json-default,struts-default" namespace="/region">
+        <interceptors>
+            <!-- 声明拦截器 -->
+            <interceptor name="errorInterceptor"
+                         class="com.tennis.web.interceptor.common.SysErrInterceptor"/>
+            <!--用户登录拦截器-->
+            <interceptor name="userLoginInterceptor"
+                         class="com.tennis.web.interceptor.common.UserLoginInterceptor"/>
+            <!-- 配置基本拦截器 -->
+            <interceptor-stack name="userBaseStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="errorInterceptor"/>
+            </interceptor-stack>
+            <!-- 配置登录拦截器 -->
+            <interceptor-stack name="userLoginStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="userLoginInterceptor"/>
+                <interceptor-ref name="errorInterceptor"/>
+            </interceptor-stack>
+        </interceptors>
+        <!-- 覆盖底层的拦截器栈 对包中的所有action都有效 -->
+        <default-interceptor-ref name="userBaseStack"/>
+
+        <global-results>
+            <result name="errorMsg" type="redirectAction">../interceptor/undefindErr
+            </result>
+            <result name="userLogin" type="redirectAction">../interceptor/userNeedLogin
+            </result>
+        </global-results>
+
         <!--获取省份信息-->
         <action name="getProvinces" class="com.tennis.action.app.RegionAction" method="getProvinces">
             <result name="success" type="json">
@@ -102,6 +163,34 @@
     </package>
 
     <package name="rank" extends="json-default,struts-default" namespace="/rank">
+        <interceptors>
+            <!-- 声明拦截器 -->
+            <interceptor name="errorInterceptor"
+                         class="com.tennis.web.interceptor.common.SysErrInterceptor"/>
+            <!--用户登录拦截器-->
+            <interceptor name="userLoginInterceptor"
+                         class="com.tennis.web.interceptor.common.UserLoginInterceptor"/>
+            <!-- 配置基本拦截器 -->
+            <interceptor-stack name="userBaseStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="errorInterceptor"/>
+            </interceptor-stack>
+            <!-- 配置登录拦截器 -->
+            <interceptor-stack name="userLoginStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="userLoginInterceptor"/>
+                <interceptor-ref name="errorInterceptor"/>
+            </interceptor-stack>
+        </interceptors>
+        <!-- 覆盖底层的拦截器栈 对包中的所有action都有效 -->
+        <default-interceptor-ref name="userBaseStack"/>
+
+        <global-results>
+            <result name="errorMsg" type="redirectAction">../interceptor/undefindErr
+            </result>
+            <result name="userLogin" type="redirectAction">../interceptor/userNeedLogin
+            </result>
+        </global-results>
         <!--rank排名-->
         <action name="rankList" class="com.tennis.action.app.RankAction" method="rankList">
             <result name="success" type="json">

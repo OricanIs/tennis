@@ -28,6 +28,7 @@ public class MatchInfo
 	private String camp;
 	private int state;
 
+
 	public MatchUserInfo getChMainUser()
 	{
 		return chMainUser;

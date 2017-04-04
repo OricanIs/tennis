@@ -8,6 +8,34 @@
 
     <!--挑战赛-->
     <package name="match" extends="json-default,struts-default" namespace="/match">
+        <interceptors>
+            <!-- 声明拦截器 -->
+            <interceptor name="errorInterceptor"
+                         class="com.tennis.web.interceptor.common.SysErrInterceptor"/>
+            <!--用户登录拦截器-->
+            <interceptor name="userLoginInterceptor"
+                         class="com.tennis.web.interceptor.common.UserLoginInterceptor"/>
+            <!-- 配置基本拦截器 -->
+            <interceptor-stack name="userBaseStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="errorInterceptor"/>
+            </interceptor-stack>
+            <!-- 配置登录拦截器 -->
+            <interceptor-stack name="userLoginStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="userLoginInterceptor"/>
+                <interceptor-ref name="errorInterceptor"/>
+            </interceptor-stack>
+        </interceptors>
+        <!-- 覆盖底层的拦截器栈 对包中的所有action都有效 -->
+        <default-interceptor-ref name="userBaseStack"/>
+
+        <global-results>
+            <result name="errorMsg" type="redirectAction">../interceptor/undefindErr
+            </result>
+            <result name="userLogin" type="redirectAction">../interceptor/userNeedLogin
+            </result>
+        </global-results>
         <!--列表-->
         <action name="rankList" class="com.tennis.action.app.MatchAction" method="rankList">
             <result name="success" type="json">
@@ -17,6 +45,7 @@
         </action>
         <!--创建比赛-->
         <action name="create" class="com.tennis.action.app.MatchAction" method="create">
+            <interceptor-ref name="userLoginInterceptor"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -24,6 +53,7 @@
         </action>
         <!--查看比赛详情-->
         <action name="matchInfo" class="com.tennis.action.app.MatchAction" method="matchInfo">
+            <interceptor-ref name="userLoginInterceptor"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -33,12 +63,62 @@
         <!--查看比赛详情-->
         <action name="pendingMatchs" class="com.tennis.action.app.MatchAction"
                 method="pendingMatchs">
+            <interceptor-ref name="userLoginInterceptor"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
             </result>
         </action>
 
+        <!--查看比赛列表-->
+        <action name="myMatchs" class="com.tennis.action.app.MatchAction"
+                method="myMatchs">
+            <interceptor-ref name="userLoginInterceptor"/>
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+
+        <!--查看比赛列表-->
+        <action name="myMatchs" class="com.tennis.action.app.MatchAction"
+                method="myMatchs">
+            <interceptor-ref name="userLoginInterceptor"/>
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+
+
+        <!--填写比赛-->
+        <action name="fillScore" class="com.tennis.action.app.MatchAction"
+                method="fillScore">
+            <interceptor-ref name="userLoginInterceptor"/>
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+
+        <!--填写比赛-->
+        <action name="confirm" class="com.tennis.action.app.MatchAction"
+                method="confirm">
+            <interceptor-ref name="userLoginInterceptor"/>
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+        <!--填写比赛-->
+        <action name="myMatchs" class="com.tennis.action.app.MatchAction"
+                method="myMatchs">
+            <interceptor-ref name="userLoginInterceptor"/>
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
 
     </package>
 

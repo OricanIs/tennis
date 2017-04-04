@@ -4,8 +4,10 @@ import com.tennis.dao.common.impl.GenericDaoImpl;
 import com.tennis.dao.match.IMatchDao;
 import com.tennis.model.common.PageResults;
 import com.tennis.model.db.Match;
+import com.tennis.model.db.MatchResult;
 
 import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.ScrollableResults;
 
 import java.util.ArrayList;
@@ -67,7 +69,7 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 	 */
 	public List<Match> getEffectiveMatchs(int userId, int startDate, int endDate)
 	{
-		String sql = "select * from matchs m where m.defender_main_user=? or m" + ".deferder_min_user=? or m.challenge_main_user=? or m.challenge_min_user=? and m" + ".start_time >=? and m.end_time<=?  and state in (1,2) order by id desc";
+		String      sql       = "select * from matchs m where m.defender_main_user=? or m" + ".deferder_min_user=? or m.challenge_main_user=? or m.challenge_min_user=? and m" + ".start_time >=? and m.end_time<=?  and state in (1,2) order by id desc";
 		List<Match> listBySQL = this.getListBySQL(sql, userId, userId, userId, userId, startDate, endDate);
 
 		return listBySQL;
@@ -154,9 +156,64 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 	 */
 	public List<Match> pendingMatchs(int userId, int playWay)
 	{
-		String sql = "select * from matchs m where (m.defender_main_user=? or m" +
-				".deferder_min_user=?) and m.play_way=? and m.state=0 order by id";
+		String sql = "select * from matchs m where (m.defender_main_user=? or m" + ".deferder_min_user=?) and m.play_way=? and m.state=0 order by id";
 		List<Match> listBySQL = this.getListBySQL(sql, userId, userId, playWay);
 		return listBySQL;
+	}
+
+	/**
+	 * 获取用户输入的比赛成绩
+	 *
+	 * @param matchId
+	 * @param userId
+	 * @return
+	 */
+	public MatchResult getMatchResultByUser(int matchId, int userId)
+	{
+		String   sql   = "select * from match_result where match_id=? and user_id=?";
+		SQLQuery query = this.getSession().createSQLQuery(sql);
+		query.setParameter(0, matchId).setParameter(1, userId);
+		query.addEntity(MatchResult.class);
+
+
+		return (MatchResult) query.uniqueResult();
+	}
+
+	/**
+	 * 保存
+	 *
+	 * @param matchResult
+	 */
+	public void saveMatchResult(MatchResult matchResult)
+	{
+		this.getSession().save(matchResult);
+	}
+
+	/**
+	 * 更新
+	 *
+	 * @param matchResult
+	 */
+	public void updateMatchResult(MatchResult matchResult)
+	{
+		this.getSession().update(matchResult);
+
+	}
+
+	/**
+	 * 获取我的比赛
+	 *
+	 * @param userId
+	 * @return
+	 */
+	public PageResults<Match> myMatchs(int userId, int state, int page, int pageSize)
+	{
+		String hql = "from Match where (defenderMainUser=? or deferderMinUser=? or " + "challengeMainUser=? or challengeMinUser=?) and state=? order by id desc";
+		String countHql = "select count(*) from Match where (defenderMainUser=? or " +
+				"deferderMinUser=? or " + "challengeMainUser=? or challengeMinUser=?) and state=? ";
+		PageResults<Match> result = this.findPageByFetchedHql(hql, countHql, page, pageSize, userId, userId, userId, userId, state);
+
+
+		return result;
 	}
 }

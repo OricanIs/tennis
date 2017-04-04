@@ -103,6 +103,10 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		{
 			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10002), null);
 		}
+		if(userInfo.getMobile() == null){
+
+			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10006), null);
+		}
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, userInfo);
 		return SUCCESS;
 	}
@@ -127,7 +131,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 	public String updateUserInfo()
 	{
 		User findUser = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		findUser = userService.getUser(1);
+		findUser = userService.getUser(findUser.getId());
 		if (user.getAge() != null)
 			findUser.setAge(user.getAge());
 
@@ -185,7 +189,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 	 */
 	public String otherUserinfo()
 	{
-		System.out.println(user.getId());
 		UserInfoModel userInfo = userService.getUserInfo(user.getId());
 		if (userInfo == null)
 		{
@@ -237,7 +240,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 	public String center()
 	{
 		User user = (User)ServletActionContext.getRequest().getSession().getAttribute("user");
-		int  userId = 1;
+		int  userId = user.getId();
 		UserInfoModel userInfo = userService.getUserInfo(userId);
 		UserCenter userCenter = new UserCenter();
 		userCenter.setAvatar(userInfo.getAvatar());

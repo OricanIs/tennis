@@ -15,8 +15,8 @@ public class MatchResult
 
 	private int id;
 	private Integer matchId;
-	private String challengeScore;
-	private String defenderScore;
+	private Integer challengeScore;
+	private Integer defenderScore;
 	private int userId;
 
 	public int getId()
@@ -39,22 +39,22 @@ public class MatchResult
 		this.matchId = matchId;
 	}
 
-	public String getChallengeScore()
+	public Integer getChallengeScore()
 	{
 		return challengeScore;
 	}
 
-	public void setChallengeScore(String challengeScore)
+	public void setChallengeScore(Integer challengeScore)
 	{
 		this.challengeScore = challengeScore;
 	}
 
-	public String getDefenderScore()
+	public Integer getDefenderScore()
 	{
 		return defenderScore;
 	}
 
-	public void setDefenderScore(String defenderScore)
+	public void setDefenderScore(Integer defenderScore)
 	{
 		this.defenderScore = defenderScore;
 	}

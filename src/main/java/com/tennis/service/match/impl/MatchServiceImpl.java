@@ -1,7 +1,9 @@
 package com.tennis.service.match.impl;
 
 import com.tennis.dao.match.IMatchDao;
+import com.tennis.model.common.PageResults;
 import com.tennis.model.db.Match;
+import com.tennis.model.db.MatchResult;
 import com.tennis.model.response.match.PendingMatchModel;
 import com.tennis.model.response.match.UserMatchStatistics;
 import com.tennis.service.match.IMatchService;
@@ -215,4 +217,49 @@ public class MatchServiceImpl implements IMatchService
 
 		return models;
 	}
+
+
+	/**
+	 * 获取用户输入的比赛成绩
+	 *
+	 * @param matchId
+	 * @param userId
+	 * @return
+	 */
+	public MatchResult getMatchResultByUser(int matchId, int userId)
+	{
+		return matchDao.getMatchResultByUser(matchId,userId);
+	}
+
+	/**
+	 * 保存
+	 *
+	 * @param matchResult
+	 */
+	public void save(MatchResult matchResult)
+	{
+		matchDao.saveMatchResult(matchResult);
+	}
+
+	/**
+	 * 更新
+	 *
+	 * @param matchResult
+	 */
+	public void update(MatchResult matchResult)
+	{
+		matchDao.updateMatchResult(matchResult);
+	}
+
+	/**
+	 * 获取我的比赛
+	 *
+	 * @param userId
+	 * @return
+	 */
+	public PageResults<Match> myMatchs(int userId,int state,int page,int pageSize)
+	{
+		return matchDao.myMatchs(userId,state,page,pageSize);
+	}
+
 }

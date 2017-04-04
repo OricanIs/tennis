@@ -89,8 +89,14 @@ public class UserServiceImpl implements IUserService
 	public UserInfoModel getUserInfo(int userId)
 	{
 		User user = userDao.getUser(userId);
+
 		if (user != null)
 		{
+			if(user.getMobile() == null || user.getMobile().equals("")){
+				UserInfoModel infoModel = new UserInfoModel();
+				infoModel.setId(user.getId());
+				return infoModel;
+			}
 			UserInfoModel model = new UserInfoModel();
 			// 获取城市信息
 			CityInfo cityInfo = regionService.getCityInfo(user.getCity());

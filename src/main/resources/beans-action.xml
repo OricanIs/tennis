@@ -32,7 +32,13 @@
         <property name="userService" ref="userService"/>
     </bean>
 
-
+    
+    <!--用户登录拦截器-->
+    <bean id="userLoginInterceptor" 
+          class="com.tennis.web.interceptor.common.UserLoginInterceptor" scope="prototype">
+        
+        <property name="userService" ref="userService"/>
+    </bean>
 
 
 </beans>

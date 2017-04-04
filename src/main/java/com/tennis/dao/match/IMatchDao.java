@@ -2,6 +2,7 @@ package com.tennis.dao.match;
 
 import com.tennis.model.common.PageResults;
 import com.tennis.model.db.Match;
+import com.tennis.model.db.MatchResult;
 
 import java.util.List;
 
@@ -67,5 +68,35 @@ public interface IMatchDao
 	 */
 	public List<Match> pendingMatchs(int userId, int playWay);
 
+
+
+	/**
+	 * 获取用户输入的比赛成绩
+	 * @param matchId
+	 * @param userId
+	 * @return
+	 */
+	public MatchResult getMatchResultByUser(int matchId, int userId);
+
+	/**
+	 * 保存
+	 * @param matchResult
+	 */
+	public void saveMatchResult(MatchResult matchResult);
+
+	/**
+	 * 更新
+	 * @param matchResult
+	 */
+	public void updateMatchResult(MatchResult matchResult);
+
+
+
+	/**
+	 * 获取我的比赛
+	 * @param userId
+	 * @return
+	 */
+	public PageResults<Match> myMatchs(int userId,int state,int page,int pageSize);
 
 }

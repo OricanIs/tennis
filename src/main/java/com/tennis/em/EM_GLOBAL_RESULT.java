@@ -14,11 +14,17 @@ public enum EM_GLOBAL_RESULT
 {
 
 	OK(0, "success", "success"),
+	NEED_LOGIN(10000,"needLogin","需要登录"),
 	ERR_STATUS(10001, "errStatus", "status abnormal"),
 	ERR_PARAM(10002,"errParam","请求参数不合法"),
 	NOT_FOUND(10003,"notFound","找不到用户"),
 	NO_CHANCE(10004,"noChance","您的机会已用尽,或者您是休息状态"),
-	CANNOT_CHALL(10005,"cannotChallenge","对手不可挑战")
+	CANNOT_CHALL(10005,"cannotChallenge","对手不可挑战"),
+	NEED_DETAIL(10006,"needRegister","需要先完善个人信息"),
+	UNDFINED_ERR(10007,"undefindErr","未知的错误"),
+	NOT_BEGIN(10008,"notBegin","比赛还没开始"),
+	NO_PRIVILEGE(10009,"insufficientPrivilege","请让主要负责人输入比赛成绩"),
+
 
 	;
 
