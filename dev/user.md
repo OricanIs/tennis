@@ -227,3 +227,48 @@ mobile=13122210065
 
 ```
 
+### 获取用户信息（用于更改信息）
+
+**url** `/user/updateInfo`
+
+#### request
+
+```js
+
+
+```
+
+#### response
+```js
+
+{
+    "msg": "success",
+    "result": {
+        "birthday": 1121221111,
+        "backhand": 1,
+        "city": 796,
+        "level": 2,
+        "nation": 1,
+        "registerTime": 1121221111,
+        "openid": "orican",
+        "sex": 1,
+        "mobile": "13122210065",
+        "weight": 89,
+        "avatar": "http://muxu.oss-cn-hangzhou.aliyuncs.com/user/5366d0160924ab18d9105e4432fae6cd7b890bba.jpg",
+        "pinyin": "orican",
+        "province": 795,
+        "integral": 301,
+        "name": "orican",
+        "id": 1,
+        "age": 19,
+        "forehand": 0,
+        "height": 169,
+        "nationFlag": "http://muxu.oss-cn-hangzhou.aliyuncs.com/china.png",
+        "status": 0
+    },
+    "reason": "success",
+    "code": 0
+}
+```
+updateInfo
+

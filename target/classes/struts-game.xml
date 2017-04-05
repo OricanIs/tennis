@@ -45,7 +45,7 @@
         </action>
         <!--创建比赛-->
         <action name="create" class="com.tennis.action.app.MatchAction" method="create">
-            <interceptor-ref name="userLoginInterceptor"/>
+            <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -53,7 +53,7 @@
         </action>
         <!--查看比赛详情-->
         <action name="matchInfo" class="com.tennis.action.app.MatchAction" method="matchInfo">
-            <interceptor-ref name="userLoginInterceptor"/>
+            <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -63,7 +63,7 @@
         <!--查看比赛详情-->
         <action name="pendingMatchs" class="com.tennis.action.app.MatchAction"
                 method="pendingMatchs">
-            <interceptor-ref name="userLoginInterceptor"/>
+            <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -73,7 +73,7 @@
         <!--查看比赛列表-->
         <action name="myMatchs" class="com.tennis.action.app.MatchAction"
                 method="myMatchs">
-            <interceptor-ref name="userLoginInterceptor"/>
+            <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -83,7 +83,7 @@
         <!--查看比赛列表-->
         <action name="myMatchs" class="com.tennis.action.app.MatchAction"
                 method="myMatchs">
-            <interceptor-ref name="userLoginInterceptor"/>
+            <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -94,7 +94,7 @@
         <!--填写比赛-->
         <action name="fillScore" class="com.tennis.action.app.MatchAction"
                 method="fillScore">
-            <interceptor-ref name="userLoginInterceptor"/>
+            <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -104,7 +104,7 @@
         <!--填写比赛-->
         <action name="confirm" class="com.tennis.action.app.MatchAction"
                 method="confirm">
-            <interceptor-ref name="userLoginInterceptor"/>
+            <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">

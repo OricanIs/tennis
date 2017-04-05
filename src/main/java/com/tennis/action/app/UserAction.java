@@ -42,7 +42,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 	{
 		return user;
 	}
-
+	private String openid;
 	private IUserService userService;
 	private IMatchService matchService;
 
@@ -61,6 +61,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		this.matchService = matchService;
 	}
 
+	public void setOpenid(String openid)
+	{
+		this.openid = openid;
+	}
+
 	private int matchId;
 
 
@@ -76,7 +81,25 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 				findUser.setOpenid(openidModel.getOpenid());
 				Integer createAt = DateUtil.DateToTimestamp(new Date());
 				findUser.setRegisterTime(createAt);
+				findUser.setName("");
+				findUser.setPinyin("");
+				findUser.setSex(0);
+				findUser.setAge(0);
+				findUser.setHeight(0);
+				findUser.setWeight(0);
+				findUser.setNation(0);
+				findUser.setNationFlag("");
+				findUser.setProvince(0);
+				findUser.setCity(0);
+				findUser.setAvatar("");
+				findUser.setBackhand(0);
+				findUser.setForehand(0);
+				findUser.setLevel(0);
+				findUser.setIntegral(0);
+				findUser.setMobile("");
+				findUser.setBirthday(0);
 				userService.saveUser(findUser);
+
 			}
 			ServletActionContext.getRequest().getSession().setAttribute("user",findUser);
 			responseWrite(ServletActionContext.getResponse(), SuccessEM, findUser);
@@ -110,6 +133,20 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		}
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, userInfo);
 		return SUCCESS;
+	}
+
+	/**
+	 * getUpdateUserInfo 获取更改的用户信息
+	 *
+	 * @return
+	 */
+	public String getUpdateUserInfo()
+	{
+		User sessionUser = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		user  = userService.getUser(sessionUser.getId());
+		responseWrite(ServletActionContext.getResponse(), SuccessEM, user);
+		return SUCCESS;
+
 	}
 
 	/**
@@ -151,8 +188,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		if (user.getMobile() != null)
 			findUser.setMobile(user.getMobile());
 
-		if (user.getName() != null)
+		if (user.getName() != null){
 			findUser.setName(user.getName());
+			System.out.println(">>>>>>>>>>>>>>>>>>>."+user.getName());
+		}
+
 
 		if (user.getProvince() != null)
 			findUser.setProvince(user.getProvince());
@@ -174,10 +214,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		if(user.getStatus()!=null &&(user.getStatus().equals(0) || user.getStatus().equals(1))){
 			findUser.setStatus(user.getStatus());
 		}
-		if((findUser.getLevel()==null ||findUser.getLevel().equals(0))&&!user.getLevel().equals(0)){
-			EM_USER_LEVEL emByIndex = EM_USER_LEVEL.getEmByIndex(user.getLevel());
-			findUser.setLevel(user.getLevel());
-			findUser.setIntegral(emByIndex.getInitial());
+		if(findUser.getLevel()==null || findUser.getLevel().equals(0)){
+			if(user.getLevel()!=null&&!user.getLevel().equals(0)){
+				System.out.println("===========!!!!");
+				EM_USER_LEVEL emByIndex = EM_USER_LEVEL.getEmByIndex(user.getLevel());
+				findUser.setLevel(user.getLevel());
+				findUser.setIntegral(emByIndex.getInitial());
+			}
 		}
 
 		//保存
@@ -275,5 +318,10 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 	public void setMatchId(int matchId)
 	{
 		this.matchId = matchId;
+	}
+
+	public void setUser(User user)
+	{
+		this.user = user;
 	}
 }

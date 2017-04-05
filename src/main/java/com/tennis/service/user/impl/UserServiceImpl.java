@@ -116,12 +116,12 @@ public class UserServiceImpl implements IUserService
 
 			model.setAge(user.getAge());
 			model.setAvatar(user.getAvatar());
-			model.setBirthYear(user.getBirthday().toString());
-			model.setHeight(user.getHeight().toString());
+			model.setBirthYear(user.getBirthday()==null? null:user.getBirthday().toString());
+			model.setHeight(user.getHeight()==null?null:user.getHeight().toString());
 			model.setId(user.getId());
 			model.setIntegral(user.getIntegral());
-			model.setName(user.getName());
-			model.setWeight(user.getWeight().toString());
+			model.setName(user.getName()==null?null:user.getName());
+			model.setWeight(user.getWeight()==null?null:user.getWeight().toString());
 			model.setRank(rankService.getOneRank(user.getId()).getRank());
 			model.setMobile(user.getMobile());
 			String sex = "未知";

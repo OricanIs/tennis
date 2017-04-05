@@ -7,7 +7,7 @@ import com.opensymphony.xwork2.interceptor.Interceptor;
 import com.tennis.model.db.User;
 import com.tennis.service.user.IUserService;
 
-import org.apache.struts2.StrutsStatics;
+import org.apache.struts2.ServletActionContext;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,13 +38,9 @@ public class UserLoginInterceptor implements Interceptor
 	public String intercept(ActionInvocation invocation) throws Exception
 	{
 		String             openid  = "";
-		User               loginUser = (User) ActionContext.getContext().getSession().get("user");
-		int                nNowTime;
-		ActionContext      ctx       = invocation.getInvocationContext();
-		HttpServletRequest request   = (HttpServletRequest) ctx.get(StrutsStatics.HTTP_REQUEST);
-		int                nVaildateTime;
-
-
+		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext
+																			   .HTTP_REQUEST);
+		User loginUser = (User) request.getSession().getAttribute("user");
 		//判断session里有没有用户的登录信息
 		if (loginUser != null)
 		{

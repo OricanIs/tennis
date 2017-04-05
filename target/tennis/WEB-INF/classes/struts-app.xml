@@ -26,7 +26,7 @@
                 <interceptor-ref name="errorInterceptor"/>
             </interceptor-stack>
         </interceptors>
-        <!-- 覆盖底层的拦截器栈 对包中的所有action都有效 -->
+         <!--覆盖底层的拦截器栈 对包中的所有action都有效-->
         <default-interceptor-ref name="userBaseStack"/>
 
         <global-results>
@@ -50,7 +50,15 @@
         </action>
         <!--获取我的信息-->
         <action name="myInfo" class="com.tennis.action.app.UserAction" method="myInfo">
-            <interceptor-ref name="userLoginInterceptor"/>
+            <interceptor-ref name="userLoginStack"/>
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+        <!--获取我的信息-->
+        <action name="updateInfo" class="com.tennis.action.app.UserAction" method="getUpdateUserInfo">
+            <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -58,7 +66,7 @@
         </action>
         <!--保存我的信息-->
         <action name="save" class="com.tennis.action.app.UserAction" method="saveUserInfo">
-            <interceptor-ref name="userLoginInterceptor"/>
+            <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -66,7 +74,7 @@
         </action>
         <!--修改我的信息-->
         <action name="update" class="com.tennis.action.app.UserAction" method="updateUserInfo">
-            <interceptor-ref name="userLoginInterceptor"/>
+            <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -92,7 +100,7 @@
         <!--查找伙伴-->
         <action name="center" class="com.tennis.action.app.UserAction"
                 method="center">
-            <interceptor-ref name="userLoginInterceptor"/>
+            <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -112,13 +120,13 @@
             <!-- 配置基本拦截器 -->
             <interceptor-stack name="userBaseStack">
                 <interceptor-ref name="defaultStack"/>
-                <interceptor-ref name="errorInterceptor"/>
+
             </interceptor-stack>
             <!-- 配置登录拦截器 -->
             <interceptor-stack name="userLoginStack">
                 <interceptor-ref name="defaultStack"/>
-                <interceptor-ref name="userLoginInterceptor"/>
                 <interceptor-ref name="errorInterceptor"/>
+                <interceptor-ref name="userLoginInterceptor"/>
             </interceptor-stack>
         </interceptors>
         <!-- 覆盖底层的拦截器栈 对包中的所有action都有效 -->

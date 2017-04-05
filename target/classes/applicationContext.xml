@@ -89,8 +89,8 @@
                 <prop key="hibernate.dialect">
                     org.hibernate.dialect.MySQL5Dialect
                 </prop>
-                <prop key="hibernate.show_sql">true</prop> <!-- 控制台上打印SQL -->
-                <prop key="hibernate.format_sql">true</prop> <!-- 控制台输出时，对SQL语句格式化 -->
+                <prop key="hibernate.show_sql">false</prop> <!-- 控制台上打印SQL -->
+                <prop key="hibernate.format_sql">false</prop> <!-- 控制台输出时，对SQL语句格式化 -->
                 <prop key="current_session_context_class">thread</prop>
             </props>
         </property>

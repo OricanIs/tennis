@@ -4,6 +4,8 @@ import com.tennis.dao.common.impl.GenericDaoImpl;
 import com.tennis.dao.user.IUserDao;
 import com.tennis.model.db.User;
 
+import java.util.List;
+
 /**
  * All rights Reserved, Designed By  lixiao
  * Copyright (c) 2017 by Shanghai lixiao
@@ -61,7 +63,6 @@ public class UserDaoImpl extends GenericDaoImpl<User,Integer> implements IUserDa
 		User   user = this.getBySQL(sql, openid);
 		return user;
 	}
-
 	/**
 	 * 通过手机号查询用户
 	 *
@@ -70,8 +71,8 @@ public class UserDaoImpl extends GenericDaoImpl<User,Integer> implements IUserDa
 	 */
 	public User getUserByMobile(String mobile)
 	{
-		String sql = "select * from user u where u.mobile =?";
-		User bySQL = this.getBySQL(sql, mobile);
-		return bySQL;
+		String     sql   = "select * from user u where u.mobile =?";
+		List<User> bySQL = this.getListBySQL(sql,mobile);
+		return bySQL.isEmpty() ? null:bySQL.get(0);
 	}
 }

@@ -11,9 +11,9 @@
 
 package com.tennis.web.interceptor.common;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
-import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -34,6 +34,7 @@ public class CharFilter implements Filter
 	{
 		this.filterConfig = null;
 	}
+	protected Logger log = Logger.getLogger(CharFilter.class);
 
 	@SuppressWarnings("unchecked")
 	public void doFilter(ServletRequest req, ServletResponse response, FilterChain chain) throws IOException, ServletException
@@ -47,7 +48,6 @@ public class CharFilter implements Filter
 		if (request.getMethod().equalsIgnoreCase("get") ||request.getMethod().equalsIgnoreCase
 				("post"))
 		{
-			Map      paramMap         = req.getParameterMap();
 			String[] queryStringArray = {""};
 			if (request.getQueryString() != null)
 			{
@@ -58,28 +58,28 @@ public class CharFilter implements Filter
 			{
 				queryStringArray[i] = queryStringArray[i].replaceAll("(.*)=(.*)", "$1");
 			}
-			Set<String> keySet = paramMap.keySet();
-			for (String key : keySet)
-			{
-				// check where param from
-				boolean isFromGet = false;
-				for (String paramFromGet : queryStringArray)
-				{
-					if (key.equals(paramFromGet))
-					{
-						isFromGet = true;
-					}
-				}
-				if (!isFromGet)
-				{
-					continue;
-				}
-				String[] paramArray = (String[]) paramMap.get(key);
-				for (int i = 0; i < paramArray.length; i++)
-				{
-					paramArray[i] = new String(paramArray[i].getBytes("iso-8859-1"), encoding);
-				}
-			}
+//			Set<String> keySet = paramMap.keySet();
+//			for (String key : keySet)
+//			{
+//				// check where param from
+//				boolean isFromGet = false;
+//				for (String paramFromGet : queryStringArray)
+//				{
+//					if (key.equals(paramFromGet))
+//					{
+//						isFromGet = true;
+//					}
+//				}
+//				if (!isFromGet)
+//				{
+//					continue;
+//				}
+//				String[] paramArray = (String[]) paramMap.get(key);
+//				for (int i = 0; i < paramArray.length; i++)
+//				{
+//					paramArray[i] = new String(paramArray[i].getBytes("iso-8859-1"), encoding);
+//				}
+//			}
 		} chain.doFilter(req, resp);
 	}
 

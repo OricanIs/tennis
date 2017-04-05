@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://gosspublic.alicdn.com/aliyun-oss-sdk-4.4.4.min.js"></script>
+    <script type="text/javascript" src="/asset/js/jquery.1.7.2.min.js"></script>
+</head>
+
+<body id="body">
+    <input type="file" id="file" />
+</body>
+
+<script type="text/javascript">
+    var client = new OSS.Wrapper({
+        region: 'oss-cn-hangzhou',
+        accessKeyId: 'LTAIXPuMSstHYX5d',
+        accessKeySecret: 'lhtcoqwnChIGfDg98u1EGfUGLwAMzf',
+        bucket: 'muxu'
+    });
+
+    $('#file').live('change',function (e) {
+        //获取input
+        var file = e.target.files[0];
+        //上传文件的名称
+
+        var uploadFileName = file.name;
+
+        client.multipartUpload(uploadFileName, file).then(function (result) {
+            console.log("上传充公");
+        }).catch(function (err) {
+            console.log("上传失败");
+        });
+    })
+
+</script>
+
+</html>
+
+
