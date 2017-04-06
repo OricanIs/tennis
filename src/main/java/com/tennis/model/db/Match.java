@@ -30,6 +30,10 @@ public class Match
 	private Integer challengeScore;
 	private Integer createTime;
 	private Integer integral;
+	private User chMainUser;
+	private User chMinUser;
+	private User deMainUser;
+	private User deMinUser;
 
 	public int getId()
 	{
@@ -199,6 +203,47 @@ public class Match
 	public void setMatchAddr(String matchAddr)
 	{
 		this.matchAddr = matchAddr;
+	}
+
+
+	public User getChMainUser()
+	{
+		return chMainUser;
+	}
+
+	public void setChMainUser(User chMainUser)
+	{
+		this.chMainUser = chMainUser;
+	}
+
+	public User getChMinUser()
+	{
+		return chMinUser;
+	}
+
+	public void setChMinUser(User chMinUser)
+	{
+		this.chMinUser = chMinUser;
+	}
+
+	public User getDeMainUser()
+	{
+		return deMainUser;
+	}
+
+	public void setDeMainUser(User deMainUser)
+	{
+		this.deMainUser = deMainUser;
+	}
+
+	public User getDeMinUser()
+	{
+		return deMinUser;
+	}
+
+	public void setDeMinUser(User deMinUser)
+	{
+		this.deMinUser = deMinUser;
 	}
 
 	@Override

@@ -94,7 +94,23 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		//获取我的比赛列表
 		PageResults<Match> matchPageResults = matchService.myMatchs(user.getId(), match.getState(), page, pageSize);
+		List<Match>  matchs          = matchPageResults.getResults();
 
+		for(int i = 0 ; i < matchs.size();i++){
+			match = matchs.get(i);
+			if(match.getChallengeMainUser() != null && !match.getChallengeMainUser().equals(0)){
+				match.setChMainUser(userService.getUser(match.getChallengeMainUser()));
+			}
+			if(match.getChallengeMinUser() != null && ! match.getChallengeMinUser().equals(0) ){
+				match.setChMinUser(userService.getUser(match.getChallengeMinUser()));
+			}
+			if(match.getDefenderMainUser() != null && !match.getDefenderMainUser().equals(0)){
+				match.setDeMainUser(userService.getUser(match.getDefenderMainUser()));
+			}
+			if(match.getDeferderMinUser() != null && !match.getDeferderMinUser().equals(0)){
+				match.setDeMinUser(userService.getUser(match.getDeferderMinUser()));
+			}
+		}
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, matchPageResults);
 		return SUCCESS;
 	}

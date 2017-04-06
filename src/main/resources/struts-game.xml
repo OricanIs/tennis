@@ -80,15 +80,6 @@
             </result>
         </action>
 
-        <!--查看比赛列表-->
-        <action name="myMatchs" class="com.tennis.action.app.MatchAction"
-                method="myMatchs">
-            <interceptor-ref name="userLoginStack"/>
-            <result name="success" type="json">
-            </result>
-            <result name="error" type="json">
-            </result>
-        </action>
 
 
         <!--填写比赛-->
@@ -110,16 +101,6 @@
             <result name="error" type="json">
             </result>
         </action>
-        <!--填写比赛-->
-        <action name="myMatchs" class="com.tennis.action.app.MatchAction"
-                method="myMatchs">
-            <interceptor-ref name="userLoginInterceptor"/>
-            <result name="success" type="json">
-            </result>
-            <result name="error" type="json">
-            </result>
-        </action>
-
     </package>
 
 
