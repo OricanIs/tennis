@@ -314,14 +314,16 @@ public class CommonUtil
 
 	}
 
-	public static boolean isEqualsEachOther(Object ... objects)
+	public static boolean isEqualsEachOther(int ... objects)
 	{
 		for( int i = 0; i < objects.length-1; i ++)
 		{
-			for(int j = i+1; j < objects.length; i++){
+			for(int j = i+1; j < objects.length; j++){
 
-				if(objects[i].equals(objects[j]))
+				if(objects[i]==objects[j]){
 					return true;
+				}
+
 			}
 
 		}

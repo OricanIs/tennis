@@ -42,7 +42,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	private int level;
 	private int pageSize;
 	private int partnerId;
-	private Match            match     = new Match();
+	private Match match = new Match();
 	private int chScore;
 	private int deScore;
 	private EM_GLOBAL_RESULT SuccessEM = EM_GLOBAL_RESULT.getEmByCode(0);
@@ -115,8 +115,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10008), null);
 			return SUCCESS;
 		}
-		if (!match.getChallengeMainUser().equals(user.getId()) && !match.getDefenderMainUser()
-				.equals(user.getId()))
+		if (!match.getChallengeMainUser().equals(user.getId()) && !match.getDefenderMainUser().equals(user.getId()))
 		{
 			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10009), null);
 			return SUCCESS;
@@ -242,7 +241,34 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 		matchInfo.setState(match.getState());
 		matchInfo.setChScore(match.getChallengeScore());
 		matchInfo.setDeScore(match.getDefenderScore());
+		if (match.getState() == 0)
+		{
+			if (match.getChallengeScore().equals(0) || match.getDefenderScore().equals(0))
+			{
+				if (match.getChallengeMainUser().equals(userId) || match.getChallengeMinUser().equals(userId))
+				{
+					MatchResult matchResultByUser = matchService.getMatchResultByUser(match.getId(), match.getChallengeMainUser());
+					if (matchResultByUser != null)
+					{
 
+						matchInfo.setChScore(matchResultByUser.getChallengeScore());
+						matchInfo.setDeScore(matchResultByUser.getDefenderScore());
+					}
+
+				}
+				else
+				{
+
+					MatchResult matchResultByUser = matchService.getMatchResultByUser(match.getId(), match.getDefenderMainUser());
+					if (matchResultByUser != null)
+					{
+						matchInfo.setChScore(matchResultByUser.getChallengeScore());
+						matchInfo.setDeScore(matchResultByUser.getDefenderScore());
+					}
+
+				}
+			}
+		}
 		Date startDate = DateUtil.TimestampToDate(match.getStartTime());
 		Date endDate   = DateUtil.TimestampToDate(match.getEndTime());
 		matchInfo.setStartTime(DateUtil.getStringDate(startDate, DateUtil.DATE_YY_MM_DD_HH_MM));
@@ -300,8 +326,6 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	public String create()
 	{
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		user = userService.getUser(1);
-
 		//首先判断 是挑战赛还是擂台赛
 		if (match.getMatchType().equals(0))
 		{
@@ -327,8 +351,11 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 				}
 				//检查数据是否合法
 				boolean equalsEachOther = CommonUtil.isEqualsEachOther(user.getId(), match.getDefenderMainUser());
+				System.out.println(user.getId()+">>>>>>>>"+match.getDefenderMainUser());
+				System.out.println(">>>>>>>>>>" + equalsEachOther);
 				if (equalsEachOther)
 				{
+
 					responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10002), null);
 					return SUCCESS;
 				}

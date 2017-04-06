@@ -185,6 +185,9 @@ playWay=0  //0 单打 1 双打  required
 ```
 
 ### 查看比赛
+>
+>
+> 如果当前比赛的状态是 0 ,并且 deScore==0&& chScore==0 那么，用户可以上传比赛结果，但是，状态是0 ，deScore！=0 || chScore！=0 ,当前用户已经上传过比赛结果，比赛状态是等待对方输入比赛结果
 
 **url** `/match/matchInfo`
 
@@ -210,7 +213,15 @@ id=7			//required
             "winRate": 0,
             "nationFlag": "image"
         },
-        "deMinUser": null,
+        "deMinUser": {
+            "level": "初级",
+            "integral": 210,
+            "name": "orican1",
+            "rank": 0,
+            "id": 5,
+            "winRate": 0,
+            "nationFlag": "image"
+        },
         "chMinUser": {
             "level": "初级",
             "integral": 210,

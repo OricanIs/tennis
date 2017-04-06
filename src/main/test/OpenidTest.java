@@ -16,12 +16,19 @@ import org.junit.Test;
 public class OpenidTest
 {
 	@Test
-	public void accessOpenid(){
-		OpenidModel model =WechatCommonUtil.getOpenId("001HAddX0BaQuZ19npbX0mnsdX0HAddi");
-		System.out.println(model==null);
-		if(model!=null){
+	public void accessOpenid()
+	{
+		OpenidModel model = WechatCommonUtil.getOpenId("001HAddX0BaQuZ19npbX0mnsdX0HAddif");
+		System.out.println(model == null);
+		if (model != null)
+		{
 			System.out.println(model);
 		}
+	}
+
+	@Test
+	public void demo()
+	{
 	}
 
 }
