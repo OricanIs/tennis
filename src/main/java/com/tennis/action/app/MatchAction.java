@@ -92,23 +92,23 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	public String myMatchs()
 	{
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		//获取我的比赛列表
+			//获取我的比赛列表
 		PageResults<Match> matchPageResults = matchService.myMatchs(user.getId(), match.getState(), page, pageSize);
 		List<Match>  matchs          = matchPageResults.getResults();
 
 		for(int i = 0 ; i < matchs.size();i++){
 			match = matchs.get(i);
 			if(match.getChallengeMainUser() != null && !match.getChallengeMainUser().equals(0)){
-				match.setChMainUser(userService.getUser(match.getChallengeMainUser()));
+				match.setChMainUser(userService.getUserInfo(match.getChallengeMainUser()));
 			}
 			if(match.getChallengeMinUser() != null && ! match.getChallengeMinUser().equals(0) ){
-				match.setChMinUser(userService.getUser(match.getChallengeMinUser()));
+				match.setChMinUser(userService.getUserInfo(match.getChallengeMinUser()));
 			}
 			if(match.getDefenderMainUser() != null && !match.getDefenderMainUser().equals(0)){
-				match.setDeMainUser(userService.getUser(match.getDefenderMainUser()));
+				match.setDeMainUser(userService.getUserInfo(match.getDefenderMainUser()));
 			}
 			if(match.getDeferderMinUser() != null && !match.getDeferderMinUser().equals(0)){
-				match.setDeMinUser(userService.getUser(match.getDeferderMinUser()));
+				match.setDeMinUser(userService.getUserInfo(match.getDeferderMinUser()));
 			}
 		}
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, matchPageResults);
@@ -257,7 +257,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 		matchInfo.setState(match.getState());
 		matchInfo.setChScore(match.getChallengeScore());
 		matchInfo.setDeScore(match.getDefenderScore());
-		if (match.getState() == 0)
+		if (match.getState() == 1)
 		{
 			if (match.getChallengeScore().equals(0) || match.getDefenderScore().equals(0))
 			{

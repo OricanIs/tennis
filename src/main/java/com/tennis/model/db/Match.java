@@ -1,5 +1,7 @@
 package com.tennis.model.db;
 
+import com.tennis.model.response.user.UserInfoModel;
+
 /**
  * All rights Reserved, Designed By  lixiao
  * Copyright (c) 2017 by Shanghai lixiao
@@ -13,27 +15,27 @@ package com.tennis.model.db;
 public class Match
 {
 
-	private int     id;
-	private Integer defenderMainUser;
-	private Integer deferderMinUser;
-	private Integer challengeMainUser;
-	private Integer challengeMinUser;
-	private Integer state;
-	private Integer playWay;
-	private Integer matchType;
-	private String  matchProvince;
-	private String  matchCity;
-	private String  matchAddr;
-	private Integer startTime;
-	private Integer endTime;
-	private Integer defenderScore;
-	private Integer challengeScore;
-	private Integer createTime;
-	private Integer integral;
-	private User chMainUser;
-	private User chMinUser;
-	private User deMainUser;
-	private User deMinUser;
+	private int           id;
+	private Integer       defenderMainUser;
+	private Integer       deferderMinUser;
+	private Integer       challengeMainUser;
+	private Integer       challengeMinUser;
+	private Integer       state;
+	private Integer       playWay;
+	private Integer       matchType;
+	private String        matchProvince;
+	private String        matchCity;
+	private String        matchAddr;
+	private Integer       startTime;
+	private Integer       endTime;
+	private Integer       defenderScore;
+	private Integer       challengeScore;
+	private Integer       createTime;
+	private Integer       integral;
+	private UserInfoModel 	chMainUser;
+	private UserInfoModel     chMinUser;
+	private UserInfoModel     deMainUser;
+	private UserInfoModel     deMinUser;
 
 	public int getId()
 	{
@@ -205,43 +207,42 @@ public class Match
 		this.matchAddr = matchAddr;
 	}
 
-
-	public User getChMainUser()
+	public UserInfoModel getChMainUser()
 	{
 		return chMainUser;
 	}
 
-	public void setChMainUser(User chMainUser)
+	public void setChMainUser(UserInfoModel chMainUser)
 	{
 		this.chMainUser = chMainUser;
 	}
 
-	public User getChMinUser()
+	public UserInfoModel getChMinUser()
 	{
 		return chMinUser;
 	}
 
-	public void setChMinUser(User chMinUser)
+	public void setChMinUser(UserInfoModel chMinUser)
 	{
 		this.chMinUser = chMinUser;
 	}
 
-	public User getDeMainUser()
+	public UserInfoModel getDeMainUser()
 	{
 		return deMainUser;
 	}
 
-	public void setDeMainUser(User deMainUser)
+	public void setDeMainUser(UserInfoModel deMainUser)
 	{
 		this.deMainUser = deMainUser;
 	}
 
-	public User getDeMinUser()
+	public UserInfoModel getDeMinUser()
 	{
 		return deMinUser;
 	}
 
-	public void setDeMinUser(User deMinUser)
+	public void setDeMinUser(UserInfoModel deMinUser)
 	{
 		this.deMinUser = deMinUser;
 	}
