@@ -208,5 +208,33 @@
         </action>
 
     </package>
+    <package name="upload" extends="json-default,struts-default" namespace="/upload">
+        <interceptors>
+            <!-- 声明拦截器 -->
+            <interceptor name="errorInterceptor"
+                         class="com.tennis.web.interceptor.common.SysErrInterceptor"/>
+            <!-- 配置基本拦截器 -->
+            <interceptor-stack name="userBaseStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="errorInterceptor"/>
+            </interceptor-stack>
+            <!-- 配置登录拦截器 -->
+        </interceptors>
+        <!-- 覆盖底层的拦截器栈 对包中的所有action都有效 -->
+        <!--<default-interceptor-ref name="userBaseStack"/>-->
+
+        <global-results>
+            <result name="errorMsg" type="redirectAction">../interceptor/undefindErr
+            </result>
+        </global-results>
+        <!--rank排名-->
+        <action name="upload" class="com.tennis.action.app.UploadAction" method="execute">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+
+    </package>
 
 </struts>

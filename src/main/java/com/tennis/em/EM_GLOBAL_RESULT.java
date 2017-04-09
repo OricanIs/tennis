@@ -24,6 +24,7 @@ public enum EM_GLOBAL_RESULT
 	UNDFINED_ERR(10007,"undefindErr","未知的错误"),
 	NOT_BEGIN(10008,"notBegin","比赛还没开始"),
 	NO_PRIVILEGE(10009,"insufficientPrivilege","请让主要负责人输入比赛成绩"),
+	UPLOAD_ERR(10010,"uploadErr","上传失败"),
 
 
 	;

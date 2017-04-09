@@ -20,7 +20,7 @@ public class OssConfig
 	// endpoint以杭州为例，其它region请按实际情况填写
 	public static final String aliyun_oss_endpoint          = "http://oss-cn-qingdao.aliyuncs.com";
 
-	public static final String aliyun_self_domain = "http://oss-cn-qingdao.aliyuncs.com";
+	public static final String aliyun_self_domain = "http://goushubao.oss-cn-qingdao.aliyuncs.com";
 	//接入阿里云 oss钥匙的id
 	public static final String aliyun_oss_access_key_id     = "aYtS4ndVDzSv39yQ";
 	//接入阿里云 oss钥匙的密码

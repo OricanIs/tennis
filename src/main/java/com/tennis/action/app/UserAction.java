@@ -42,7 +42,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 	{
 		return user;
 	}
-	private String openid;
 	private IUserService userService;
 	private IMatchService matchService;
 
@@ -61,10 +60,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		this.matchService = matchService;
 	}
 
-	public void setOpenid(String openid)
-	{
-		this.openid = openid;
-	}
 
 	private int matchId;
 

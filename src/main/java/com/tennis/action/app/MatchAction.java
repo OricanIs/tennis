@@ -181,14 +181,14 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			{
 
 				match.setDefenderMainUser(user.getId());
-				match.setState(0);
+				match.setState(1);
 				matchService.update(match);
 			}
 			else
 			{
 				match.setDefenderMainUser(user.getId());
 				match.setDeferderMinUser(partnerId);
-				match.setState(0);
+				match.setState(1);
 				matchService.update(match);
 			}
 
@@ -200,14 +200,14 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			{
 
 				match.setChallengeMainUser(user.getId());
-				match.setState(0);
+				match.setState(1);
 				matchService.update(match);
 			}
 			else
 			{
 				match.setChallengeMainUser(user.getId());
 				match.setChallengeMinUser(partnerId);
-				match.setState(0);
+				match.setState(1);
 				matchService.update(match);
 			}
 

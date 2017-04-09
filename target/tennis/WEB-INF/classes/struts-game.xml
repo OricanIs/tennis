@@ -18,13 +18,13 @@
             <!-- 配置基本拦截器 -->
             <interceptor-stack name="userBaseStack">
                 <interceptor-ref name="defaultStack"/>
-                <interceptor-ref name="errorInterceptor"/>
+                <!--<interceptor-ref name="errorInterceptor"/>-->
             </interceptor-stack>
             <!-- 配置登录拦截器 -->
             <interceptor-stack name="userLoginStack">
                 <interceptor-ref name="defaultStack"/>
                 <interceptor-ref name="userLoginInterceptor"/>
-                <interceptor-ref name="errorInterceptor"/>
+                <!--<interceptor-ref name="errorInterceptor"/>-->
             </interceptor-stack>
         </interceptors>
         <!-- 覆盖底层的拦截器栈 对包中的所有action都有效 -->
@@ -53,7 +53,7 @@
         </action>
         <!--查看比赛详情-->
         <action name="matchInfo" class="com.tennis.action.app.MatchAction" method="matchInfo">
-            <!--<interceptor-ref name="userLoginStack"/>-->
+            <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
