@@ -5,12 +5,14 @@ import com.tennis.dao.match.IMatchDao;
 import com.tennis.model.common.PageResults;
 import com.tennis.model.db.Match;
 import com.tennis.model.db.MatchResult;
+import com.tennis.util.common.DateUtil;
 
 import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.ScrollableResults;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -214,6 +216,23 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 		PageResults<Match> result = this.findPageByFetchedHql(hql, countHql, page, pageSize, userId, userId, userId, userId, state);
 
 
+		return result;
+	}
+
+	/**
+	 * 获取擂台赛列表
+	 *
+	 * @param page
+	 * @param pageSize
+	 * @return
+	 */
+	public PageResults<Match> avenaMatchs(int page, int pageSize)
+	{
+		int nowtime = DateUtil.DateToTimestamp(new Date());
+
+		String hql = "from Match where state=0 and matchType=1 and startTime < ?  order by id ";
+		String countHql = "select count(*) from Match where state=0 and matchType=1 and startTime < ?  order by id";
+		PageResults<Match> result = this.findPageByFetchedHql(hql, countHql, page, pageSize,nowtime);
 		return result;
 	}
 }

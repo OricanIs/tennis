@@ -46,8 +46,7 @@ public class RankTodayDaoImpl extends GenericDaoImpl<UserRankToday, Integer> imp
 	 * @param page
 	 * @return
 	 */
-	public PageResults<UserRankModel> userRankList(int proviceId, int cityId, int matchType, int
-			level,int state, int page, int pageSize)
+	public PageResults<UserRankModel> userRankList(int userId, int proviceId, int cityId, int matchType, int level, int state, int page, int pageSize)
 	{
 
 		String hql = "select new com.tennis.model.response.rank.UserRankModel(u.id,u.name,u.province,u.city,u.integral) from User u where 1=1 ";
@@ -71,7 +70,8 @@ public class RankTodayDaoImpl extends GenericDaoImpl<UserRankToday, Integer> imp
 			hql += " and u.level=" + level;
 			countHql += " and u.level=" + level;
 		}
-		if(state != -1){
+		if (state != -1)
+		{
 			hql += " and u.status=" + state;
 			countHql += " and u.status=" + state;
 		}
@@ -79,6 +79,9 @@ public class RankTodayDaoImpl extends GenericDaoImpl<UserRankToday, Integer> imp
 
 		//		hql += " and u.matchType="+matchType;
 		//		countHql += " and u.matchType="+matchType;
+
+		hql += " and u.id!=" + userId;
+		countHql += " and u.id!=" + userId;
 
 		hql += " order by u.integral desc,u.id desc";
 

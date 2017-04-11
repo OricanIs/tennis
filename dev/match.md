@@ -4,6 +4,104 @@
 >如果返回的 msg不在解析的范围内，直接输出reason，并终止操作<br>
 >
 
+### 拒绝比赛
+>
+>只有matchType=0 也即挑战赛 被挑战玩家(deferderMinUser)才能拒绝对方的比赛邀请
+>
+>
+
+**url** `/match/reject`
+#### request
+```js
+	id=1  				//比赛的id
+```
+#### response
+```js
+
+{
+    "msg": "success",
+    "result": "",
+    "reason": "success",
+    "code": 0
+}
+
+```
+
+### 获取擂台赛列表
+**url** `/match/arenaMatchs`
+#### request
+```js
+page=1				//访问的页数
+pageSize=10		//每页显示的数据量
+
+```
+
+#### response
+```js
+{
+    "msg": "success",
+    "result": {
+        "pageCount": 1,				//总共的页数
+        "pageNo": 1,				
+        "pageSize": 10,				//显示的最大数据量
+        "currentPage": 1,			//当前页数
+        "totalCount": 1,			//总共页数
+        "results": [
+            {
+                "matchCity": "奉贤区",
+                "challengeMinUser": 0,
+                "matchAddr": "上海应用技术学院",
+                "matchType": 1,
+                "chMainUser": null,
+                "challengeMainUser": 0,
+                "deMinUser": null,
+                "chMinUser": null,
+                "challengeScore": 0,
+                "deMainUser": {
+                    "city": "黄浦",
+                    "level": "初级",
+                    "nation": "中国",
+                    "playhand": "左手",
+                    "sex": "男",
+                    "mobile": "13122210064",
+                    "weight": "110",
+                    "avatar": "http://muxu.oss-cn-hangzhou.aliyuncs.com/user/5366d0160924ab18d9105e4432fae6cd7b890bba.jpg",
+                    "playWay": "双反",
+                    "singleWinningRate": 0,
+                    "birthYear": "1121221111",
+                    "integral": 310,
+                    "provice": "上海",
+                    "name": "orican1",
+                    "rank": 0,
+                    "id": 2,
+                    "state": "正常",
+                    "age": 11,
+                    "canChanllage": true,
+                    "gamesCount": 1,
+                    "height": "170",
+                    "nationFlag": "http://muxu.oss-cn-hangzhou.aliyuncs.com/china.png",
+                    "teamWinningRate": 0
+                },
+                "deferderMinUser": 0,
+                "playWay": 0,
+                "defenderMainUser": 2,
+                "createTime": 1491144182,
+                "defenderScore": 0,
+                "integral": 10,
+                "matchProvince": "上海市",
+                "startTime": 1491129554,
+                "endTime": 1491133154,
+                "id": 8,
+                "state": 0
+            }
+        ]
+    },
+    "reason": "success",
+    "code": 0
+}
+
+
+```
 
 ### 获取排行
 **url** `match/rankList`

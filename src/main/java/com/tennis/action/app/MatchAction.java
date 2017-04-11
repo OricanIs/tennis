@@ -73,16 +73,52 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	}
 
 	/**
+	 * 获取擂台赛
+	 *
+	 * @return
+	 */
+	public String arenaMatchs()
+	{
+		PageResults<Match> matchPageResults = matchService.avenaMatchs(page, pageSize);
+		List<Match>        matchs           = matchPageResults.getResults();
+
+		for (int i = 0; i < matchs.size(); i++)
+		{
+			match = matchs.get(i);
+			if (match.getChallengeMainUser() != null && !match.getChallengeMainUser().equals(0))
+			{
+				match.setChMainUser(userService.getUserInfo(match.getChallengeMainUser()));
+			}
+			if (match.getChallengeMinUser() != null && !match.getChallengeMinUser().equals(0))
+			{
+				match.setChMinUser(userService.getUserInfo(match.getChallengeMinUser()));
+			}
+			if (match.getDefenderMainUser() != null && !match.getDefenderMainUser().equals(0))
+			{
+				match.setDeMainUser(userService.getUserInfo(match.getDefenderMainUser()));
+			}
+			if (match.getDeferderMinUser() != null && !match.getDeferderMinUser().equals(0))
+			{
+				match.setDeMinUser(userService.getUserInfo(match.getDeferderMinUser()));
+			}
+		}
+		responseWrite(ServletActionContext.getResponse(), SuccessEM, matchPageResults);
+		return SUCCESS;
+	}
+
+	/**
 	 * 排行
 	 *
 	 * @return
 	 */
 	public String rankList()
 	{
-		PageResults<UserRankModel> pageResults = rankService.userRankList(province, city, 0, level, 0, page, pageSize);
+		User                       user        = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		PageResults<UserRankModel> pageResults = rankService.userRankList(user.getId(), province, city, 0, level, 0, page, pageSize);
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, pageResults);
 		return SUCCESS;
 	}
+
 
 	/**
 	 * 查看比赛列表
@@ -92,22 +128,27 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	public String myMatchs()
 	{
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-			//获取我的比赛列表
+		//获取我的比赛列表
 		PageResults<Match> matchPageResults = matchService.myMatchs(user.getId(), match.getState(), page, pageSize);
-		List<Match>  matchs          = matchPageResults.getResults();
+		List<Match>        matchs           = matchPageResults.getResults();
 
-		for(int i = 0 ; i < matchs.size();i++){
+		for (int i = 0; i < matchs.size(); i++)
+		{
 			match = matchs.get(i);
-			if(match.getChallengeMainUser() != null && !match.getChallengeMainUser().equals(0)){
+			if (match.getChallengeMainUser() != null && !match.getChallengeMainUser().equals(0))
+			{
 				match.setChMainUser(userService.getUserInfo(match.getChallengeMainUser()));
 			}
-			if(match.getChallengeMinUser() != null && ! match.getChallengeMinUser().equals(0) ){
+			if (match.getChallengeMinUser() != null && !match.getChallengeMinUser().equals(0))
+			{
 				match.setChMinUser(userService.getUserInfo(match.getChallengeMinUser()));
 			}
-			if(match.getDefenderMainUser() != null && !match.getDefenderMainUser().equals(0)){
+			if (match.getDefenderMainUser() != null && !match.getDefenderMainUser().equals(0))
+			{
 				match.setDeMainUser(userService.getUserInfo(match.getDefenderMainUser()));
 			}
-			if(match.getDeferderMinUser() != null && !match.getDeferderMinUser().equals(0)){
+			if (match.getDeferderMinUser() != null && !match.getDeferderMinUser().equals(0))
+			{
 				match.setDeMinUser(userService.getUserInfo(match.getDeferderMinUser()));
 			}
 		}
@@ -158,6 +199,38 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			}
 
 		}
+		//如果是挑战方
+		if (match.getChallengeMainUser().equals(user.getId()))
+		{
+			matchResult = matchService.getMatchResultByUser(match.getDefenderMainUser(), user.getId());
+
+			if (matchResult != null)
+			{
+				if (chScore == matchResult.getChallengeScore() && deScore == matchResult.getDefenderScore())
+				{
+					match.setChallengeScore(chScore);
+					match.setDefenderScore(deScore);
+					match.setState(2);
+					matchService.update(match);
+				}
+			}
+		}
+		else
+		{
+			matchResult = matchService.getMatchResultByUser(match.getChallengeMainUser(), user.getId());
+
+			if (matchResult != null)
+			{
+				if (chScore == matchResult.getChallengeScore() && deScore == matchResult.getDefenderScore())
+				{
+					match.setChallengeScore(chScore);
+					match.setDefenderScore(deScore);
+					match.setState(2);
+					matchService.update(match);
+				}
+			}
+		}
+
 
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
 
@@ -217,6 +290,26 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
 
 		return SUCCESS;
+	}
+
+	public String reject()
+	{
+		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		match = matchService.get(this.match.getId());
+		if (match.getDefenderMainUser().equals(user.getId()) || match.getDeferderMinUser().equals(user.getId()))
+		{
+			match.setState(-1);
+			matchService.update(match);
+			//返回结果
+			responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
+
+			return SUCCESS;
+
+		}
+
+		responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10002), null);
+		return SUCCESS;
+
 	}
 
 	/**
@@ -367,7 +460,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 				}
 				//检查数据是否合法
 				boolean equalsEachOther = CommonUtil.isEqualsEachOther(user.getId(), match.getDefenderMainUser());
-				System.out.println(user.getId()+">>>>>>>>"+match.getDefenderMainUser());
+				System.out.println(user.getId() + ">>>>>>>>" + match.getDefenderMainUser());
 				System.out.println(">>>>>>>>>>" + equalsEachOther);
 				if (equalsEachOther)
 				{

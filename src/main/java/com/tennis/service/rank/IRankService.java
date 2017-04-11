@@ -35,7 +35,7 @@ public interface IRankService
 	 * @param level     等级
 	 * @return
 	 */
-	public PageResults<UserRankModel> userRankList(int proviceId, int cityId, int matchType, int level, int state, int page, int pageSize);
+	public PageResults<UserRankModel> userRankList(int userId, int proviceId, int cityId, int matchType, int level, int state, int page, int pageSize);
 
 
 }

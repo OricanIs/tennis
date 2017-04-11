@@ -38,6 +38,7 @@
         </global-results>
         <!--列表-->
         <action name="rankList" class="com.tennis.action.app.MatchAction" method="rankList">
+            <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
@@ -80,7 +81,23 @@
             </result>
         </action>
 
+        <!--查看擂台比赛列表-->
+        <action name="arenaMatchs" class="com.tennis.action.app.MatchAction"
+                method="arenaMatchs">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
 
+        <!--查看比赛列表-->
+        <action name="arenaMatchs" class="com.tennis.action.app.MatchAction"
+                method="arenaMatchs">
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
 
         <!--填写比赛-->
         <action name="fillScore" class="com.tennis.action.app.MatchAction"
@@ -95,6 +112,15 @@
         <!--填写比赛-->
         <action name="confirm" class="com.tennis.action.app.MatchAction"
                 method="confirm">
+            <interceptor-ref name="userLoginStack"/>
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+        <!--拒绝比赛-->
+        <action name="reject" class="com.tennis.action.app.MatchAction"
+                method="reject">
             <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>

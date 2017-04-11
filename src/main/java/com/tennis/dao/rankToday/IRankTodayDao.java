@@ -24,17 +24,16 @@ public interface IRankTodayDao
 
 	/**
 	 * 根据省份和城市获取列表。 做分页
+	 *
 	 * @param proviceId
 	 * @param cityId
 	 * @param page
 	 * @param matchType 比赛类型 0 单打 ；1 双打 ；
-	 * @param level 等级
+	 * @param level     等级
 	 * @param pageSize
 	 * @return
 	 */
-	public PageResults<UserRankModel> userRankList(int proviceId, int cityId, int matchType, int
-			level,int state, int
-			page,int pageSize);
+	public PageResults<UserRankModel> userRankList(int userId, int proviceId, int cityId, int matchType, int level, int state, int page, int pageSize);
 
 
 }

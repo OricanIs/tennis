@@ -97,5 +97,12 @@ public interface IMatchService
 	 */
 	public PageResults<Match> myMatchs(int userId,int state,int page,int pageSize);
 
+	/**
+	 * 获取擂台赛列表
+	 * @param page
+	 * @param pageSize
+	 * @return
+	 */
+	public PageResults<Match> avenaMatchs(int page,int pageSize);
 
 }

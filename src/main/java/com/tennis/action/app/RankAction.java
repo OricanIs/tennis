@@ -38,7 +38,7 @@ public class RankAction extends ActionSupport
 	 */
 	public String rankList()
 	{
-		PageResults<UserRankModel> pageResults = rankService.userRankList(province, city, 0, level, 0, page, pageSize);
+		PageResults<UserRankModel> pageResults = rankService.userRankList(0, province, city, 0, level, 0, page, pageSize);
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, pageResults);
 		return SUCCESS;
 	}

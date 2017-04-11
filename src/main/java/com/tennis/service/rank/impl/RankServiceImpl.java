@@ -59,14 +59,14 @@ public class RankServiceImpl implements IRankService
 	 * @param page
 	 * @return
 	 */
-	public PageResults<UserRankModel> userRankList(int proviceId, int cityId, int matchType, int level, int state, int page, int pageSize)
+	public PageResults<UserRankModel> userRankList(int userId, int proviceId, int cityId, int matchType, int level, int state, int page, int pageSize)
 	{
 		if (page <= 0)
 			page = 1;
 		if (pageSize <= 0)
 			pageSize = 20;
-		PageResults<UserRankModel> models = rankTodayDao.userRankList(proviceId, cityId, matchType, level, state, page, pageSize);
-		List<UserRankModel>        ranks  = models.getResults();
+		PageResults<UserRankModel> models = rankTodayDao.userRankList(userId, proviceId, cityId, matchType, level, state, page, pageSize);
+		List<UserRankModel> ranks = models.getResults();
 		for (int i = 0; i < ranks.size(); i++)
 		{
 
@@ -74,8 +74,7 @@ public class RankServiceImpl implements IRankService
 			if (cityInfo != null)
 			{
 				ranks.get(i).setCityStr(cityInfo.getCity().substring(0, cityInfo.getCity().length() - 1));
-				ranks.get(i).setProvinceStr(cityInfo.getProvice().substring(0,cityInfo.getProvice
-						().length() - 1));
+				ranks.get(i).setProvinceStr(cityInfo.getProvice().substring(0, cityInfo.getProvice().length() - 1));
 			}
 		}
 

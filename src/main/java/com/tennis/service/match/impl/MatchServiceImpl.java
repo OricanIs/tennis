@@ -262,4 +262,15 @@ public class MatchServiceImpl implements IMatchService
 		return matchDao.myMatchs(userId,state,page,pageSize);
 	}
 
+	/**
+	 * 获取擂台赛列表
+	 *
+	 * @param page
+	 * @param pageSize
+	 * @return
+	 */
+	public PageResults<Match> avenaMatchs(int page, int pageSize)
+	{
+		return matchDao.avenaMatchs(page,pageSize);
+	}
 }
