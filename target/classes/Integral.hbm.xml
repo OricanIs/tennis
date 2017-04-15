@@ -11,5 +11,7 @@
         <property name="matchId" column="match_id"/>
         <property name="createTime" column="create_time"/>
         <property name="intro" column="intro"/>
+        <property name="totalIntegral" column="integral"/>
+        <property name="matchType" column="match_type"/>
     </class>
 </hibernate-mapping>

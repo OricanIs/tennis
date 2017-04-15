@@ -17,7 +17,7 @@ public class Match
 
 	private int           id;
 	private Integer       defenderMainUser;
-	private Integer       deferderMinUser;
+	private Integer       defenderMinUser;
 	private Integer       challengeMainUser;
 	private Integer       challengeMinUser;
 	private Integer       state;
@@ -57,14 +57,14 @@ public class Match
 		this.defenderMainUser = defenderMainUser;
 	}
 
-	public Integer getDeferderMinUser()
+	public Integer getDefenderMinUser()
 	{
-		return deferderMinUser;
+		return defenderMinUser;
 	}
 
-	public void setDeferderMinUser(Integer deferderMinUser)
+	public void setDefenderMinUser(Integer defenderMinUser)
 	{
-		this.deferderMinUser = deferderMinUser;
+		this.defenderMinUser = defenderMinUser;
 	}
 
 	public Integer getChallengeMainUser()
@@ -252,7 +252,6 @@ public class Match
 	{
 		int result = id;
 		result = 31 * result + (defenderMainUser != null ? defenderMainUser.hashCode() : 0);
-		result = 31 * result + (deferderMinUser != null ? deferderMinUser.hashCode() : 0);
 		result = 31 * result + (challengeMainUser != null ? challengeMainUser.hashCode() : 0);
 		result = 31 * result + (challengeMinUser != null ? challengeMinUser.hashCode() : 0);
 		result = 31 * result + (state != null ? state.hashCode() : 0);
@@ -281,8 +280,7 @@ public class Match
 			return false;
 		if (defenderMainUser != null ? !defenderMainUser.equals(match.defenderMainUser) : match.defenderMainUser != null)
 			return false;
-		if (deferderMinUser != null ? !deferderMinUser.equals(match.deferderMinUser) : match.deferderMinUser != null)
-			return false;
+
 		if (challengeMainUser != null ? !challengeMainUser.equals(match.challengeMainUser) : match.challengeMainUser != null)
 			return false;
 		if (challengeMinUser != null ? !challengeMinUser.equals(match.challengeMinUser) : match.challengeMinUser != null)

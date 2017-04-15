@@ -257,9 +257,9 @@ public class MatchServiceImpl implements IMatchService
 	 * @param userId
 	 * @return
 	 */
-	public PageResults<Match> myMatchs(int userId,int state,int page,int pageSize)
+	public PageResults<Match> myMatchs(int userId,int state,int startTime,int endTime,int page,int pageSize)
 	{
-		return matchDao.myMatchs(userId,state,page,pageSize);
+		return matchDao.myMatchs(userId,state,startTime,endTime,page,pageSize);
 	}
 
 	/**
@@ -272,5 +272,15 @@ public class MatchServiceImpl implements IMatchService
 	public PageResults<Match> avenaMatchs(int page, int pageSize)
 	{
 		return matchDao.avenaMatchs(page,pageSize);
+	}
+
+	/**
+	 * 更改积分
+	 *
+	 * @param match
+	 */
+	public void updateMatchIntegral(Match match)
+	{
+		//更新比赛积分
 	}
 }

@@ -72,6 +72,14 @@
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
+    <!--用户积分-->
+    <bean id="integralService" class="com.tennis.service.integral.impl.IntegralServiceImpl">
+        <property name="integralDao" ref="integralDao"></property>
+    </bean>
+    <bean id="integralDao" class="com.tennis.dao.integral.impl.IntegralDaoImpl">
+        <property name="entityClass" value="com.tennis.model.db.Integral"></property>
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
 
 
 </beans>

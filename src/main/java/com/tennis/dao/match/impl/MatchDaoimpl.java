@@ -28,6 +28,7 @@ import java.util.List;
 public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMatchDao
 {
 
+
 	/**
 	 * 根据时间获取用户的比赛记录
 	 *
@@ -208,12 +209,22 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 	 * @param userId
 	 * @return
 	 */
-	public PageResults<Match> myMatchs(int userId, int state, int page, int pageSize)
+	public PageResults<Match> myMatchs(int userId, int state,int startTime,int endTime, int page,
+									   int
+			pageSize)
 	{
-		String hql = "from Match where (defenderMainUser=? or deferderMinUser=? or " + "challengeMainUser=? or challengeMinUser=?) and state=? order by id desc";
+		if(startTime==0||endTime==0){
+			startTime = 1483200000;
+			endTime = DateUtil.DateToTimestamp(new Date());
+		}
+		String hql = "from Match where (defenderMainUser=? or defenderMinUser=? or " +
+				"challengeMainUser=? or challengeMinUser=?) and state=?  and (startTime between ? and ? order by id desc";
 		String countHql = "select count(*) from Match where (defenderMainUser=? or " +
-				"deferderMinUser=? or " + "challengeMainUser=? or challengeMinUser=?) and state=? ";
-		PageResults<Match> result = this.findPageByFetchedHql(hql, countHql, page, pageSize, userId, userId, userId, userId, state);
+				"defenderMinUser=? or " + "challengeMainUser=? or challengeMinUser=?) and state=?" +
+				" and (startTime between ? and ?) ";
+		PageResults<Match> result = this.findPageByFetchedHql(hql, countHql, page, pageSize,
+															  userId, userId, userId, userId,
+															  state,startTime,endTime);
 
 
 		return result;

@@ -77,4 +77,11 @@ public interface IUserService
 	 * @return
 	 */
 	public MatchUserInfo getMatchUserInfo(int userId);
+
+	/**
+	 * 改变用户的积分
+	 * @param userId
+	 * @param integral
+	 */
+	public void changeIntegral(int userId,int integral);
 }

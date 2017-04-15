@@ -97,12 +97,16 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			{
 				match.setDeMainUser(userService.getUserInfo(match.getDefenderMainUser()));
 			}
-			if (match.getDeferderMinUser() != null && !match.getDeferderMinUser().equals(0))
+			if (match.getDefenderMinUser() != null && !match.getDefenderMinUser().equals(0))
 			{
-				match.setDeMinUser(userService.getUserInfo(match.getDeferderMinUser()));
+				match.setDeMinUser(userService.getUserInfo(match.getDefenderMinUser()));
 			}
 		}
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, matchPageResults);
+		return SUCCESS;
+	}
+	public String arenaMatchInfo(){
+
 		return SUCCESS;
 	}
 
@@ -129,7 +133,8 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	{
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		//获取我的比赛列表
-		PageResults<Match> matchPageResults = matchService.myMatchs(user.getId(), match.getState(), page, pageSize);
+		PageResults<Match> matchPageResults = matchService.myMatchs(user.getId(), match.getState
+				(),match.getStartTime(),match.getEndTime(), page, pageSize);
 		List<Match>        matchs           = matchPageResults.getResults();
 
 		for (int i = 0; i < matchs.size(); i++)
@@ -147,9 +152,9 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			{
 				match.setDeMainUser(userService.getUserInfo(match.getDefenderMainUser()));
 			}
-			if (match.getDeferderMinUser() != null && !match.getDeferderMinUser().equals(0))
+			if (match.getDefenderMinUser() != null && !match.getDefenderMinUser().equals(0))
 			{
-				match.setDeMinUser(userService.getUserInfo(match.getDeferderMinUser()));
+				match.setDeMinUser(userService.getUserInfo(match.getDefenderMinUser()));
 			}
 		}
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, matchPageResults);
@@ -191,7 +196,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 		}
 		else
 		{
-			if (!match.getChallengeScore().equals(0) && !match.getDefenderScore().equals(0))
+			if (!match.getChallengeScore().equals(0) || !match.getDefenderScore().equals(0))
 			{
 				matchResult.setChallengeScore(chScore);
 				matchResult.setDefenderScore(deScore);
@@ -212,6 +217,9 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 					match.setDefenderScore(deScore);
 					match.setState(2);
 					matchService.update(match);
+					//记录分数
+					//开始记录积分
+					matchService.updateMatchIntegral(match);
 				}
 			}
 		}
@@ -227,6 +235,8 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 					match.setDefenderScore(deScore);
 					match.setState(2);
 					matchService.update(match);
+					//记录分数
+					matchService.updateMatchIntegral(match);
 				}
 			}
 		}
@@ -260,7 +270,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			else
 			{
 				match.setDefenderMainUser(user.getId());
-				match.setDeferderMinUser(partnerId);
+				match.setDefenderMinUser(partnerId);
 				match.setState(1);
 				matchService.update(match);
 			}
@@ -296,7 +306,8 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	{
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		match = matchService.get(this.match.getId());
-		if (match.getDefenderMainUser().equals(user.getId()) || match.getDeferderMinUser().equals(user.getId()))
+		if (match.getDefenderMainUser().equals(user.getId()) || match.getDefenderMinUser().equals
+				(user.getId()))
 		{
 			match.setState(-1);
 			matchService.update(match);
@@ -387,14 +398,10 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			matchInfo.setCamp("ch");
 
 		}
-		else if (match.getDefenderMainUser().equals(userId) || match.getDeferderMinUser().equals(userId))
+		else if (match.getDefenderMainUser().equals(userId) || match.getDefenderMinUser().equals
+				(userId))
 		{
 			matchInfo.setCamp("de");
-		}
-		else
-		{
-			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10002), null);
-			return SUCCESS;
 		}
 		if (match.getChallengeMainUser() != null && !match.getChallengeMainUser().equals(0))
 			matchInfo.setChMainUser(userService.getMatchUserInfo(match.getChallengeMainUser()));
@@ -405,8 +412,8 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 		if (match.getDefenderMainUser() != null && !match.getDefenderMainUser().equals(0))
 			matchInfo.setDeMainUser(userService.getMatchUserInfo(match.getDefenderMainUser()));
 
-		if (match.getDeferderMinUser() != null && !match.getDeferderMinUser().equals(0))
-			matchInfo.setDeMinUser(userService.getMatchUserInfo(match.getDeferderMinUser()));
+		if (match.getDefenderMinUser() != null && !match.getDefenderMinUser().equals(0))
+			matchInfo.setDeMinUser(userService.getMatchUserInfo(match.getDefenderMinUser()));
 
 		//返回结果
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, matchInfo);
@@ -469,7 +476,8 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 					return SUCCESS;
 				}
 				//创建比赛
-				createMatch(match.getChallengeMainUser(), match.getChallengeMinUser(), match.getDefenderMainUser(), match.getDeferderMinUser(), match.getPlayWay(), match.getMatchType(), match.getMatchCity(), match.getMatchProvince(), match.getMatchAddr(), match.getIntegral(), match.getStartTime(), match.getEndTime());
+				createMatch(match.getChallengeMainUser(), match.getChallengeMinUser(), match
+						.getDefenderMainUser(), match.getDefenderMinUser(), match.getPlayWay(), match.getMatchType(), match.getMatchCity(), match.getMatchProvince(), match.getMatchAddr(), match.getIntegral(), match.getStartTime(), match.getEndTime());
 				responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
 				return SUCCESS;
 			}
@@ -505,7 +513,8 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 				}
 
 				//创建比赛
-				createMatch(match.getChallengeMainUser(), match.getChallengeMinUser(), match.getDefenderMainUser(), match.getDeferderMinUser(), match.getPlayWay(), match.getMatchType(), match.getMatchCity(), match.getMatchProvince(), match.getMatchAddr(), match.getIntegral(), match.getStartTime(), match.getEndTime());
+				createMatch(match.getChallengeMainUser(), match.getChallengeMinUser(), match
+						.getDefenderMainUser(), match.getDefenderMinUser(), match.getPlayWay(), match.getMatchType(), match.getMatchCity(), match.getMatchProvince(), match.getMatchAddr(), match.getIntegral(), match.getStartTime(), match.getEndTime());
 				responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
 				return SUCCESS;
 			}
@@ -522,7 +531,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			else
 			{
 				//要判断用户是否存在
-				User findUser = userService.getUser(match.getDeferderMinUser());
+				User findUser = userService.getUser(match.getDefenderMinUser());
 				if (findUser == null)
 				{
 					responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10002), null);
@@ -559,7 +568,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 		//参数
 		match.setChallengeMainUser(chMainUser);
 		match.setChallengeMinUser(chMinUser);
-		match.setDeferderMinUser(deMinUser);
+		match.setDefenderMinUser(deMinUser);
 		match.setDefenderMainUser(deMainUser);
 		match.setPlayWay(playWay);
 		match.setMatchType(matchType);

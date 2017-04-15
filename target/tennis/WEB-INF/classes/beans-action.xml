@@ -38,6 +38,9 @@
           class="com.tennis.web.interceptor.common.UserLoginInterceptor" scope="prototype">
         <property name="userService" ref="userService"/>
     </bean>
-
+    <!---->
+    <bean id="integralAction" class="com.tennis.action.app.IntegralAction" scope="prototype">
+        <property name="integralService" ref="integralService"/>
+    </bean>
 
 </beans>

@@ -178,7 +178,7 @@ matchProvince=上海市			//required
 matchCity=奉贤区				//required
 matchAddr=上海应用技术学院	//required
 defenderMainUser=3			//擂台
-deferderMinUser=0			
+defenderMinUser=0			
 	
 ```
 
@@ -402,6 +402,8 @@ deScore = 8				//required
 state = 0 		//0待确认   1比赛中 2 比赛完成
 page = 1
 pageSize =20
+startTime=122222222
+endTime=123333333
 
 ```
 

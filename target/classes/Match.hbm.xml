@@ -7,7 +7,7 @@
     <class name="com.tennis.model.db.Match" table="matchs" schema="tennis">
         <id name="id" column="id"/>
         <property name="defenderMainUser" column="defender_main_user"/>
-        <property name="deferderMinUser" column="deferder_min_user"/>
+        <property name="defenderMinUser" column="deferder_min_user"/>
         <property name="challengeMainUser" column="challenge_main_user"/>
         <property name="challengeMinUser" column="challenge_min_user"/>
         <property name="state" column="state"/>

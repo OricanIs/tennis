@@ -19,6 +19,8 @@ public class Integral
 	private Integer matchId;
 	private Integer createTime;
 	private String intro;
+	private Integer TotalIntegral;		//用户当前总积分
+	private Integer matchType;
 
 	public int getId()
 	{
@@ -78,6 +80,26 @@ public class Integral
 	public void setIntro(String intro)
 	{
 		this.intro = intro;
+	}
+
+	public Integer getTotalIntegral()
+	{
+		return TotalIntegral;
+	}
+
+	public void setTotalIntegral(Integer totalIntegral)
+	{
+		TotalIntegral = totalIntegral;
+	}
+
+	public Integer getMatchType()
+	{
+		return matchType;
+	}
+
+	public void setMatchType(Integer matchType)
+	{
+		this.matchType = matchType;
 	}
 
 	@Override

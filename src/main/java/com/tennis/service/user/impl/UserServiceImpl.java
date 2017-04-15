@@ -265,6 +265,45 @@ public class UserServiceImpl implements IUserService
 	}
 
 
+	/**
+	 * 改变用户的积分
+	 *
+	 * @param userId
+	 * @param integral
+	 */
+	public void changeIntegral(int userId, int integral)
+	{
+		User user = userDao.getUser(userId);
+		if (user == null){
+			return ;
+		}
+		int temp = user.getIntegral()+integral;
+		if (temp < 0){
+			temp = 0;
+		}
+		user.setIntegral(temp);
+		int level = user.getLevel();
+		if(integral<0){
+			EM_USER_LEVEL levelEm = EM_USER_LEVEL.getEmByIndex(user.getLevel());
+
+			if (temp<levelEm.getScore()){
+				level --;
+			}
+			if (level < 0){
+				level = 0;
+			}
+		}else{
+			EM_USER_LEVEL levelEm = EM_USER_LEVEL.getEmByIndex(user.getLevel() + 1);
+			if (levelEm == null) return;
+			if (temp > levelEm.getScore()){
+				level ++;
+			}
+		}
+
+		userDao.updateUser(user);
+
+	}
+
 	//privates
 	private boolean canChanallAnotherCount(int userId, int otherUserId)
 	{
@@ -279,7 +318,8 @@ public class UserServiceImpl implements IUserService
 			Match match = matches.get(i);
 			if (match.getChallengeMainUser().equals(userId) || match.getChallengeMinUser().equals(userId))
 			{
-				if (match.getDefenderMainUser().equals(otherUserId) || match.getDeferderMinUser().equals(otherUserId))
+				if (match.getDefenderMainUser().equals(otherUserId) || match.getDefenderMinUser()
+						.equals(otherUserId))
 				{
 					return false;
 				}
