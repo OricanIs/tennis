@@ -242,12 +242,21 @@
             <!-- 声明拦截器 -->
             <interceptor name="errorInterceptor"
                          class="com.tennis.web.interceptor.common.SysErrInterceptor"/>
+            <!--用户登录拦截器-->
+            <interceptor name="userLoginInterceptor"
+                         class="com.tennis.web.interceptor.common.UserLoginInterceptor"/>
             <!-- 配置基本拦截器 -->
             <interceptor-stack name="userBaseStack">
                 <interceptor-ref name="defaultStack"/>
                 <interceptor-ref name="errorInterceptor"/>
             </interceptor-stack>
+
             <!-- 配置登录拦截器 -->
+            <interceptor-stack name="userLoginStack">
+                <interceptor-ref name="defaultStack"/>
+                <interceptor-ref name="userLoginInterceptor"/>
+                <interceptor-ref name="errorInterceptor"/>
+            </interceptor-stack>
         </interceptors>
         <!-- 覆盖底层的拦截器栈 对包中的所有action都有效 -->
         <!--<default-interceptor-ref name="userBaseStack"/>-->
@@ -259,6 +268,7 @@
 
         <!--rank排名-->
         <action name="list" class="com.tennis.action.app.IntegralAction" method="integralList">
+            <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
             <result name="error" type="json">

@@ -38,7 +38,6 @@ public class IntegralAction extends ActionSupport
 	 */
 	public String integralList(){
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-
 		PageResults<Integral> pageResults = integralService.record(user.getId(), startTime, endTime, page, pageSize);
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, pageResults);
 		return SUCCESS;

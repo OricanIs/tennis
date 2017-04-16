@@ -299,6 +299,7 @@ public class UserServiceImpl implements IUserService
 				level ++;
 			}
 		}
+		user.setLevel(level);
 
 		userDao.updateUser(user);
 

@@ -2,10 +2,13 @@ package com.tennis.service.match.impl;
 
 import com.tennis.dao.match.IMatchDao;
 import com.tennis.model.common.PageResults;
+import com.tennis.model.db.Integral;
 import com.tennis.model.db.Match;
 import com.tennis.model.db.MatchResult;
+import com.tennis.model.db.User;
 import com.tennis.model.response.match.PendingMatchModel;
 import com.tennis.model.response.match.UserMatchStatistics;
+import com.tennis.service.integral.IIntegralService;
 import com.tennis.service.match.IMatchService;
 import com.tennis.service.user.IUserService;
 import com.tennis.util.common.DateUtil;
@@ -27,8 +30,11 @@ import java.util.List;
 public class MatchServiceImpl implements IMatchService
 {
 
-	private IMatchDao    matchDao;
-	private IUserService userService;
+	private IMatchDao        matchDao;
+	private IUserService     userService;
+	private IIntegralService integralService;
+	private final int winIntegral  = 15;
+	private final int loseIntegral = 10;
 
 	public void setMatchDao(IMatchDao matchDao)
 	{
@@ -38,6 +44,11 @@ public class MatchServiceImpl implements IMatchService
 	public void setUserService(IUserService userService)
 	{
 		this.userService = userService;
+	}
+
+	public void setIntegralService(IIntegralService integralService)
+	{
+		this.integralService = integralService;
 	}
 
 	/**
@@ -228,7 +239,7 @@ public class MatchServiceImpl implements IMatchService
 	 */
 	public MatchResult getMatchResultByUser(int matchId, int userId)
 	{
-		return matchDao.getMatchResultByUser(matchId,userId);
+		return matchDao.getMatchResultByUser(matchId, userId);
 	}
 
 	/**
@@ -257,9 +268,9 @@ public class MatchServiceImpl implements IMatchService
 	 * @param userId
 	 * @return
 	 */
-	public PageResults<Match> myMatchs(int userId,int state,int startTime,int endTime,int page,int pageSize)
+	public PageResults<Match> myMatchs(int userId, int state, int startTime, int endTime, int page, int pageSize)
 	{
-		return matchDao.myMatchs(userId,state,startTime,endTime,page,pageSize);
+		return matchDao.myMatchs(userId, state, startTime, endTime, page, pageSize);
 	}
 
 	/**
@@ -271,7 +282,7 @@ public class MatchServiceImpl implements IMatchService
 	 */
 	public PageResults<Match> avenaMatchs(int page, int pageSize)
 	{
-		return matchDao.avenaMatchs(page,pageSize);
+		return matchDao.avenaMatchs(page, pageSize);
 	}
 
 	/**
@@ -281,6 +292,114 @@ public class MatchServiceImpl implements IMatchService
 	 */
 	public void updateMatchIntegral(Match match)
 	{
-		//更新比赛积分
+
+		User chMainUser = userService.getUser(match.getChallengeMainUser());
+		User deMainUser = userService.getUser(match.getDefenderMainUser());
+		User chMinUser  = match.getChallengeMinUser().equals(0) ? null : userService.getUser(match.getChallengeMinUser());
+		User deMinUser  = match.getDefenderMinUser().equals(0) ? null : userService.getUser(match.getDefenderMinUser());
+		//更新比赛积分,首先判断比赛的状态
+		match = matchDao.getMatch(match.getId());
+		if (match.getMatchType().equals(0))
+		{
+
+				if (match.getChallengeScore() > match.getDefenderScore())
+				{
+					if (match.getPlayWay().equals(0))
+					{
+						saveIntegral(chMainUser, match, winIntegral);
+						saveIntegral(deMainUser, match, -loseIntegral);
+					}
+					else
+					{
+
+						int temp = (chMainUser.getLevel() + chMinUser.getLevel()) - (deMainUser
+								.getLevel() + deMinUser.getLevel());
+						saveIntegral(chMainUser, match, winIntegral+temp);
+						saveIntegral(deMainUser, match, -loseIntegral + temp);
+						saveIntegral(chMinUser, match, winIntegral+temp);
+						saveIntegral(deMinUser, match, -loseIntegral + temp);
+					}
+
+
+				}
+				else
+				{
+
+					if (match.getPlayWay().equals(0))
+					{
+						saveIntegral(chMainUser, match,  -loseIntegral);
+						saveIntegral(deMainUser, match, winIntegral);
+						saveIntegral(chMinUser, match, -loseIntegral);
+						saveIntegral(deMinUser, match, winIntegral);
+					}
+					else
+					{
+
+						int temp = (deMainUser
+								.getLevel() + deMinUser.getLevel()) - (chMainUser.getLevel() + chMinUser.getLevel());
+						saveIntegral(chMainUser, match, -loseIntegral +temp);
+						saveIntegral(deMainUser, match, winIntegral+ temp);
+						saveIntegral(chMinUser, match, -loseIntegral+temp);
+						saveIntegral(deMinUser, match, winIntegral+ temp);
+					}
+
+				}
+
+
+		}
+		else
+		{
+			if (match.getChallengeScore() > match.getDefenderScore())
+			{
+				saveIntegral(chMainUser, match, match.getIntegral());
+				saveIntegral(deMainUser, match, -match.getIntegral());
+				if (chMinUser != null)
+				{
+					saveIntegral(deMinUser, match, match.getIntegral());
+				}
+				if (deMinUser != null)
+				{
+					saveIntegral(deMinUser, match, -match.getIntegral());
+				}
+
+			}
+			else
+			{
+				saveIntegral(chMainUser, match, -match.getIntegral());
+				saveIntegral(deMainUser, match, match.getIntegral());
+				if (chMinUser != null)
+				{
+					saveIntegral(deMinUser, match, -match.getIntegral());
+				}
+				if (deMinUser != null)
+				{
+					saveIntegral(deMinUser, match, +match.getIntegral());
+				}
+			}
+
+		}
+
+		//更新比赛类型，更改积分
 	}
+
+
+	//private
+
+	private void saveIntegral(User user, Match match, int fenshu)
+	{
+		//更改用户积分
+		userService.changeIntegral(user.getId(), fenshu);
+		//创建积分
+		Integral integral = new Integral();
+		integral.setCreateTime(DateUtil.DateToTimestamp(new Date()));
+		integral.setIntro("比赛");
+		integral.setMatchId(match.getId());
+		integral.setMatchType(match.getMatchType());
+		integral.setScore(fenshu);
+		integral.setTotalIntegral((user.getIntegral() + fenshu) < 0 ? 0 : (user.getIntegral() + fenshu));
+		integral.setUserId(user.getId());
+		integralService.save(integral);
+	}
+
+
 }

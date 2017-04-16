@@ -207,7 +207,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 		//如果是挑战方
 		if (match.getChallengeMainUser().equals(user.getId()))
 		{
-			matchResult = matchService.getMatchResultByUser(match.getDefenderMainUser(), user.getId());
+			matchResult = matchService.getMatchResultByUser(match.getId(), match.getDefenderMainUser());
 
 			if (matchResult != null)
 			{
@@ -225,7 +225,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 		}
 		else
 		{
-			matchResult = matchService.getMatchResultByUser(match.getChallengeMainUser(), user.getId());
+			matchResult = matchService.getMatchResultByUser(match.getId(),match.getChallengeMainUser());
 
 			if (matchResult != null)
 			{
@@ -406,6 +406,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 		if (match.getChallengeMainUser() != null && !match.getChallengeMainUser().equals(0))
 			matchInfo.setChMainUser(userService.getMatchUserInfo(match.getChallengeMainUser()));
 
+
 		if (match.getChallengeMinUser() != null && !match.getChallengeMinUser().equals(0))
 			matchInfo.setChMinUser(userService.getMatchUserInfo(match.getChallengeMinUser()));
 
@@ -467,8 +468,6 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 				}
 				//检查数据是否合法
 				boolean equalsEachOther = CommonUtil.isEqualsEachOther(user.getId(), match.getDefenderMainUser());
-				System.out.println(user.getId() + ">>>>>>>>" + match.getDefenderMainUser());
-				System.out.println(">>>>>>>>>>" + equalsEachOther);
 				if (equalsEachOther)
 				{
 

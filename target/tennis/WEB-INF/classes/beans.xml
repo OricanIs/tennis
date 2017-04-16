@@ -33,6 +33,7 @@
     <bean id="matchService" class="com.tennis.service.match.impl.MatchServiceImpl">
         <property name="matchDao" ref="matchDao"/>
         <property name="userService" ref="userService"/>
+        <property name="integralService" ref="integralService"/>
     </bean>
     <bean id="matchDao" class="com.tennis.dao.match.impl.MatchDaoimpl">
         <property name="entityClass" value="com.tennis.model.db.Match"/>

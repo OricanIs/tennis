@@ -218,7 +218,8 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 			endTime = DateUtil.DateToTimestamp(new Date());
 		}
 		String hql = "from Match where (defenderMainUser=? or defenderMinUser=? or " +
-				"challengeMainUser=? or challengeMinUser=?) and state=?  and (startTime between ? and ? order by id desc";
+				"challengeMainUser=? or challengeMinUser=?) and state=?  and (startTime between ?" +
+				" and ? ) order by id desc";
 		String countHql = "select count(*) from Match where (defenderMainUser=? or " +
 				"defenderMinUser=? or " + "challengeMainUser=? or challengeMinUser=?) and state=?" +
 				" and (startTime between ? and ?) ";

@@ -36,6 +36,6 @@ public class IntegralServiceImpl implements IIntegralService
 
 	public PageResults<Integral> record(int userId, int startTime, int endTime, int page, int pageSize)
 	{
-		return null;
+		return integralDao.record(userId,startTime,endTime,page,pageSize);
 	}
 }

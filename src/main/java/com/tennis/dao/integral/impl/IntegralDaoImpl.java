@@ -28,7 +28,12 @@ public class IntegralDaoImpl extends GenericDaoImpl<Integral,Integer> implements
 	 */
 	public void saveIntegral(Integral integral)
 	{
-		this.save(integral);
+		String sql = "insert into integral (user_id,score,match_id,create_time,intro," +
+				"integral," +
+				"match_type) values (?,?,?,?,?,?,?)";
+		this.querySql(sql,integral.getUserId(),integral.getScore(),integral.getMatchId(),integral
+				.getCreateTime(),integral.getIntro(),integral.getTotalIntegral(),integral.getMatchType());
+
 	}
 
 	public PageResults<Integral> record(int userId, int startTime, int endTime, int page, int pageSize)

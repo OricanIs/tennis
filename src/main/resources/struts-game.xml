@@ -105,6 +105,8 @@
             <interceptor-ref name="userLoginStack"/>
             <result name="success" type="json">
             </result>
+            <result name="input" type="json">
+            </result>
             <result name="error" type="json">
             </result>
         </action>

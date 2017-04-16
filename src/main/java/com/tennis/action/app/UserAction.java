@@ -185,7 +185,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 
 		if (user.getName() != null){
 			findUser.setName(user.getName());
-			System.out.println(">>>>>>>>>>>>>>>>>>>."+user.getName());
 		}
 
 
