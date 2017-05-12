@@ -31,6 +31,11 @@ public class RegionAction extends ActionSupport
 	private int nationId;
 	private IRegionService regionService;
 	private EM_GLOBAL_RESULT SuccessEM = EM_GLOBAL_RESULT.getEmByCode(0);
+	private String openid;
+	public void setOpenid(String openid)
+	{
+		this.openid = openid;
+	}
 	/**
 	 * getProvinces 获取所有的省份信息
 	 * @return

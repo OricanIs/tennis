@@ -27,6 +27,7 @@ public class MatchInfo
 	private int playWay;
 	private String camp;
 	private int state;
+	private String mobile;
 
 
 	public MatchUserInfo getChMainUser()
@@ -177,5 +178,15 @@ public class MatchInfo
 	public void setState(int state)
 	{
 		this.state = state;
+	}
+
+	public String getMobile()
+	{
+		return mobile;
+	}
+
+	public void setMobile(String mobile)
+	{
+		this.mobile = mobile;
 	}
 }

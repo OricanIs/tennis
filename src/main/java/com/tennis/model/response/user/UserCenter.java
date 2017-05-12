@@ -18,6 +18,8 @@ public class UserCenter
 	private int status;
 	private String username;
 	private String avatar;
+	private int pendingMatchsNum;
+	private int myMatchsNum;
 
 	public int getId()
 	{
@@ -77,5 +79,26 @@ public class UserCenter
 	public void setAvatar(String avatar)
 	{
 		this.avatar = avatar;
+	}
+
+
+	public int getPendingMatchsNum()
+	{
+		return pendingMatchsNum;
+	}
+
+	public void setPendingMatchsNum(int pendingMatchsNum)
+	{
+		this.pendingMatchsNum = pendingMatchsNum;
+	}
+
+	public int getMyMatchsNum()
+	{
+		return myMatchsNum;
+	}
+
+	public void setMyMatchsNum(int myMatchsNum)
+	{
+		this.myMatchsNum = myMatchsNum;
 	}
 }

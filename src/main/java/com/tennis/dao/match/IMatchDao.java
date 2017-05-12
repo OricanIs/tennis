@@ -97,7 +97,8 @@ public interface IMatchDao
 	 * @param userId
 	 * @return
 	 */
-	public PageResults<Match> myMatchs(int userId,int state,int startTime,int endTime,int page,
+	public PageResults<Match> myMatchs(int userId,int state,int startTime,int endTime,Integer
+			matchType,int page,
 									   int pageSize);
 
 	/**

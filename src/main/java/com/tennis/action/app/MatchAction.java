@@ -15,6 +15,7 @@ import com.tennis.service.rank.IRankService;
 import com.tennis.service.user.IUserService;
 import com.tennis.util.common.CommonUtil;
 import com.tennis.util.common.DateUtil;
+import com.tennis.util.wechat.TemplateUtil;
 
 import org.apache.struts2.ServletActionContext;
 
@@ -43,8 +44,16 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	private int pageSize;
 	private int partnerId;
 	private Match match = new Match();
-	private int chScore;
-	private int deScore;
+	private int    chScore;
+	private int    deScore;
+	private String formId;
+	private String openid;
+
+	public void setOpenid(String openid)
+	{
+		this.openid = openid;
+	}
+
 	private EM_GLOBAL_RESULT SuccessEM = EM_GLOBAL_RESULT.getEmByCode(0);
 
 	public void setChScore(int chScore)
@@ -105,7 +114,9 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, matchPageResults);
 		return SUCCESS;
 	}
-	public String arenaMatchInfo(){
+
+	public String arenaMatchInfo()
+	{
 
 		return SUCCESS;
 	}
@@ -133,8 +144,8 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	{
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		//获取我的比赛列表
-		PageResults<Match> matchPageResults = matchService.myMatchs(user.getId(), match.getState
-				(),match.getStartTime(),match.getEndTime(), page, pageSize);
+
+		PageResults<Match> matchPageResults = matchService.myMatchs(user.getId(), match.getState(), match.getStartTime(), match.getEndTime(), match.getMatchType(), page, pageSize);
 		List<Match>        matchs           = matchPageResults.getResults();
 
 		for (int i = 0; i < matchs.size(); i++)
@@ -193,6 +204,8 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			matchResult.setChallengeScore(chScore);
 			matchResult.setDefenderScore(deScore);
 			matchService.save(matchResult);
+
+
 		}
 		else
 		{
@@ -204,9 +217,13 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			}
 
 		}
+
 		//如果是挑战方
 		if (match.getChallengeMainUser().equals(user.getId()))
 		{
+			User deMainUser = userService.getUser(match.getDefenderMainUser());
+			TemplateUtil.sendResultTemplate(match, deMainUser, formId);
+
 			matchResult = matchService.getMatchResultByUser(match.getId(), match.getDefenderMainUser());
 
 			if (matchResult != null)
@@ -220,12 +237,16 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 					//记录分数
 					//开始记录积分
 					matchService.updateMatchIntegral(match);
+
 				}
+
 			}
 		}
 		else
 		{
-			matchResult = matchService.getMatchResultByUser(match.getId(),match.getChallengeMainUser());
+			User chMainUser = userService.getUser(match.getChallengeMainUser());
+			TemplateUtil.sendResultTemplate(match, chMainUser, formId);
+			matchResult = matchService.getMatchResultByUser(match.getId(), match.getChallengeMainUser());
 
 			if (matchResult != null)
 			{
@@ -257,18 +278,38 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 		//首先确认是挑战赛还是擂台赛
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		match = matchService.get(this.match.getId());
+		if (match.getState() != 0)
+		{
+			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10011), null);
+			return SUCCESS;
+		}
+
 		if (match.getMatchType().equals(0))
 		{
 			//判断单打还是双打
 			if (match.getPlayWay().equals(0))
 			{
+				boolean equalsEachOther = CommonUtil.isEqualsEachOther(match.getChallengeMainUser(), user.getId());
+				if (equalsEachOther)
+				{
 
+					responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10012), null);
+					return SUCCESS;
+				}
 				match.setDefenderMainUser(user.getId());
 				match.setState(1);
 				matchService.update(match);
+
 			}
 			else
 			{
+				boolean equalsEachOther = CommonUtil.isEqualsEachOther(match.getChallengeMainUser(), match.getChallengeMinUser(), user.getId(), partnerId);
+				if (equalsEachOther)
+				{
+
+					responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10012), null);
+					return SUCCESS;
+				}
 				match.setDefenderMainUser(user.getId());
 				match.setDefenderMinUser(partnerId);
 				match.setState(1);
@@ -281,13 +322,26 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			//判断单打还是双打
 			if (match.getPlayWay().equals(0))
 			{
+				boolean equalsEachOther = CommonUtil.isEqualsEachOther(match.getDefenderMainUser(), user.getId());
+				if (equalsEachOther)
+				{
 
+					responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10012), null);
+					return SUCCESS;
+				}
 				match.setChallengeMainUser(user.getId());
 				match.setState(1);
 				matchService.update(match);
 			}
 			else
 			{
+				boolean equalsEachOther = CommonUtil.isEqualsEachOther(match.getDefenderMainUser(), user.getId(), partnerId, match.getDefenderMinUser());
+				if (equalsEachOther)
+				{
+
+					responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10012), null);
+					return SUCCESS;
+				}
 				match.setChallengeMainUser(user.getId());
 				match.setChallengeMinUser(partnerId);
 				match.setState(1);
@@ -306,8 +360,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	{
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
 		match = matchService.get(this.match.getId());
-		if (match.getDefenderMainUser().equals(user.getId()) || match.getDefenderMinUser().equals
-				(user.getId()))
+		if (match.getDefenderMainUser().equals(user.getId()) || match.getDefenderMinUser().equals(user.getId()))
 		{
 			match.setState(-1);
 			matchService.update(match);
@@ -398,8 +451,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			matchInfo.setCamp("ch");
 
 		}
-		else if (match.getDefenderMainUser().equals(userId) || match.getDefenderMinUser().equals
-				(userId))
+		else if (match.getDefenderMainUser().equals(userId) || match.getDefenderMinUser().equals(userId))
 		{
 			matchInfo.setCamp("de");
 		}
@@ -443,6 +495,12 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	public String create()
 	{
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		user = userService.getUser(user.getId());
+		if (user.getLevel() <= 0)
+		{
+			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10004), null);
+			return SUCCESS;
+		}
 		//首先判断 是挑战赛还是擂台赛
 		if (match.getMatchType().equals(0))
 		{
@@ -467,7 +525,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 					return SUCCESS;
 				}
 				//检查数据是否合法
-				boolean equalsEachOther = CommonUtil.isEqualsEachOther(user.getId(), match.getDefenderMainUser());
+				boolean equalsEachOther = CommonUtil.isEqualsEachOther(user.getId(), match.getChallengeMinUser(), match.getDefenderMainUser());
 				if (equalsEachOther)
 				{
 
@@ -475,8 +533,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 					return SUCCESS;
 				}
 				//创建比赛
-				createMatch(match.getChallengeMainUser(), match.getChallengeMinUser(), match
-						.getDefenderMainUser(), match.getDefenderMinUser(), match.getPlayWay(), match.getMatchType(), match.getMatchCity(), match.getMatchProvince(), match.getMatchAddr(), match.getIntegral(), match.getStartTime(), match.getEndTime());
+				createMatch(user.getId(), 0, match.getDefenderMainUser(), 0, match.getPlayWay(), match.getMatchType(), match.getMatchCity(), match.getMatchProvince(), match.getMatchAddr(), match.getIntegral(), match.getStartTime(), match.getEndTime());
 				responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
 				return SUCCESS;
 			}
@@ -512,8 +569,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 				}
 
 				//创建比赛
-				createMatch(match.getChallengeMainUser(), match.getChallengeMinUser(), match
-						.getDefenderMainUser(), match.getDefenderMinUser(), match.getPlayWay(), match.getMatchType(), match.getMatchCity(), match.getMatchProvince(), match.getMatchAddr(), match.getIntegral(), match.getStartTime(), match.getEndTime());
+				createMatch(match.getChallengeMainUser(), match.getChallengeMinUser(), match.getDefenderMainUser(), match.getDefenderMinUser(), match.getPlayWay(), match.getMatchType(), match.getMatchCity(), match.getMatchProvince(), match.getMatchAddr(), match.getIntegral(), match.getStartTime(), match.getEndTime());
 				responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
 				return SUCCESS;
 			}
@@ -631,5 +687,8 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 		this.matchService = matchService;
 	}
 
-
+	public void setFormId(String formId)
+	{
+		this.formId = formId;
+	}
 }

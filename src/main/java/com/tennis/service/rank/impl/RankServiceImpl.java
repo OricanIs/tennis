@@ -46,6 +46,7 @@ public class RankServiceImpl implements IRankService
 	{
 		int       rankByUser = rankTodayDao.getRankByUser(userId);
 		RankModel rankModel  = new RankModel();
+		rankModel.setRank(rankByUser);
 		return rankModel;
 	}
 

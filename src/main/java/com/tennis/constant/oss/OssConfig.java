@@ -18,16 +18,16 @@ public class OssConfig
 	private static OSSClient           aliyunOssClient;
 	private static ClientConfiguration aliyunClientConf;
 	// endpoint以杭州为例，其它region请按实际情况填写
-	public static final String aliyun_oss_endpoint          = "http://oss-cn-qingdao.aliyuncs.com";
+	public static final String aliyun_oss_endpoint          = "http://oss-cn-hangzhou.aliyuncs.com";
 
-	public static final String aliyun_self_domain = "http://goushubao.oss-cn-qingdao.aliyuncs.com";
+	public static final String aliyun_self_domain = "http://muxu.oss-cn-hangzhou.aliyuncs.com";
 	//接入阿里云 oss钥匙的id
-	public static final String aliyun_oss_access_key_id     = "aYtS4ndVDzSv39yQ";
+	public static final String aliyun_oss_access_key_id     = "LTAIXPuMSstHYX5d";
 	//接入阿里云 oss钥匙的密码
-	public static final String aliyun_oss_access_key_secret = "6DpBwtyxY1SD9EFhXWcKZz11BPOoR1";
+	public static final String aliyun_oss_access_key_secret = "lhtcoqwnChIGfDg98u1EGfUGLwAMzf";
 
 	//
-	public static final String aliyun_oss_bluck_name = "goushubao";
+	public static final String aliyun_oss_bluck_name = "muxu";
 
 	//图片根路径
 	public static final String aliyun_oss_root_path = "images";

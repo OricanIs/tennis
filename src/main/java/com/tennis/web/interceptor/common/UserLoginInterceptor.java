@@ -37,9 +37,8 @@ public class UserLoginInterceptor implements Interceptor
 	 */
 	public String intercept(ActionInvocation invocation) throws Exception
 	{
-		String             openid  = "";
-		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext
-																			   .HTTP_REQUEST);
+		String openid = "";
+		HttpServletRequest request = (HttpServletRequest) ActionContext.getContext().get(ServletActionContext.HTTP_REQUEST);
 		User loginUser = (User) request.getSession().getAttribute("user");
 		//判断session里有没有用户的登录信息
 		if (loginUser != null)
@@ -58,15 +57,20 @@ public class UserLoginInterceptor implements Interceptor
 		{
 			return "userLogin";
 		}
+		openid = openid.trim();
+		if (openid == "")
+		{
 
+			return "userLogin";
+		}
 		loginUser = userService.getUserByOpenid(openid);
 		//session里面保存用户
-		if(loginUser == null){
+		if (loginUser == null)
+		{
+			System.out.println(openid);
 			throw new RuntimeException();
 		}
 		ActionContext.getContext().getSession().put("user", loginUser);
-
-
 		return invocation.invoke();
 	}
 
@@ -88,7 +92,6 @@ public class UserLoginInterceptor implements Interceptor
 	{
 
 	}
-
 
 
 	public void setUserService(IUserService userService)

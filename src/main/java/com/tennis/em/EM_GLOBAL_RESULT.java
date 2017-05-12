@@ -18,13 +18,16 @@ public enum EM_GLOBAL_RESULT
 	ERR_STATUS(10001, "errStatus", "status abnormal"),
 	ERR_PARAM(10002,"errParam","请求参数不合法"),
 	NOT_FOUND(10003,"notFound","找不到用户"),
-	NO_CHANCE(10004,"noChance","您的机会已用尽,或者您是休息状态"),
+	NO_CHANCE(10004,"noChance","您的机会已用尽,或者您是休息状态,或者请检查您的资料是否完整"),
 	CANNOT_CHALL(10005,"cannotChallenge","对手不可挑战"),
 	NEED_DETAIL(10006,"needRegister","需要先完善个人信息"),
 	UNDFINED_ERR(10007,"undefindErr","未知的错误"),
 	NOT_BEGIN(10008,"notBegin","比赛还没开始"),
 	NO_PRIVILEGE(10009,"insufficientPrivilege","请让主要负责人输入比赛成绩"),
 	UPLOAD_ERR(10010,"uploadErr","上传失败"),
+	CONFIRM_ERR(10011,"matchERR","你晚了一步,请选择其他对手吧"),
+	CANNOT_CHALLENGE_SELF(10012,"matchERR","不能挑战自己呦"),
+
 
 
 	;

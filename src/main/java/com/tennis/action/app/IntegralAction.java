@@ -69,6 +69,9 @@ public class IntegralAction extends ActionSupport
 	{
 		this.integralService = integralService;
 	}
-
-
+	private String openid;
+	public void setOpenid(String openid)
+	{
+		this.openid = openid;
+	}
 }

@@ -104,7 +104,9 @@ public interface IMatchService
 	 * @param userId
 	 * @return
 	 */
-	public PageResults<Match> myMatchs(int userId, int state, int startTime, int endTime, int page, int pageSize);
+	public PageResults<Match> myMatchs(int userId, int state, int startTime, int
+			endTime, Integer matchType,int
+			page, int pageSize);
 
 	/**
 	 * 获取擂台赛列表

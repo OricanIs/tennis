@@ -30,7 +30,11 @@ public class RankAction extends ActionSupport
 	private int          level;
 	private int          pageSize;
 	private EM_GLOBAL_RESULT SuccessEM = EM_GLOBAL_RESULT.getEmByCode(0);
-
+	private String openid;
+	public void setOpenid(String openid)
+	{
+		this.openid = openid;
+	}
 	/**
 	 * getRankToday 获取今日排行榜
 	 *

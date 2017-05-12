@@ -88,11 +88,12 @@ public class UserServiceImpl implements IUserService
 	 */
 	public UserInfoModel getUserInfo(int userId)
 	{
-		User user = userDao.getUser(userId);
 
+		User user = userDao.getUser(userId);
 		if (user != null)
 		{
-			if(user.getMobile() == null || user.getMobile().equals("")){
+			if (user.getMobile() == null || user.getMobile().equals(""))
+			{
 				UserInfoModel infoModel = new UserInfoModel();
 				infoModel.setId(user.getId());
 				return infoModel;
@@ -116,15 +117,15 @@ public class UserServiceImpl implements IUserService
 
 			model.setAge(user.getAge());
 			model.setAvatar(user.getAvatar());
-			model.setBirthYear(user.getBirthday()==null? null:user.getBirthday().toString());
-			model.setHeight(user.getHeight()==null?null:user.getHeight().toString());
+			model.setBirthYear(user.getBirthday() == null ? null : user.getBirthday().toString());
+			model.setHeight(user.getHeight() == null ? null : user.getHeight().toString());
 			model.setId(user.getId());
 			model.setIntegral(user.getIntegral());
-			model.setName(user.getName()==null?null:user.getName());
-			model.setWeight(user.getWeight()==null?null:user.getWeight().toString());
+			model.setName(user.getName() == null ? null : user.getName());
+			model.setWeight(user.getWeight() == null ? null : user.getWeight().toString());
 			model.setRank(rankService.getOneRank(user.getId()).getRank());
 			model.setMobile(user.getMobile());
-			String sex = "未知";
+			String sex = "";
 			if (user.getSex() == 1)
 				sex = "女";
 			else
@@ -147,7 +148,12 @@ public class UserServiceImpl implements IUserService
 			}
 			EM_USER_LEVEL levelEm = EM_USER_LEVEL.getEmByIndex(user.getLevel());
 			model.setLevel(levelEm.getName());
+			int pendingMatchsNum = matchService.pendingMatchs(userId, 1).size() + matchService.pendingMatchs(userId, 0).size();
+			int myMatchsNum = matchService.myMatchs(userId, 1, 0, 0, 0, 0, 20).getTotalCount() + matchService.myMatchs(userId, 1, 0, 0, 1, 0, 20).getTotalCount();
+			model.setPendingMatchsNum(pendingMatchsNum);
+			model.setMyMatchsNum(myMatchsNum);
 			return model;
+
 
 		}
 
@@ -175,7 +181,7 @@ public class UserServiceImpl implements IUserService
 
 		//1：查看用户的状态
 		User user = userDao.getUser(userId);
-		if (user == null || user.getStatus() == 1)
+		if (user == null || user.getStatus() == 1 || user.getMobile() == null || user.getMobile().equals(""))
 			return false;
 
 		List<Match> matches = matchService.userWeekMatchs(userId);
@@ -183,6 +189,7 @@ public class UserServiceImpl implements IUserService
 		//检查一周玩的次数
 		if (matches.size() > 4)
 			return false;
+
 
 		return true;
 	}
@@ -232,9 +239,21 @@ public class UserServiceImpl implements IUserService
 
 		MatchUserInfo matchUserInfo = new MatchUserInfo();
 		User          user          = userDao.getUser(userId);
+		System.out.println("===USER ID====");
+		System.out.println(userId);
+		System.out.println(user== null);
+		System.out.println("=======");
+		if (user == null){
+			return null;
+		}
 		//设置级别
 		EM_USER_LEVEL levelEm = EM_USER_LEVEL.getEmByIndex(user.getLevel());
-		matchUserInfo.setLevel(levelEm.getName());
+		if (levelEm == null){
+			matchUserInfo.setLevel("未知");
+		}else{
+			matchUserInfo.setLevel(levelEm.getName());
+		}
+
 		//设置用户基本信息
 		matchUserInfo.setId(user.getId());
 		matchUserInfo.setName(user.getName());
@@ -243,6 +262,7 @@ public class UserServiceImpl implements IUserService
 		matchUserInfo.setAvatar(user.getAvatar());
 		//获取排名
 		matchUserInfo.setRank(rankService.getOneRank(userId).getRank());
+		matchUserInfo.setMobile(user.getMobile());
 
 		UserMatchStatistics statistics = matchService.userStatistics(userId);
 		//统计用户的比赛数据
@@ -274,29 +294,38 @@ public class UserServiceImpl implements IUserService
 	public void changeIntegral(int userId, int integral)
 	{
 		User user = userDao.getUser(userId);
-		if (user == null){
-			return ;
+		if (user == null)
+		{
+			return;
 		}
-		int temp = user.getIntegral()+integral;
-		if (temp < 0){
+		int temp = user.getIntegral() + integral;
+		if (temp < 0)
+		{
 			temp = 0;
 		}
 		user.setIntegral(temp);
 		int level = user.getLevel();
-		if(integral<0){
+		if (integral < 0)
+		{
 			EM_USER_LEVEL levelEm = EM_USER_LEVEL.getEmByIndex(user.getLevel());
 
-			if (temp<levelEm.getScore()){
-				level --;
+			if (temp < levelEm.getScore())
+			{
+				level--;
 			}
-			if (level < 0){
+			if (level < 0)
+			{
 				level = 0;
 			}
-		}else{
+		}
+		else
+		{
 			EM_USER_LEVEL levelEm = EM_USER_LEVEL.getEmByIndex(user.getLevel() + 1);
-			if (levelEm == null) return;
-			if (temp > levelEm.getScore()){
-				level ++;
+			if (levelEm == null)
+				return;
+			if (temp > levelEm.getScore())
+			{
+				level++;
 			}
 		}
 		user.setLevel(level);
@@ -319,8 +348,7 @@ public class UserServiceImpl implements IUserService
 			Match match = matches.get(i);
 			if (match.getChallengeMainUser().equals(userId) || match.getChallengeMinUser().equals(userId))
 			{
-				if (match.getDefenderMainUser().equals(otherUserId) || match.getDefenderMinUser()
-						.equals(otherUserId))
+				if (match.getDefenderMainUser().equals(otherUserId) || match.getDefenderMinUser().equals(otherUserId))
 				{
 					return false;
 				}

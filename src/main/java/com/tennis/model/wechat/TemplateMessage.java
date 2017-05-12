@@ -9,7 +9,8 @@ public class TemplateMessage
 {
 	private String                    template_id;
 	private String                    touser;
-	private String                    url;
+	private String                    page;
+	private String 					 form_id;
 	private Map<String, TemplateData> data;
 
 	public String getTemplate_id()
@@ -32,14 +33,24 @@ public class TemplateMessage
 		this.touser = touser;
 	}
 
-	public String getUrl()
+	public String getPage()
 	{
-		return url;
+		return page;
 	}
 
-	public void setUrl(String url)
+	public void setPage(String page)
 	{
-		this.url = url;
+		this.page = page;
+	}
+
+	public String getForm_id()
+	{
+		return form_id;
+	}
+
+	public void setForm_id(String form_id)
+	{
+		this.form_id = form_id;
 	}
 
 	public Map<String, TemplateData> getData()

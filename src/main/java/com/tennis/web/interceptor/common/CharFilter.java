@@ -44,6 +44,9 @@ public class CharFilter implements Filter
 		HttpServletResponse resp     = (HttpServletResponse) response;
 		request.setCharacterEncoding(encoding);
 		resp.setContentType("text/html;charset=" + encoding);
+		System.out.println("========");
+		System.out.println((request.getQueryString()));
+		System.out.println("========");
 		// 处理GET参数
 		if (request.getMethod().equalsIgnoreCase("get") ||request.getMethod().equalsIgnoreCase
 				("post"))

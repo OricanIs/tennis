@@ -208,6 +208,9 @@ public class MatchServiceImpl implements IMatchService
 			PendingMatchModel model = new PendingMatchModel();
 			Match             match = matches.get(i);
 			model.setId(match.getId());
+			System.out.println("=============+=============");
+			System.out.println(match.toString());
+			System.out.println("=============+=============");
 			model.setPlayWay(playWay);
 			if (playWay == 0)
 			{
@@ -268,9 +271,10 @@ public class MatchServiceImpl implements IMatchService
 	 * @param userId
 	 * @return
 	 */
-	public PageResults<Match> myMatchs(int userId, int state, int startTime, int endTime, int page, int pageSize)
+	public PageResults<Match> myMatchs(int userId, int state, int startTime, int
+			endTime,Integer matchType, int page, int pageSize)
 	{
-		return matchDao.myMatchs(userId, state, startTime, endTime, page, pageSize);
+		return matchDao.myMatchs(userId, state, startTime, endTime,matchType, page, pageSize);
 	}
 
 	/**
@@ -292,13 +296,13 @@ public class MatchServiceImpl implements IMatchService
 	 */
 	public void updateMatchIntegral(Match match)
 	{
-
+		match = matchDao.getMatch(match.getId());
 		User chMainUser = userService.getUser(match.getChallengeMainUser());
 		User deMainUser = userService.getUser(match.getDefenderMainUser());
 		User chMinUser  = match.getChallengeMinUser().equals(0) ? null : userService.getUser(match.getChallengeMinUser());
 		User deMinUser  = match.getDefenderMinUser().equals(0) ? null : userService.getUser(match.getDefenderMinUser());
+		System.out.println(match.toString());
 		//更新比赛积分,首先判断比赛的状态
-		match = matchDao.getMatch(match.getId());
 		if (match.getMatchType().equals(0))
 		{
 
@@ -329,8 +333,6 @@ public class MatchServiceImpl implements IMatchService
 					{
 						saveIntegral(chMainUser, match,  -loseIntegral);
 						saveIntegral(deMainUser, match, winIntegral);
-						saveIntegral(chMinUser, match, -loseIntegral);
-						saveIntegral(deMinUser, match, winIntegral);
 					}
 					else
 					{
@@ -387,6 +389,11 @@ public class MatchServiceImpl implements IMatchService
 
 	private void saveIntegral(User user, Match match, int fenshu)
 	{
+
+		System.out.println(user==null);
+		if (user ==null){
+			return;
+		}
 		//更改用户积分
 		userService.changeIntegral(user.getId(), fenshu);
 		//创建积分

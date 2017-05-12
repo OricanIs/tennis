@@ -30,7 +30,11 @@ public class UploadAction extends ActionSupport
 	private String              fileFileName;          //上传输入域FileName文件名
 	private String              fileContentType;       //上传文件的MIME类型
 	private EM_GLOBAL_RESULT SuccessEM = EM_GLOBAL_RESULT.getEmByCode(0);
-
+	private String openid;
+	public void setOpenid(String openid)
+	{
+		this.openid = openid;
+	}
 
 
 	@Override
@@ -67,7 +71,7 @@ public class UploadAction extends ActionSupport
 		//获取图片的类型
 		strFileType = getFileType(strFileContentType);
 		//检验图片的大小及图片类型是否符合规格
-		if (validateImageSize(file) && strFileType != null)
+		if (validateImageSize(file))
 		{
 			strFolder = OssConfig.aliyun_oss_root_path;
 			strName =  DateUtil.DateToTimestamp(new Date())+ RandomUtil.genRandomNum(4) + strFileType;
@@ -82,6 +86,8 @@ public class UploadAction extends ActionSupport
 				return strUrl;
 			} catch (Exception e)
 			{
+				System.out.println("出错了");
+				System.out.println(e);
 				return null;
 			}
 
@@ -102,8 +108,12 @@ public class UploadAction extends ActionSupport
 		//文件的最大成都
 		long nMaxSize = 5000000;
 
-		if (file.length() >= nMaxSize)
+		if (file.length() >= nMaxSize){
+			System.out.println("文件太大了");
 			return false;
+		}
+
+
 
 		return true;
 

@@ -36,6 +36,8 @@ public class UserInfoModel
 	private float   teamWinningRate;
 	private boolean canChanllage;
 	private String mobile;
+	private int pendingMatchsNum;
+	private int myMatchsNum;
 
 	public int getId()
 	{
@@ -265,5 +267,25 @@ public class UserInfoModel
 	public void setMobile(String mobile)
 	{
 		this.mobile = mobile;
+	}
+
+	public int getPendingMatchsNum()
+	{
+		return pendingMatchsNum;
+	}
+
+	public void setPendingMatchsNum(int pendingMatchsNum)
+	{
+		this.pendingMatchsNum = pendingMatchsNum;
+	}
+
+	public int getMyMatchsNum()
+	{
+		return myMatchsNum;
+	}
+
+	public void setMyMatchsNum(int myMatchsNum)
+	{
+		this.myMatchsNum = myMatchsNum;
 	}
 }

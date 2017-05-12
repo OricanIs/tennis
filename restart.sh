@@ -4,7 +4,7 @@ set ipaddr "116.62.25.201"
 
 set passwd "Muxu@2017"
 
-set timeout  1 
+set timeout  3
 
 spawn ssh root@$ipaddr
 

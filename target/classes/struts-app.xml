@@ -221,7 +221,7 @@
             <!-- 配置登录拦截器 -->
         </interceptors>
         <!-- 覆盖底层的拦截器栈 对包中的所有action都有效 -->
-        <!--<default-interceptor-ref name="userBaseStack"/>-->
+        <default-interceptor-ref name="userBaseStack"/>
 
         <global-results>
             <result name="errorMsg" type="redirectAction">../interceptor/undefindErr

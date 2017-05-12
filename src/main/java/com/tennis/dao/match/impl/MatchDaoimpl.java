@@ -45,7 +45,10 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 		String countHql = "from Match m where 1==1";
 
 
-		String pingjie = "defenderMainUser=" + userId + " or deferderMinUser=" + userId + " or " + "challengeMainUser=" + userId + " or challengeMinUser=" + userId + " and state=" + state;
+		String pingjie = " and (defenderMainUser=" + userId + " or deferderMinUser=" + userId + "" +
+				" or "
+				+ "challengeMainUser=" + userId + " or challengeMinUser=" + userId + " ) and " +
+				"state=" + state;
 		//动态添加参数
 		if (startDate > 0 && endDate > 0)
 		{
@@ -159,7 +162,8 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 	 */
 	public List<Match> pendingMatchs(int userId, int playWay)
 	{
-		String sql = "select * from matchs m where (m.defender_main_user=? or m" + ".deferder_min_user=?) and m.play_way=? and m.state=0 order by id";
+		String      sql       = "select * from matchs m where (m.defender_main_user=? or m" + "" +
+				".deferder_min_user=?) and m.play_way=? and m.state=0 and match_type=0 order by id";
 		List<Match> listBySQL = this.getListBySQL(sql, userId, userId, playWay);
 		return listBySQL;
 	}
@@ -209,23 +213,26 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 	 * @param userId
 	 * @return
 	 */
-	public PageResults<Match> myMatchs(int userId, int state,int startTime,int endTime, int page,
-									   int
-			pageSize)
+	public PageResults<Match> myMatchs(int userId, int state, int startTime, int endTime, Integer matchType, int page, int pageSize)
 	{
-		if(startTime==0||endTime==0){
+		if (startTime == 0 || endTime == 0)
+		{
 			startTime = 1483200000;
-			endTime = DateUtil.DateToTimestamp(new Date());
+			endTime =   2093908290;
+		}
+
+		String condition = "";
+		if (matchType != null){
+			condition = " and matchType="+matchType+" ";
 		}
 		String hql = "from Match where (defenderMainUser=? or defenderMinUser=? or " +
-				"challengeMainUser=? or challengeMinUser=?) and state=?  and (startTime between ?" +
-				" and ? ) order by id desc";
+				"challengeMainUser=? or challengeMinUser=?) and state=?  and (startTime between " +
+				"?" + " and ? )"+condition+" order by id desc";
 		String countHql = "select count(*) from Match where (defenderMainUser=? or " +
-				"defenderMinUser=? or " + "challengeMainUser=? or challengeMinUser=?) and state=?" +
-				" and (startTime between ? and ?) ";
-		PageResults<Match> result = this.findPageByFetchedHql(hql, countHql, page, pageSize,
-															  userId, userId, userId, userId,
-															  state,startTime,endTime);
+				"defenderMinUser=? or " + "challengeMainUser=? or challengeMinUser=?) and " +
+				"state=?" + " and (startTime between ? and ?) " +condition;
+
+		PageResults<Match> result = this.findPageByFetchedHql(hql, countHql, page, pageSize, userId, userId, userId, userId, state, startTime, endTime);
 
 
 		return result;
@@ -242,9 +249,11 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 	{
 		int nowtime = DateUtil.DateToTimestamp(new Date());
 
-		String hql = "from Match where state=0 and matchType=1 and startTime < ?  order by id ";
-		String countHql = "select count(*) from Match where state=0 and matchType=1 and startTime < ?  order by id";
-		PageResults<Match> result = this.findPageByFetchedHql(hql, countHql, page, pageSize,nowtime);
+		String             hql      = "from Match where state=0 and matchType=1 and startTime > ?" +
+				"  order by id ";
+		String             countHql = "select count(*) from Match where state=0 and matchType=1 " +
+				"and startTime > ?  order by id";
+		PageResults<Match> result   = this.findPageByFetchedHql(hql, countHql, page, pageSize, nowtime);
 		return result;
 	}
 }

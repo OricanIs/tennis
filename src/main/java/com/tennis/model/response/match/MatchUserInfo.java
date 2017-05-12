@@ -20,6 +20,7 @@ public class MatchUserInfo
 	private float winRate;
 	private String level;
 	private String avatar;
+	private String mobile;
 
 	public int getId()
 	{
@@ -99,5 +100,15 @@ public class MatchUserInfo
 	public void setAvatar(String avatar)
 	{
 		this.avatar = avatar;
+	}
+
+	public String getMobile()
+	{
+		return mobile;
+	}
+
+	public void setMobile(String mobile)
+	{
+		this.mobile = mobile;
 	}
 }

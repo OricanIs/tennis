@@ -44,7 +44,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 	}
 	private IUserService userService;
 	private IMatchService matchService;
-
+	private String openid;
+	public void setOpenid(String openid)
+	{
+		this.openid = openid;
+	}
 	public void setCode(String code)
 	{
 		this.code = code;
@@ -78,7 +82,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 				findUser.setRegisterTime(createAt);
 				findUser.setName("");
 				findUser.setPinyin("");
-				findUser.setSex(0);
+				findUser.setSex(2);
 				findUser.setAge(0);
 				findUser.setHeight(0);
 				findUser.setWeight(0);
@@ -265,6 +269,10 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 			return SUCCESS;
 		}
 
+		if (findUser.getLevel() <= 0){
+			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10003), null);
+			return SUCCESS;
+		}
 		//构建成功的返回结果
 		SimpleUserInfo userInfo = new SimpleUserInfo();
 		userInfo.setId(findUser.getId());
@@ -290,6 +298,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		userCenter.setId(userInfo.getId());
 		userCenter.setIntegral(userInfo.getIntegral());
 		userCenter.setRank(userInfo.getRank());
+		userCenter.setMyMatchsNum(userInfo.getMyMatchsNum());
+		userCenter.setPendingMatchsNum(userInfo.getPendingMatchsNum());
 		if(userInfo.getState()==null||userInfo.getState().equals("正常")){
 			userCenter.setStatus(0);
 		}
