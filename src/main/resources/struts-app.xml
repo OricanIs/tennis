@@ -27,7 +27,7 @@
             </interceptor-stack>
         </interceptors>
          <!--覆盖底层的拦截器栈 对包中的所有action都有效-->
-        <default-interceptor-ref name="userBaseStack"/>
+        <!--<default-interceptor-ref name="userBaseStack"/>-->
 
         <global-results>
             <result name="errorMsg" type="redirectAction">../interceptor/undefindErr
@@ -92,12 +92,43 @@
         <!--查找伙伴-->
         <action name="findPartner" class="com.tennis.action.app.UserAction"
                 method="findParnter">
+
             <result name="success" type="json">
             </result>
             <result name="error" type="json">
             </result>
         </action>
-        <!--查找伙伴-->
+        <!--get parnters-->
+        <action name="myPartners" class="com.tennis.action.app.UserAction"
+
+                method="getParnters">
+            <interceptor-ref name="userLoginStack"/>
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+
+        <!--savee parnters-->
+        <action name="savePartner" class="com.tennis.action.app.UserAction"
+                method="saveParnter">
+            <interceptor-ref name="userLoginStack"/>
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+
+        <!--del parnters-->
+        <action name="delPartner" class="com.tennis.action.app.UserAction"
+                method="delParnter">
+            <interceptor-ref name="userLoginStack"/>
+            <result name="success" type="json">
+            </result>
+            <result name="error" type="json">
+            </result>
+        </action>
+        <!--user center-->
         <action name="center" class="com.tennis.action.app.UserAction"
                 method="center">
             <interceptor-ref name="userLoginStack"/>

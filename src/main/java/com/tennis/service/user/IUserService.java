@@ -1,8 +1,11 @@
 package com.tennis.service.user;
 
 import com.tennis.model.db.User;
+import com.tennis.model.db.UserRelation;
 import com.tennis.model.response.match.MatchUserInfo;
 import com.tennis.model.response.user.UserInfoModel;
+
+import java.util.List;
 
 /**
  * All rights Reserved, Designed By  lixiao
@@ -84,4 +87,14 @@ public interface IUserService
 	 * @param integral
 	 */
 	public void changeIntegral(int userId,int integral);
+
+	//保存关系
+	public void SaveUserRelation(UserRelation relation);
+
+	//删除关系
+	public void delRelation(UserRelation relation);
+
+	//获取用户关系
+	public List<User> getFriends(int userId);
+
 }

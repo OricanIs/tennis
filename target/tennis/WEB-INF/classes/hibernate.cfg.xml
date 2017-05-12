@@ -17,6 +17,7 @@
             <mapping resource="MatchResult.hbm.xml"/>
             <mapping resource="Match.hbm.xml"/>
             <mapping resource="Integral.hbm.xml"/>
+        <mapping resource="UserRelation.hbm.xml"/>
     </session-factory>
 
 </hibernate-configuration>

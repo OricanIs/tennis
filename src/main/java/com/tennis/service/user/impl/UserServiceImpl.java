@@ -5,6 +5,7 @@ import com.tennis.em.EM_USER_LEVEL;
 import com.tennis.model.db.Match;
 import com.tennis.model.db.Nation;
 import com.tennis.model.db.User;
+import com.tennis.model.db.UserRelation;
 import com.tennis.model.response.match.MatchUserInfo;
 import com.tennis.model.response.match.UserMatchStatistics;
 import com.tennis.model.response.region.CityInfo;
@@ -364,6 +365,22 @@ public class UserServiceImpl implements IUserService
 
 		return true;
 
+	}
+
+
+	public void SaveUserRelation(UserRelation relation)
+	{
+		userDao.SaveUserRelation(relation);
+	}
+
+	public void delRelation(UserRelation relation)
+	{
+		userDao.delRelation(relation);
+	}
+
+	public List<User> getFriends(int userId)
+	{
+		return userDao.getFriends(userId);
 	}
 
 	private float intDivide(int a, int b)

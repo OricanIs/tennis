@@ -6,6 +6,7 @@ import com.tennis.em.EM_GLOBAL_RESULT;
 import com.tennis.em.EM_USER_LEVEL;
 import com.tennis.model.db.Match;
 import com.tennis.model.db.User;
+import com.tennis.model.db.UserRelation;
 import com.tennis.model.response.user.SimpleUserInfo;
 import com.tennis.model.response.user.UserCenter;
 import com.tennis.model.response.user.UserInfoModel;
@@ -19,6 +20,7 @@ import com.tennis.util.wechat.WechatCommonUtil;
 import org.apache.struts2.ServletActionContext;
 
 import java.util.Date;
+import java.util.List;
 
 import static com.tennis.util.common.HttpPrintWriter.responseWrite;
 
@@ -38,17 +40,35 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 	private User             user      = new User();
 	private EM_GLOBAL_RESULT SuccessEM = EM_GLOBAL_RESULT.getEmByCode(0);
 	private String code;
+
 	public User getModel()
 	{
 		return user;
 	}
-	private IUserService userService;
+
+	private IUserService  userService;
 	private IMatchService matchService;
-	private String openid;
+	private String        openid;
+	private int           partnerId;
+	private int           relationId;
+
+
 	public void setOpenid(String openid)
 	{
 		this.openid = openid;
 	}
+
+	public void setRelationId(int relationId)
+	{
+		this.relationId = relationId;
+	}
+
+	public void setPartnerId(int partnerId)
+	{
+		this.partnerId = partnerId;
+	}
+
+
 	public void setCode(String code)
 	{
 		this.code = code;
@@ -72,9 +92,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 	{
 
 		OpenidModel openidModel = WechatCommonUtil.getOpenId(code);
-		if(openidModel != null){
+		if (openidModel != null)
+		{
 			User findUser = userService.getUserByOpenid(openidModel.getOpenid());
-			if(findUser==null){
+			if (findUser == null)
+			{
 				findUser = new User();
 				findUser.setStatus(0);
 				findUser.setOpenid(openidModel.getOpenid());
@@ -100,10 +122,12 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 				userService.saveUser(findUser);
 
 			}
-			ServletActionContext.getRequest().getSession().setAttribute("user",findUser);
+			ServletActionContext.getRequest().getSession().setAttribute("user", findUser);
 			responseWrite(ServletActionContext.getResponse(), SuccessEM, findUser);
 			return SUCCESS;
-		}else {
+		}
+		else
+		{
 			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10002), null);
 			return SUCCESS;
 		}
@@ -126,7 +150,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		{
 			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10002), null);
 		}
-		if(userInfo.getMobile() == null){
+		if (userInfo.getMobile() == null)
+		{
 
 			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10006), null);
 		}
@@ -142,7 +167,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 	public String getUpdateUserInfo()
 	{
 		User sessionUser = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
-		user  = userService.getUser(sessionUser.getId());
+		user = userService.getUser(sessionUser.getId());
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, user);
 		return SUCCESS;
 
@@ -187,7 +212,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		if (user.getMobile() != null)
 			findUser.setMobile(user.getMobile());
 
-		if (user.getName() != null){
+		if (user.getName() != null)
+		{
 			findUser.setName(user.getName());
 		}
 
@@ -209,11 +235,14 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 
 		if (user.getBackhand() != null)
 			findUser.setBackhand(user.getBackhand());
-		if(user.getStatus()!=null &&(user.getStatus().equals(0) || user.getStatus().equals(1))){
+		if (user.getStatus() != null && (user.getStatus().equals(0) || user.getStatus().equals(1)))
+		{
 			findUser.setStatus(user.getStatus());
 		}
-		if(findUser.getLevel()==null || findUser.getLevel().equals(0)){
-			if(user.getLevel()!=null&&!user.getLevel().equals(0)){
+		if (findUser.getLevel() == null || findUser.getLevel().equals(0))
+		{
+			if (user.getLevel() != null && !user.getLevel().equals(0))
+			{
 				System.out.println("===========!!!!");
 				EM_USER_LEVEL emByIndex = EM_USER_LEVEL.getEmByIndex(user.getLevel());
 				findUser.setLevel(user.getLevel());
@@ -243,10 +272,10 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 			return SUCCESS;
 		}
 		userInfo.setMobile(CommonUtil.telHandle(userInfo.getMobile()));
-		if(matchId != 0)
+		if (matchId != 0)
 		{
 			Match match = matchService.get(matchId);
-			if(match.getState()>=1)
+			if (match.getState() >= 1)
 				userInfo.setMobile(userInfo.getMobile());
 		}
 
@@ -269,7 +298,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 			return SUCCESS;
 		}
 
-		if (findUser.getLevel() <= 0){
+		if (findUser.getLevel() <= 0)
+		{
 			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10003), null);
 			return SUCCESS;
 		}
@@ -284,23 +314,83 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		return SUCCESS;
 	}
 
+
+	/**
+	 * get friends
+	 */
+	public String getParnters()
+	{
+
+		User       findUser = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		List<User> friends  = userService.getFriends(findUser.getId());
+		responseWrite(ServletActionContext.getResponse(), SuccessEM, friends);
+		return SUCCESS;
+	}
+
+	/**
+	 * save parnter
+	 *
+	 * @return
+	 */
+	public String saveParnter()
+	{
+		User findUser = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		if (partnerId <= 0)
+		{
+			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10003), null);
+		}
+		if (findUser.getId() == partnerId){
+			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10003), null);
+		}
+		UserRelation relation = new UserRelation();
+		relation.setFriendId(partnerId);
+		relation.setUserId(findUser.getId());
+		userService.SaveUserRelation(relation);
+		responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
+
+		return SUCCESS;
+	}
+
+	/**
+	 * del user parnter
+	 * @return
+	 */
+	public String delParnter()
+	{
+		User findUser = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+
+		if (partnerId <= 0)
+		{
+			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10003), null);
+		}
+
+		UserRelation userRelation = new UserRelation();
+		userRelation.setUserId(findUser.getId());
+		userRelation.setFriendId(partnerId);
+		userService.delRelation(userRelation);
+		responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
+		return SUCCESS;
+	}
+
 	/**
 	 * 用户个人中心
+	 *
 	 * @return
 	 */
 	public String center()
 	{
-		User user = (User)ServletActionContext.getRequest().getSession().getAttribute("user");
-		int  userId = user.getId();
-		UserInfoModel userInfo = userService.getUserInfo(userId);
-		UserCenter userCenter = new UserCenter();
+		User          user       = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		int           userId     = user.getId();
+		UserInfoModel userInfo   = userService.getUserInfo(userId);
+		UserCenter    userCenter = new UserCenter();
 		userCenter.setAvatar(userInfo.getAvatar());
 		userCenter.setId(userInfo.getId());
 		userCenter.setIntegral(userInfo.getIntegral());
 		userCenter.setRank(userInfo.getRank());
 		userCenter.setMyMatchsNum(userInfo.getMyMatchsNum());
 		userCenter.setPendingMatchsNum(userInfo.getPendingMatchsNum());
-		if(userInfo.getState()==null||userInfo.getState().equals("正常")){
+		if (userInfo.getState() == null || userInfo.getState().equals("正常"))
+		{
 			userCenter.setStatus(0);
 		}
 		else
@@ -312,8 +402,6 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		responseWrite(ServletActionContext.getResponse(), SuccessEM, userCenter);
 		return SUCCESS;
 	}
-
-
 
 
 	//sets

@@ -2,7 +2,95 @@
 >所有的参数拼接在网址后面  <br>
 >所有的返回结果都是json类型 <br>
 >如果返回的 msg不在解析的范围内，直接输出reason，并终止操作 <br>
+><font color=red>***新增接口</font>
+>1 获取我的伙伴 <br>
+>2 保存我的伙伴 <br>
+>3 删除我的伙伴 <br>
 >
+
+
+### 获取我的伙伴
+
+**url** `/user/myPartners`
+#### request
+```js
+openid=orican 
+
+```
+
+#### response
+```js
+{
+    "msg": "success",
+    "result": [
+        {
+            "birthday": 1121221111,
+            "backhand": 1,
+            "city": 796,
+            "level": 2,
+            "nation": 1,
+            "registerTime": 1121221111,
+            "openid": "orican1",
+            "sex": 2,
+            "mobile": "13122210064",
+            "weight": 110,
+            "avatar": "http://muxu.oss-cn-hangzhou.aliyuncs.com/user/5366d0160924ab18d9105e4432fae6cd7b890bba.jpg",
+            "pinyin": "orican1",
+            "province": 795,
+            "integral": 385,
+            "name": "orican1",
+            "id": 2,
+            "age": 11,
+            "forehand": 1,
+            "height": 170,
+            "nationFlag": "http://muxu.oss-cn-hangzhou.aliyuncs.com/china.png",
+            "status": 0
+        }
+    ],
+    "reason": "success",
+    "code": 0
+}
+```
+
+### 保存我的伙伴
+
+**url** `/user/savePartner`
+#### request
+```js
+partnerId=3&openid=orican //partnerId 为我的伙伴列表中用户id
+
+```
+
+#### response
+```js
+	{
+    "msg": "success",
+    "reason": "success",
+    "code": 0
+}
+
+```
+### 删除我的伙伴
+
+**url** `/user/delPartner`
+#### request
+```js
+partnerId=3&openid=orican  //partnerId 为我的伙伴列表中用户id
+
+```
+
+#### response
+```js
+	{
+    "msg": "success",
+    "reason": "success",
+    "code": 0
+}
+
+```
+
+
+
 
 ### 微信登陆验证
 
