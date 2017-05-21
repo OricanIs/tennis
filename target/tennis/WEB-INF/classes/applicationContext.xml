@@ -10,18 +10,19 @@
   ~ Version: 1.0
   -->
 
-<beans
-    xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:aop="http://www.springframework.org/schema/aop"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:p="http://www.springframework.org/schema/p"
-    xmlns:tx="http://www.springframework.org/schema/tx"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
-						http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-						http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
-						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-						http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
 
 
     <!-- 引入外部文件jdbc.properties -->
@@ -126,6 +127,20 @@
         </tx:attributes>
     </tx:advice>
 
+
+    <!--轮询程序start-->
+    <!--每天的凌晨十二点十分和中午十二点半进行订单统计 中午十二点半主要是校验是否在凌晨进行过订单统计,如果统计过,那么就不用统计,否则,就做统计操作-->
+    <bean id="pollingAction" class="com.tennis.action.app.PollingAction">
+        <property name="matchService" ref="matchService"/>
+    </bean>
+
+
+    <task:scheduled-tasks scheduler="myScheduler">
+        <task:scheduled ref="pollingAction" method="matchPolling" cron="0/60 * * * * *"/>
+        <!--每天一点 十三点 十九点-->
+        <!--<task:scheduled ref="pollingAction" method="matchPolling" cron="0 0 1 * * ?"></task:scheduled>-->
+    </task:scheduled-tasks>
+    <task:scheduler id="myScheduler" pool-size="10"/>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
     <import resource="classpath:beans.xml"></import>

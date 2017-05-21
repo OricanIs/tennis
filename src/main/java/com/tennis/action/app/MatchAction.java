@@ -137,7 +137,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 
 	/**
 	 * 查看比赛列表
-	 *
+	 *	比赛失效 3
 	 * @return
 	 */
 	public String myMatchs()
@@ -277,6 +277,7 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 	{
 		//首先确认是挑战赛还是擂台赛
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute("user");
+		String matchAddr = match.getMatchAddr()==null ? "":match.getMatchAddr();
 		match = matchService.get(this.match.getId());
 		if (match.getState() != 0)
 		{
@@ -298,6 +299,9 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 				}
 				match.setDefenderMainUser(user.getId());
 				match.setState(1);
+				if (matchAddr != ""){
+					match.setMatchAddr(matchAddr);
+				}
 				matchService.update(match);
 
 			}
@@ -313,6 +317,9 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 				match.setDefenderMainUser(user.getId());
 				match.setDefenderMinUser(partnerId);
 				match.setState(1);
+				if (matchAddr != ""){
+					match.setMatchAddr(matchAddr);
+				}
 				matchService.update(match);
 			}
 
@@ -366,7 +373,6 @@ public class MatchAction extends ActionSupport implements ModelDriven<Match>
 			matchService.update(match);
 			//返回结果
 			responseWrite(ServletActionContext.getResponse(), SuccessEM, null);
-
 			return SUCCESS;
 
 		}

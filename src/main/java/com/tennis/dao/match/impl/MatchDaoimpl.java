@@ -47,8 +47,12 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 
 		String pingjie = " and (defenderMainUser=" + userId + " or deferderMinUser=" + userId + "" +
 				" or "
-				+ "challengeMainUser=" + userId + " or challengeMinUser=" + userId + " ) and " +
-				"state=" + state;
+				+ "challengeMainUser=" + userId + " or challengeMinUser=" + userId + " ) ";
+		if (state == 2){
+			pingjie += " and state in (-1,2,3)";
+		}else{
+			pingjie += " and state="+state;
+		}
 		//动态添加参数
 		if (startDate > 0 && endDate > 0)
 		{
@@ -182,7 +186,6 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 		query.setParameter(0, matchId).setParameter(1, userId);
 		query.addEntity(MatchResult.class);
 
-
 		return (MatchResult) query.uniqueResult();
 	}
 
@@ -225,14 +228,18 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 		if (matchType != null){
 			condition = " and matchType="+matchType+" ";
 		}
+		if (state == 2){
+			condition += " and state in(-1,2,3)";
+		}else{
+			condition += " and state="+state;
+		}
 		String hql = "from Match where (defenderMainUser=? or defenderMinUser=? or " +
-				"challengeMainUser=? or challengeMinUser=?) and state=?  and (startTime between " +
+				"challengeMainUser=? or challengeMinUser=?)   and (startTime between " +
 				"?" + " and ? )"+condition+" order by id desc";
 		String countHql = "select count(*) from Match where (defenderMainUser=? or " +
-				"defenderMinUser=? or " + "challengeMainUser=? or challengeMinUser=?) and " +
-				"state=?" + " and (startTime between ? and ?) " +condition;
+				"defenderMinUser=? or " + "challengeMainUser=? or challengeMinUser=?)  and (startTime between ? and ?) " +condition;
 
-		PageResults<Match> result = this.findPageByFetchedHql(hql, countHql, page, pageSize, userId, userId, userId, userId, state, startTime, endTime);
+		PageResults<Match> result = this.findPageByFetchedHql(hql, countHql, page, pageSize, userId, userId, userId, userId, startTime, endTime);
 
 
 		return result;
@@ -255,5 +262,36 @@ public class MatchDaoimpl extends GenericDaoImpl<Match, Integer> implements IMat
 				"and startTime > ?  order by id";
 		PageResults<Match> result   = this.findPageByFetchedHql(hql, countHql, page, pageSize, nowtime);
 		return result;
+	}
+
+
+	/**
+	 * 获取过期的用户没有同意的比赛
+	 *
+	 * @return
+	 */
+	public List<Match> getOverDateMatch()
+	{
+		Date date = new Date();
+		int nowtime = DateUtil.DateToTimestamp(date);
+		nowtime = nowtime - 86400;
+		String sql = "select * from matchs m where  m.state=0 and match_type=0 and m.create_time<?";
+		List<Match> listBySQL = this.getListBySQL(sql, nowtime);
+		return listBySQL;
+	}
+
+	/**
+	 * 获取已经完成，但是比赛状态没更改的
+	 *
+	 * @return
+	 */
+	public List<Match> getCompletedAndNoConfirmMatch()
+	{
+		Date date = new Date();
+		int nowtime = DateUtil.DateToTimestamp(date);
+		nowtime = nowtime - 86400;
+		String sql = "select * from matchs m where m.state=1 and m.end_time<?";
+		List<Match> listBySQL = this.getListBySQL(sql, nowtime);
+		return listBySQL;
 	}
 }

@@ -409,4 +409,23 @@ public class MatchServiceImpl implements IMatchService
 	}
 
 
+	/**
+	 * 获取过期的用户没有同意的比赛
+	 *
+	 * @return
+	 */
+	public List<Match> getOverDateMatch()
+	{
+		return matchDao.getOverDateMatch();
+	}
+
+	/**
+	 * 获取已经完成，但是比赛状态没更改的
+	 *
+	 * @return
+	 */
+	public List<Match> getCompletedAndNoConfirmMatch()
+	{
+		return matchDao.getCompletedAndNoConfirmMatch();
+	}
 }

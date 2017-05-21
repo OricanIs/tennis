@@ -338,9 +338,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		if (partnerId <= 0)
 		{
 			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10003), null);
+			return SUCCESS;
 		}
-		if (findUser.getId() == partnerId){
+		if (findUser.getId()==partnerId){
 			responseWrite(ServletActionContext.getResponse(), EM_GLOBAL_RESULT.getEmByCode(10003), null);
+			return SUCCESS;
 		}
 		UserRelation relation = new UserRelation();
 		relation.setFriendId(partnerId);
