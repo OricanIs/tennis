@@ -14,13 +14,13 @@ public enum EM_USER_LEVEL
 {
 	ENTRY_LEVEL(1, "entry", "入门", 0,180),
 	PRIMARY_LEVEL(2, "primary", "初级", 300,370),
-	MIDDLE_LEVEL(3, "middle", "中级", 450,530),
+	MIDDLE_LEVEL(3, "middle", "中级", 450,500),
 	SENIOR_LEVEL(4, "senior", "高级", 750,770),
 	EXPERT_LEVEL(5, "master", "专家", 1000,1000);
 
 	private int    index;        //序号
 	private String code;         //代码
-	private String name;            //名称
+	private String name;         //名称
 	private int    score;        //分数
 	private int initial;
 

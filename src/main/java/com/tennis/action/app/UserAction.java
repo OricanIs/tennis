@@ -243,7 +243,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User>
 		{
 			if (user.getLevel() != null && !user.getLevel().equals(0))
 			{
-				System.out.println("===========!!!!");
+				System.out.println("SET DEFAULT LEVEL!");
 				EM_USER_LEVEL emByIndex = EM_USER_LEVEL.getEmByIndex(user.getLevel());
 				findUser.setLevel(user.getLevel());
 				findUser.setIntegral(emByIndex.getInitial());

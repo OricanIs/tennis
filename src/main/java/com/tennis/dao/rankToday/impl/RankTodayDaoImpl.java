@@ -3,6 +3,7 @@ package com.tennis.dao.rankToday.impl;
 import com.tennis.dao.common.impl.GenericDaoImpl;
 import com.tennis.dao.rankToday.IRankTodayDao;
 import com.tennis.model.common.PageResults;
+import com.tennis.model.db.User;
 import com.tennis.model.db.UserRankToday;
 import com.tennis.model.response.rank.UserRankModel;
 
@@ -49,7 +50,8 @@ public class RankTodayDaoImpl extends GenericDaoImpl<UserRankToday, Integer> imp
 	public PageResults<UserRankModel> userRankList(int userId, int proviceId, int cityId, int matchType, int level, int state, int page, int pageSize)
 	{
 
-		String hql = "select new com.tennis.model.response.rank.UserRankModel(u.id,u.name,u.province,u.city,u.integral) from User u where 1=1 ";
+		String hql = "select new com.tennis.model.response.rank.UserRankModel(u.id,u.name,u" +
+				".province,u.city,u.integral,u.sex) from User u where 1=1 ";
 
 		String countHql = "select count(*) from User u where 1=1";
 
@@ -64,24 +66,24 @@ public class RankTodayDaoImpl extends GenericDaoImpl<UserRankToday, Integer> imp
 			hql += " and u.city=" + cityId;
 			countHql += " and u.city=" + cityId;
 		}
-		if (level != 0)
-		{
 
-			hql += " and u.level=" + level;
-			countHql += " and u.level=" + level;
+		if(userId !=0 ){
+			User findUser = this.getSession().get(User.class,userId);
+			int userLevel = findUser.getLevel();
+			hql += " and u.status=0 and u.id!=" + userId +" and u.level="+userLevel;
+			countHql += " and u.status=0 and u.id!=" + userId+" and u.level="+userLevel;
+		}else{
+			hql += " and u.status=0";
+			countHql += " and u.status=0";
+			if (level != 0)
+			{
+
+				hql += " and u.level=" + level;
+				countHql += " and u.level=" + level;
+			}
+
 		}
-		if (state != -1)
-		{
-			hql += " and u.status=" + state;
-			countHql += " and u.status=" + state;
-		}
 
-
-		//		hql += " and u.matchType="+matchType;
-		//		countHql += " and u.matchType="+matchType;
-
-		hql += " and u.id!=" + userId;
-		countHql += " and u.id!=" + userId;
 
 		hql += " order by u.integral desc,u.id desc";
 

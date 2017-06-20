@@ -19,6 +19,7 @@ public class MatchResult
 	private Integer defenderScore;
 	private int userId;
 
+
 	public int getId()
 	{
 		return id;

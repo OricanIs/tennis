@@ -33,8 +33,8 @@ public class MatchServiceImpl implements IMatchService
 	private IMatchDao        matchDao;
 	private IUserService     userService;
 	private IIntegralService integralService;
-	private final int winIntegral  = 15;
-	private final int loseIntegral = 10;
+	private final int winIntegral  = 10;
+	private final int loseIntegral = 7;
 
 	public void setMatchDao(IMatchDao matchDao)
 	{

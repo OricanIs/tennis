@@ -19,18 +19,32 @@ public class UserRankModel
 	private int integral;
 	private String provinceStr;
 	private String cityStr;
+	private int sex;
 
 	public UserRankModel()
 	{
 	}
 
-	public UserRankModel(int userId, String username, int provice, int city, int integral)
+	public UserRankModel(int userId, String username, int provice, int city, int integral, int sex)
 	{
 		this.userId = userId;
 		this.username = username;
 		this.provice = provice;
 		this.city = city;
 		this.integral = integral;
+		this.sex = sex;
+	}
+
+	public UserRankModel(int userId, String username, int provice, int city, int integral, String provinceStr, String cityStr, int sex)
+	{
+		this.userId = userId;
+		this.username = username;
+		this.provice = provice;
+		this.city = city;
+		this.integral = integral;
+		this.provinceStr = provinceStr;
+		this.cityStr = cityStr;
+		this.sex = sex;
 	}
 
 	public int getUserId()
@@ -101,5 +115,15 @@ public class UserRankModel
 	public void setCityStr(String cityStr)
 	{
 		this.cityStr = cityStr;
+	}
+
+	public int getSex()
+	{
+		return sex;
+	}
+
+	public void setSex(int sex)
+	{
+		this.sex = sex;
 	}
 }
