@@ -36,6 +36,15 @@ public interface IMatchService
 	 */
 	public List<Match> userWeekMatchs(int userId);
 
+
+	/**
+	 * 获取用户这周的比赛
+	 *
+	 * @param userId
+	 * @return
+	 */
+	public List<Match> userDateMatchs(int userId);
+
 	/**
 	 * @param challengerUser 挑战方
 	 * @param defenderUser   防守方

@@ -75,9 +75,27 @@ public class MatchServiceImpl implements IMatchService
 	{
 		//构建时间戳
 		Date today  = new Date();
+//		int  monday = DateUtil.DateToTimestamp(today);
+//		int  sunday = monday - 172800;
 		int  monday = DateUtil.DateToTimestamp(DateUtil.getMondayOfThisWeek(today));
 		int  sunday = DateUtil.DateToTimestamp(DateUtil.getSundayOfThisWeek(today));
 
+		List<Match> effectiveMatchs = matchDao.getEffectiveMatchs(userId, monday, sunday);
+		return effectiveMatchs;
+	}
+
+	/**
+	 * 获取用户这周的比赛
+	 *
+	 * @param userId
+	 * @return
+	 */
+	public List<Match> userDateMatchs(int userId)
+	{
+		//构建时间戳
+		Date today  = new Date();
+		int  monday = DateUtil.DateToTimestamp(today);
+		int  sunday = monday - 172800;
 		List<Match> effectiveMatchs = matchDao.getEffectiveMatchs(userId, monday, sunday);
 		return effectiveMatchs;
 	}

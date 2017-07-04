@@ -172,10 +172,9 @@ public class UserServiceImpl implements IUserService
 		/**
 		 * ==================================
 		 *
-		 * 		1.	每个玩家每周最多可以挑战4次，
-		 * 		2.	2周内不能重复挑战同一选手，
-		 * 		3.	被挑战的玩家每个月可以拒绝2次挑战，第3次拒绝含以上每次扣5分；
-		 * 		4:	玩家的状态可设置为有空或者忙碌，玩家不能挑战那些设置为忙碌的玩家
+		 * 		1.	每个玩家每周一共可以打7场比赛，4场单打，3场双打。单打48内不能重复挑战同一玩家。
+		 * 		2.	2天不能重复挑战同一选手，
+		 * 		3:	玩家的状态可设置为有空或者忙碌，玩家不能挑战那些设置为忙碌的玩家
 		 *
 		 * ==================================
 		 */
@@ -184,14 +183,22 @@ public class UserServiceImpl implements IUserService
 		User user = userDao.getUser(userId);
 		if (user == null || user.getStatus() == 1 || user.getMobile() == null || user.getMobile().equals(""))
 			return false;
-
-		List<Match> matches = matchService.userWeekMatchs(userId);
-
-		//检查一周玩的次数
-		if (matches.size() > 4)
-			return false;
-
-
+//		int singleMatch = 0;
+//		int doubleMatch =0;
+//		List<Match> matches = matchService.userWeekMatchs(userId);
+//		for (int i = 0 ;i < matches.size() ; i++){
+//			if (matches.get(i).getPlayWay()==0){
+//				singleMatch ++;
+//			}else{
+//				doubleMatch ++;
+//			}
+//		}
+//		if (matches.size() >=7){
+//			return false;
+//		}
+//		if (singleMatch>=4 && doubleMatch >=3){
+//			return false;
+//		}
 		return true;
 	}
 
@@ -338,7 +345,7 @@ public class UserServiceImpl implements IUserService
 	//privates
 	private boolean canChanallAnotherCount(int userId, int otherUserId)
 	{
-		List<Match> matches = matchService.userWeekMatchs(userId);
+		List<Match> matches = matchService.userDateMatchs(userId);
 
 		if (matches == null || matches.size() <= 0)
 			return true;
